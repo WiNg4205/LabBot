@@ -8,20 +8,20 @@ const urls = {
 };
 
 const weatherCodes = {
-    0: 'Clear Sky',
-    1: 'Mainly Clear',
-    2: 'Partly Cloudy',
-    3: 'Mostly Cloudy',
-    45: 'Fog',
-    51: 'Light Drizzle',
-    53: 'Moderate Drizzle',
-    55: 'Heavy Drizzle',
-    61: 'Light Rain',
-    63: 'Moderate Rain',
-    65: 'Heavy Rain',
-    80: 'Light Showers',
-    81: 'Moderate Showers',
-    82: 'Heavy Showers'
+    0: ' ☀️ (Clear Sky)',
+    1: ' ☀️ (Mainly Clear)',
+    2: ' 🌤️ (Partly Cloudy)',
+    3: ' ⛅ (Mostly Cloudy)',
+    45: ' 🌫️ (Fog)',
+    51: ' 🌧️ (Light Drizzle)',
+    53: ' 🌧️ (Moderate Drizzle)',
+    55: ' 🌧️ (Heavy Drizzle)',
+    61: ' 🌧️ (Light Rain)',
+    63: ' 🌧️ (Moderate Rain)',
+    65: ' 🌧️ (Heavy Rain)',
+    80: ' 🌧️ (Light Showers)',
+    81: ' 🌧️ (Moderate Showers)',
+    82: ' 🌧️ (Heavy Showers)'
 };
 
 
