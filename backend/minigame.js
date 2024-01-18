@@ -11,7 +11,7 @@ class MiniGameHandler {
 
     async playGuessTheNumber() {
         this.game = new GuessTheNumber("GuessTheNumber", null, null);
-        return "Guess the number between 1-10"
+        return "Guess the number between 1-10";
     }
 
     async playHangman() {
