@@ -1,6 +1,5 @@
-import { MongoClient } from "mongodb";
-import dotenv from "dotenv";
-dotenv.config();
+import { MongoClient } from 'mongodb'
+import dotenv from 'dotenv'
 
 import mongoose from 'mongoose'
 const uri = `mongodb+srv://Scientists:${process.env.MONGO_PWD}@cluster0.qivnnso.mongodb.net/results?retryWrites=true&w=majority`

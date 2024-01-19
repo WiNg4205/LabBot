@@ -1,8 +1,7 @@
 export default {
-    build: {
-      rollupOptions: {
-        input: 'main.js', 
-      },
-    },
-};
-  
+  build: {
+    rollupOptions: {
+      input: 'main.js'
+    }
+  }
+}
