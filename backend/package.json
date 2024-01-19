@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "nodemon main.js"
+    "start": "nodemon data.js"
   },
   "devDependencies": {
     "nodemon": "^3.0.2",
