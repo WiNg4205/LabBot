@@ -1,5 +1,8 @@
-import { Client, IntentsBitField } from 'discord.js'
+import { Client, Collection, Events, IntentsBitField } from 'discord.js'
 import dotenv from 'dotenv'
+import fs from 'fs'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url';
 import apiHandler from './api.js'
 import minigameHandler from './minigame.js'
 import databaseHandler from './data.js'
@@ -26,6 +29,50 @@ const client = new Client({
 client.on('ready', () => {
   console.log('Our bot is ready to go!')
 })
+
+client.commands = new Collection()
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const foldersPath = path.join(__dirname, 'commands')
+const commandFolders = fs.readdirSync(foldersPath)
+
+for (const folder of commandFolders) {
+  const commandsPath = path.join(foldersPath, folder)
+  const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'))
+  for (const file of commandFiles) {
+    const filePath = new URL(`file://${path.join(commandsPath, file)}`)
+    import(filePath).then(module => {
+      const command = module.default
+      if ('data' in command && 'execute' in command) {
+        client.commands.set(command.data.name, command)
+      } else {
+        console.log(`[WARNING] the command at ${filePath} is missing a required "data or "execute property`)
+      }
+    })
+  }
+}
+
+client.on(Events.InteractionCreate, async interaction => {
+	if (!interaction.isChatInputCommand()) return;
+
+	const command = interaction.client.commands.get(interaction.commandName);
+
+	if (!command) {
+		console.error(`No command matching ${interaction.commandName} was found.`);
+		return;
+	}
+
+	try {
+		await command.execute(interaction);
+	} catch (error) {
+		console.error(error);
+		if (interaction.replied || interaction.deferred) {
+			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+		} else {
+			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		}
+	}
+});
 
 client.on('messageCreate', msg => {
   if (msg.author.bot) return // To avoid infinite loops
