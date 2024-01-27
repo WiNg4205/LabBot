@@ -26,10 +26,6 @@ const client = new Client({
   ]
 })
 
-client.on('ready', () => {
-  console.log('Our bot is ready to go!')
-})
-
 client.commands = new Collection()
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -52,27 +48,20 @@ for (const folder of commandFolders) {
   }
 }
 
-client.on(Events.InteractionCreate, async interaction => {
-	if (!interaction.isChatInputCommand()) return;
+const eventsPath = path.join(__dirname, 'events')
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'))
 
-	const command = interaction.client.commands.get(interaction.commandName);
-
-	if (!command) {
-		console.error(`No command matching ${interaction.commandName} was found.`);
-		return;
-	}
-
-	try {
-		await command.execute(interaction);
-	} catch (error) {
-		console.error(error);
-		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-		} else {
-			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-		}
-	}
-});
+for (const file of eventFiles) {
+  const filePath = new URL(`file://${path.join(eventsPath, file)}`)
+  import(filePath).then(module => {
+    const event = module.default
+    if (event.once) {
+      client.once(event.name, (...args) => event.execute(...args))
+    } else {
+      client.on(event.name, (...args) => event.execute(...args))
+    }
+  })
+}
 
 client.on('messageCreate', msg => {
   if (msg.author.bot) return // To avoid infinite loops
