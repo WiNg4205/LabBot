@@ -2,7 +2,7 @@ import { Client, Collection, Events, IntentsBitField } from 'discord.js'
 import dotenv from 'dotenv'
 import fs from 'fs'
 import path, { dirname } from 'path'
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'url'
 import apiHandler from './api.js'
 import minigameHandler from './minigame.js'
 import databaseHandler from './data.js'

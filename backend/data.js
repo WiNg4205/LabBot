@@ -1,74 +1,74 @@
 import dotenv from 'dotenv'
-dotenv.config();
 
 import mongoose, { trusted } from 'mongoose'
-const { Schema } = mongoose;
+dotenv.config()
+const { Schema } = mongoose
 const uri = `mongodb+srv://Scientists:${process.env.MONGO_PWD}@cluster0.qivnnso.mongodb.net/results?retryWrites=true&w=majority`
-mongoose.connect(uri);
+mongoose.connect(uri)
 
 class databaseHandler {
-    static playerSchema = new mongoose.Schema({
-        name: { 
-            type: String, 
-            required: true 
-        },
-        winRate: { 
-            type: Number,
-            default: 0
-        }
-    });
+  static playerSchema = new mongoose.Schema({
+    name: {
+      type: String,
+      required: true
+    },
+    winRate: {
+      type: Number,
+      default: 0
+    }
+  })
 
-    static resultsSchema = new mongoose.Schema({ 
-        placing: {
-            type: Number,
-            required: true
-        },
-        team: {
-            type: [String],
-            required: true
-        }
-     });
+  static resultsSchema = new mongoose.Schema({
+    placing: {
+      type: Number,
+      required: true
+    },
+    team: {
+      type: [String],
+      required: true
+    }
+  })
 
-    static outingSchema = new mongoose.Schema({
-        people: {
-            type: [String],
-            required: true
-        },
-        location: {
-            type: String,
-            required: true
-        },
-        restaurant: {
-            type: String, 
-            required: true
-        },
-        date: {
-            type: Date,
-            min: '2024-01-20'
-        },
-        games: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Game'
-            }
-        ]
-    });
+  static outingSchema = new mongoose.Schema({
+    people: {
+      type: [String],
+      required: true
+    },
+    location: {
+      type: String,
+      required: true
+    },
+    restaurant: {
+      type: String,
+      required: true
+    },
+    date: {
+      type: Date,
+      min: '2024-01-20'
+    },
+    games: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Game'
+      }
+    ]
+  })
 
-    static gameSchema = new mongoose.Schema({
-        game: {
-            type: String,
-            required: true
-        },
-        result: {
-            type: [databaseHandler.resultsSchema],
-        }
-    });
+  static gameSchema = new mongoose.Schema({
+    game: {
+      type: String,
+      required: true
+    },
+    result: {
+      type: [databaseHandler.resultsSchema]
+    }
+  })
 }
 
-const Player = mongoose.model('Player', databaseHandler.playerSchema);
-const Game = mongoose.model('Game', databaseHandler.gameSchema);
-const Outing = mongoose.model('Outing', databaseHandler.outingSchema);
-const Result = mongoose.model('Result', databaseHandler.resultsSchema);
+const Player = mongoose.model('Player', databaseHandler.playerSchema)
+const Game = mongoose.model('Game', databaseHandler.gameSchema)
+const Outing = mongoose.model('Outing', databaseHandler.outingSchema)
+const Result = mongoose.model('Result', databaseHandler.resultsSchema)
 
 // const result = new Result({
 //     placing: "1",
@@ -105,4 +105,4 @@ const Result = mongoose.model('Result', databaseHandler.resultsSchema);
 //     exec();
 // console.log(outing1.games[0].result);
 
-export default databaseHandler;
+export default databaseHandler
