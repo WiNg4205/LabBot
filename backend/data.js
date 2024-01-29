@@ -1,12 +1,11 @@
 import dotenv from 'dotenv'
-import { ActionRowBuilder, TextInputStyle, ComponentType, SlashCommandBuilder} from 'discord.js'
 import mongoose, { trusted } from 'mongoose'
 dotenv.config()
 const { Schema } = mongoose
 const uri = `mongodb+srv://Scientists:${process.env.MONGO_PWD}@cluster0.qivnnso.mongodb.net/results?retryWrites=true&w=majority`
 mongoose.connect(uri)
 
-class DatabaseHandler {
+class databaseHandler {
   static playerSchema = new mongoose.Schema({
     name: {
       type: String,
@@ -60,17 +59,15 @@ class DatabaseHandler {
       required: true
     },
     result: {
-      type: [DatabaseHandler.resultsSchema]
+      type: [databaseHandler.resultsSchema]
     }
   })
-
-  constructor() {
-    this.Player = mongoose.model('Player', DatabaseHandler.playerSchema)
-    this.Game = mongoose.model('Game', DatabaseHandler.gameSchema)
-    this.Outing = mongoose.model('Outing', DatabaseHandler.outingSchema)
-    this.Result = mongoose.model('Result', DatabaseHandler.resultsSchema)
-  }
 }
+
+const Player = mongoose.model('Player', databaseHandler.playerSchema)
+const Game = mongoose.model('Game', databaseHandler.gameSchema)
+const Outing = mongoose.model('Outing', databaseHandler.outingSchema)
+const Result = mongoose.model('Result', databaseHandler.resultsSchema)
 
 // const result = new Result({
 //     placing: "1",
@@ -107,6 +104,4 @@ class DatabaseHandler {
 //     exec();
 // console.log(outing1.games[0].result);
 
-const databaseHandler = new DatabaseHandler()
-
-export default databaseHandler
+export default databaseHandler;

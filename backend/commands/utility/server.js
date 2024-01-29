@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js'
 
 const serverCommand = {
-	data: new SlashCommandBuilder()
+  data: new SlashCommandBuilder()
     .setName('server')
     .setDescription('Provides information about the server.'),
   async execute (interaction) {
