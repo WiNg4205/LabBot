@@ -13,9 +13,9 @@ const winrateCommand = {
       .setDescription('Overall win rate across all games')
       .setThumbnail(interaction.guild.iconURL())
       .setTimestamp()
-      .setFooter({ text: ' ', iconURL: interaction.user.displayAvatarURL() });
+      .setFooter({ text: ' ', iconURL: interaction.user.displayAvatarURL() })
 
-    const players = await databaseHandler.Player.find();
+    const players = await databaseHandler.Player.find()
     for (let i = 0; i < players.length; i++) {
       const player = players[i]
       let winRate = (player.gamesWon / player.gamesPlayed) * 100
