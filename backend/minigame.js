@@ -13,10 +13,6 @@ class MiniGameHandler {
     this.game = new GuessTheNumber('GuessTheNumber', null, null)
     return 'Guess the number between 1-10'
   }
-
-  async playHangman () {
-    this.game = new Hangman('GuessTheNumber', null, null)
-  }
 }
 
 class MiniGame {
@@ -57,10 +53,6 @@ class GuessTheNumber extends MiniGame {
       return ['Guess higher..', false]
     }
   }
-}
-
-class Hangman extends MiniGame {
-
 }
 
 const minigameHandler = new MiniGameHandler()
