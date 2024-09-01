@@ -37,7 +37,7 @@ class DatabaseHandler {
     },
     date: {
       type: Date,
-      min: '2024-01-20'
+      min: '2024-01-01'
     },
     games: [
       {
