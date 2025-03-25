@@ -1,4 +1,4 @@
-import { Client, Collection, Events, IntentsBitField } from 'discord.js'
+import { Client, Collection, IntentsBitField } from 'discord.js'
 import dotenv from 'dotenv'
 import fs from 'fs'
 import path, { dirname } from 'path'

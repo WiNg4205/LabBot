@@ -12,24 +12,25 @@ const guessCommand = {
       return !isNaN(response.content)
     }
 
-    const collector = interaction.channel.createMessageCollector({ filter, time: 15000 })
+    const collector = interaction.channel.createMessageCollector({ filter, time: 30000 })
     let won = false
+
     collector.on('collect', message => {
       if (parseInt(message.content) === minigameHandler.game.randomNumber) {
-        interaction.followUp('Congrats! You guessed the number correctly!')
+        message.reply('Congrats! You guessed the number correctly!')
         won = true
         collector.stop()
       } else {
-        minigameHandler.play(message.content).then(result => interaction.followUp(result))
+        minigameHandler.play(message.content).then(result => message.reply(result))
       }
     })
 
     collector.on('end', collected => {
       if (won) {
         if (collected.size === 1) {
-          interaction.followUp(`You took ${collected.size} guess!`)
+          collected.last().reply(`You took ${collected.size} guess!`)
         } else {
-          interaction.followUp(`You took ${collected.size} guesses!`)
+          collected.last().reply(`You took ${collected.size} guesses!`)
         }
       } else {
         interaction.followUp('You ran out of time! 😔')

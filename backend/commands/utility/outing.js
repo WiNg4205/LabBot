@@ -1,4 +1,4 @@
-import { ApplicationCommandType, SlashCommandBuilder, ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } from 'discord.js'
+import { SlashCommandBuilder, ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } from 'discord.js'
 
 const modalCommand = {
   data: new SlashCommandBuilder()
