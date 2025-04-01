@@ -18,7 +18,7 @@ const modalSubmit = {
     const location = interaction.fields.getTextInputValue('locationInput')
 
     // Save to database
-    const outing = await databaseHandler.Outing.create({
+    await databaseHandler.Outing.create({
       people,
       placesWent: location,
       date

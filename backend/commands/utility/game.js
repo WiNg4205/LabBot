@@ -56,7 +56,7 @@ const gameCommand = {
     })
 
     selMenuCollector.on('end', async collected => {
-      if (collected.size == 0) {
+      if (collected.size === 0) {
         return
       }
 
@@ -105,11 +105,11 @@ const gameCommand = {
       await databaseHandler.Outing.findOneAndUpdate(query, { $push: { games: objectId } }, { new: true, upsert: false })
 
       // Update player scores
-      for (var i = 0; i < players.length; i++) {
+      for (let i = 0; i < players.length; i++) {
         await databaseHandler.Player.findOneAndUpdate({ name: players[i] }, { $inc: { gamesPlayed: 1 } })
       }
 
-      for (var i = 0; i < winners.length; i++) {
+      for (let i = 0; i < winners.length; i++) {
         await databaseHandler.Player.findOneAndUpdate({ name: winners[i] }, { $inc: { gamesWon: 1 } })
       }
     })
