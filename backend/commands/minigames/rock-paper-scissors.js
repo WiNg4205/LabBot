@@ -84,9 +84,9 @@ const rpsCommand = {
         if (firstChoice.choice === i.customId) {
           interaction.followUp('It\'s a tie!')
         } else if (firstChoiceBeats === i.customId) {
-          interaction.followUp(`1 ${firstChoice.user} wins!`)
+          interaction.followUp(`${firstChoice.user} wins!`)
         } else {
-          interaction.followUp(`2 ${i.user.globalName} wins!`)
+          interaction.followUp(`${i.user.globalName} wins!`)
         }
         collector.stop()
       }
