@@ -9,7 +9,7 @@ const choices = [
 const rpsCommand = {
   data: new SlashCommandBuilder()
     .setName('rps')
-    .setDescription('play rock paper scissors!')
+    .setDescription('Play rock paper scissors!')
     .addUserOption(option =>
       option.setName('user')
         .setDescription('the user you want to play against')
