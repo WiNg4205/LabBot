@@ -56,7 +56,7 @@ const rpsCommand = {
 
     // Button collector that filters for both players
     const playerFilter = i => i.user === interaction.user || i.user === interaction.options.getUser('user')
-    const collector = response.resource.message.createMessageComponentCollector({ componentType: ComponentType.Button, time: 5_000, filter: playerFilter })
+    const collector = response.resource.message.createMessageComponentCollector({ componentType: ComponentType.Button, time: 120_000, filter: playerFilter })
 
     const firstChoice = {} // { user: globalName, choice: choice }
     collector.on('collect', async i => {
