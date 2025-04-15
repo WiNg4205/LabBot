@@ -1,5 +1,6 @@
-import { SlashCommandBuilder, MessageFlags, EmbedBuilder } from 'discord.js'
+import { SlashCommandBuilder, MessageFlags, EmbedBuilder, bold } from 'discord.js'
 import { generate } from 'random-words'
+
 const emojiLetterMap = {
   '🇦': 'A', '🇧': 'B', '🇨': 'C', '🇩': 'D', '🇪': 'E', '🇫': 'F', '🇬': 'G', '🇭': 'H', '🇮': 'I', 
   '🇯': 'J', '🇰': 'K', '🇱': 'L', '🇲': 'M', '🇳': 'N', '🇴': 'O', '🇵': 'P', '🇶': 'Q', '🇷': 'R', 
@@ -65,6 +66,25 @@ const stages = [
 =========          `
 ]
 
+// Find the indices of the letter in the word
+function search (word, letter) {
+  const indices = []
+  for (let i = 0; i < word.length; i++) {
+    if (word[i].toUpperCase() === letter) {
+      indices.push(i)
+    }
+  }
+  return indices
+}
+
+// Return the display string with the guessed letters replaced
+function replaceWord (wordSplit, word, indices) {
+  for (const index of indices) {
+    wordSplit[index] = word.charAt(index).toUpperCase()
+  }
+  return wordSplit.join(' ')
+}
+
 const hangmanCommand = {
   data: new SlashCommandBuilder()
     .setName('hangman')
@@ -72,6 +92,10 @@ const hangmanCommand = {
     .addBooleanOption(option =>
       option.setName('multiplayer')
         .setDescription('singleplayer or multiplayer')
+        .setRequired(true))
+    .addBooleanOption(option =>
+      option.setName('hardmode')
+        .setDescription('hardmode or normal')
         .setRequired(true))
     .addStringOption(option =>
       option.setName('word')
@@ -94,15 +118,22 @@ const hangmanCommand = {
           flags: MessageFlags.Ephemeral
         })
       }
-    }
+    } 
 
     const displayWord = word.split('').map(() => '_').join(' ')
+    let stage
+    if (interaction.options.getBoolean('hardmode')) {
+      stage = stages.length - 3
+    } else {
+      stage = stages.length - 1
+    }
     const embed = new EmbedBuilder()
       .setColor(0x0099FF)
       .setTitle('Hangman')
-      .setDescription(`\`\`\`${stages[stages.length - 1]}\n\nWord\n${displayWord}\`\`\``)
+      .setDescription(`\`\`\`${stages[stage]}\n\nWord\n${displayWord}\`\`\``)
       .addFields(
-        { name: 'Guessed Letters', value: '' }
+        { name: 'Guessed Letters', value: 'None' },
+        { name: 'How to play', value: 'React with the regional indicators 🇦 to guess a letter!' }
       )
       .setTimestamp()
 
@@ -111,21 +142,78 @@ const hangmanCommand = {
       withResponse: true
     })
 
+    const guessedLetters = []
+    const wordSplit = word.split('').map(() => '_')
+    let ended = false
+
     const filter = (reaction) => {
       return reaction.emoji.name in emojiLetterMap
     }
-    const collector = response.resource.message.createReactionCollector({ filter, idle: 10_000 })
+    const collector = response.resource.message.createReactionCollector({ filter, idle: 120_000 })
 
-    collector.on('collect', (reaction, user) => {
-      console.log(emojiLetterMap[reaction.emoji.name])
-      console.log(`Collected ${reaction.emoji.name} from ${user.tag}`)
+    collector.on('collect', async (reaction) => {
+      const letter = emojiLetterMap[reaction.emoji.name]
+      if (guessedLetters.includes(letter)) {
+        return
+      }
+      guessedLetters.push(letter)
+
+      embed.setFields(
+        { name: 'Guessed Letters', value: guessedLetters.join(' ') },
+        { name: 'How to play', value: 'React with the regional indicators 🇦 to guess a letter!' }
+      )
+
+      // Progress game
+      const indices = search(word, letter)
+      const displayWord = replaceWord(wordSplit, word, indices)
+      if (indices.length === 0) {
+        stage--
+      }
+
+      // improve redundancy with content
+      // Lost
+      if (stage === 0) {
+        ended = true
+        embed.setDescription(`\`\`\`${stages[stage]}\n\nWord\n${displayWord}\`\`\``)
+        await interaction.editReply({
+          content: `You lost! The word was ${bold(word.toUpperCase())}`,
+          embeds: [embed],
+          components: []
+        })
+        collector.stop()
+        return
+      }
+
+      embed.setDescription(`\`\`\`${stages[stage]}\n\nWord\n${displayWord}\`\`\``)
+      // Won
+      if (!wordSplit.includes('_')) {
+        ended = true
+        await interaction.editReply({
+          content: `You won! The word was ${bold(word.toUpperCase())}`,
+          embeds: [embed],
+          components: []
+        })
+        collector.stop()
+        return
+      }
+
+      await interaction.editReply({
+        embeds: [embed],
+        components: []
+      })
     })
 
-    collector.on('end', collected => {
-      console.log(`Collected ${collected.size} items`)
+    collector.on('end', () => {
+      // Idled out
+      if (!ended) {
+        interaction.editReply({
+          content: 'Game timed out!',
+          embeds: [embed],
+          components: []
+        })
+      }
     })
   }
 }
 
 export default hangmanCommand
-
