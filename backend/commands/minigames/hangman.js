@@ -170,37 +170,26 @@ const hangmanCommand = {
         stage--
       }
 
-      // improve redundancy with content
-      // Lost
+      let content
       if (stage === 0) {
         ended = true
-        embed.setDescription(`\`\`\`${stages[stage]}\n\nWord\n${displayWord}\`\`\``)
-        await interaction.editReply({
-          content: `You lost! The word was ${bold(word.toUpperCase())}`,
-          embeds: [embed],
-          components: []
-        })
-        collector.stop()
-        return
+        content = `You lost! The word was ${bold(word.toUpperCase())}`
+      } else if (!wordSplit.includes('_')) {
+        ended = true
+        content = `You won! The word was ${bold(word.toUpperCase())}`
       }
 
       embed.setDescription(`\`\`\`${stages[stage]}\n\nWord\n${displayWord}\`\`\``)
-      // Won
-      if (!wordSplit.includes('_')) {
-        ended = true
-        await interaction.editReply({
-          content: `You won! The word was ${bold(word.toUpperCase())}`,
-          embeds: [embed],
-          components: []
-        })
-        collector.stop()
-        return
-      }
 
       await interaction.editReply({
+        content,
         embeds: [embed],
         components: []
       })
+
+      if (ended) {
+        collector.stop()
+      }
     })
 
     collector.on('end', () => {
