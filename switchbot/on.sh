@@ -1,8 +1,7 @@
 #!/bin/bash
 
+cd ../backend
 npm start &
 PID=$!
-sleep 5
-kill "$PID"
+wait "$PID"
 echo "Process terminated"
-
