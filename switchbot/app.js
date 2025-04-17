@@ -55,7 +55,9 @@ for (const file of eventFiles) {
 }
 
 client.on('messageCreate', msg => {
-  if (msg.author.bot) return // To avoid infinite loops
+  if (msg.author.id === '1111618687032627203') {
+    console.log("LabBot push detected!")
+  }
 })
 
 client.on('interactionCreate', async (interaction) => {
