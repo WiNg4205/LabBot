@@ -8,16 +8,7 @@ const pingCommand = {
   
   async execute(interaction) {
     await interaction.reply('LabBot activated!');
-
-    exec('gnome-terminal -- bash -c "./on.sh; exec bash"', (err, stdout, stderr) => {
-      if (err) {
-        console.error(`Error opening terminal: ${err}`);
-        return;
-      }
-      if (stderr) {
-        console.error(`Terminal error: ${stderr}`);
-      }
-    });
+    exec('gnome-terminal -- bash -c "./on.sh; exec bash"');
   }
 };
 
