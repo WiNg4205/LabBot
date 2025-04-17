@@ -54,12 +54,6 @@ for (const file of eventFiles) {
   })
 }
 
-client.on('messageCreate', msg => {
-  if (msg.author.id === '1111618687032627203') {
-    console.log("LabBot push detected!")
-  }
-})
-
 client.on('interactionCreate', async (interaction) => {
   if (!interaction.isCommand()) return; // Check if it's a slash command
 
@@ -81,7 +75,6 @@ client.on('interactionCreate', async (interaction) => {
 
 process.on('SIGINT', () => {
   console.log('Received SIGINT. Closing bot...')
-  databaseHandler.closeClient() // Close database client before Ctrl+C in development
   process.exit()
 })
 

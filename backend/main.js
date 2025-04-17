@@ -55,10 +55,6 @@ for (const file of eventFiles) {
   })
 }
 
-client.on('messageCreate', msg => {
-  if (msg.author.bot) return // To avoid infinite loops
-})
-
 process.on('SIGINT', () => {
   console.log('Received SIGINT. Closing bot...')
   databaseHandler.closeClient() // Close database client before Ctrl+C in development
