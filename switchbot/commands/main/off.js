@@ -15,7 +15,6 @@ const pingCommand = {
         console.error(`Error opening terminal: ${err}`);
         return;
       }
-      console.log(`Terminal output: ${stdout}`);
       if (stderr) {
         console.error(`Terminal error: ${stderr}`);
       }
