@@ -149,7 +149,7 @@ const hangmanCommand = {
     const filter = (reaction) => {
       return reaction.emoji.name in emojiLetterMap
     }
-    const collector = response.resource.message.createReactionCollector({ filter, idle: 120_000 })
+    const collector = response.resource.message.createReactionCollector({ filter, idle: 240_000 })
 
     collector.on('collect', async (reaction) => {
       const letter = emojiLetterMap[reaction.emoji.name]
@@ -180,7 +180,6 @@ const hangmanCommand = {
       }
 
       embed.setDescription(`\`\`\`${stages[stage]}\n\nWord\n${displayWord}\`\`\``)
-
       await interaction.editReply({
         content,
         embeds: [embed],
