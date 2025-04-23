@@ -5,9 +5,8 @@ const pull = {
 	name: Events.MessageCreate,
 	execute (message) {
 		if (message.author.id === "1111618687032627203") {
-            exec('gnome-terminal -- bash -c "./pull.sh"');
-        }
-		
+      exec('gnome-terminal -- bash -c "./pull.sh"');
+    }
 	}
 }
 
