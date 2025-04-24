@@ -35,5 +35,5 @@ A private server discord bot built using [discord.js](https://discord.js.org/). 
 To run the bot, use the following command:
 ```bash
     cd backend
-    npm run build
+    npm start
 ```
