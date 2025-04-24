@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import mongoose, { trusted } from 'mongoose'
+import mongoose from 'mongoose'
 
 dotenv.config()
 const { Schema } = mongoose
@@ -52,13 +52,9 @@ class DatabaseHandler {
       type: String,
       required: true
     },
-    players: {
-      type: [String],
-      required: true
-    },
-    winners: {
-      type: [String],
-      required: true
+    results: {
+      type: Map,
+      of: Number
     }
   })
 
@@ -89,6 +85,14 @@ class DatabaseHandler {
 
 const databaseHandler = new DatabaseHandler()
 
+// const result = await databaseHandler.Test.create({
+//   game: "pool",
+//   results: {
+//     Kevin: 1,
+//     William: 1
+//   }
+// })
+
 // const outing = await databaseHandler.Outing.create({
 //   people: ["Kevin", "William"],
 //   placesWent: "We went to some places",
@@ -97,8 +101,8 @@ const databaseHandler = new DatabaseHandler()
 // });
 
 // const player = await databaseHandler.Player.create({
-//   name: "amizee"
+//   name: "Jeremy"
 // })
-// console.log(player);
+// console.log(player)
 
 export default databaseHandler
