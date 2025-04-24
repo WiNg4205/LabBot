@@ -18,8 +18,8 @@ const modalCommand = {
 
     const peopleInput = new TextInputBuilder()
       .setCustomId('peopleInput')
-      .setLabel('Who went?')
-      .setPlaceholder('Kevin, William, ...')
+      .setLabel('Who went')
+      .setPlaceholder('e.g. Kevin, William, Brian')
       .setMaxLength(100)
       .setStyle(TextInputStyle.Short)
 

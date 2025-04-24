@@ -1,4 +1,4 @@
-import { Events } from 'discord.js'
+import { Events, MessageFlags } from 'discord.js'
 import databaseHandler from '../data.js'
 
 const modalSubmit = {
@@ -7,7 +7,7 @@ const modalSubmit = {
     if (!interaction.isModalSubmit()) return
 
     if (interaction.customId === 'outingModal') {
-      await interaction.reply({ content: 'Your submission was received successfully!' })
+      await interaction.reply({ content: 'Your submission was received successfully!', flags: MessageFlags.Ephemeral })
     }
 
     const date = interaction.fields.getTextInputValue('dateInput')
