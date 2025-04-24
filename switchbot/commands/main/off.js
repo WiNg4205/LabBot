@@ -10,15 +10,7 @@ const pingCommand = {
     await interaction.reply('LabBot de-activated!');
 
     // WARNING: closes all instances of gnome-terminal on the device.
-    exec('pkill gnome-terminal', (err, stdout, stderr) => {
-      if (err) {
-        console.error(`Error opening terminal: ${err}`);
-        return;
-      }
-      if (stderr) {
-        console.error(`Terminal error: ${stderr}`);
-      }
-    });
+    exec('pkill gnome-terminal');
   }
 };
 
