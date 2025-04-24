@@ -14,9 +14,12 @@ async function addGame (gameType, date, results) {
   const query = { date }
   await databaseHandler.Outing.findOneAndUpdate(query, { $push: { games: objectId } }, { new: true, upsert: false })
 
-  // Update player scores
-  results.forEach((value, key) => {
-    databaseHandler.Player.findOneAndUpdate({ name: key }, { $inc: { gamesWon: value, gamesPlayed: 1 } })
+  // Update player scores and winrate
+  results.forEach(async (value, key) => {
+    await databaseHandler.Player.findOneAndUpdate({ name: key }, { $inc: { gamesWon: value, gamesPlayed: 1 } })
+    const player = await databaseHandler.Player.findOne({ name: key })
+    const winRate = ((player.gamesWon / player.gamesPlayed) * 100).toFixed(2)
+    await databaseHandler.Player.findOneAndUpdate({ name: key }, { $set: { winRate } })
   })
 }
 
@@ -44,6 +47,7 @@ const gameCommand = {
 
   async execute (interaction) {
     const game = interaction.options.get('game').value
+    const date = new Date(interaction.options.get('date').value)
 
     if (game === 'pool') {
       const userSelectPlay = new UserSelectMenuBuilder()
@@ -144,13 +148,25 @@ const gameCommand = {
 
         const resultsArr = Array.from(results).sort((a, b) => b[1] - a[1])
         const sortedResults = new Map(resultsArr)
-
-        const gameType = interaction.options.get('game').value
-        const date = new Date(interaction.options.get('date').value)
-        await addGame(gameType, date, sortedResults)
+        await addGame(game, date, sortedResults)
       })
     } else {
-      
+      if (!interaction.options.get('results')) {
+        interaction.reply({ content: 'You must provide results for this game.', flags: MessageFlags.Ephemeral })
+        return
+      }
+
+      const orderResults = interaction.options.get('results').value
+      const userIds = orderResults.match(/\d+/g) // Only keep numbers from the string
+      const results = new Map()
+      userIds.forEach((element, index) => {
+        const name = members[element]
+        const points = (1 - (1 / (userIds.length - 1) * index)).toFixed(2)
+        results.set(name, points)
+      })
+
+      await addGame(game, date, results)
+      interaction.reply({ content: 'Game added successfully.', flags: MessageFlags.Ephemeral })
     }
   }
 }
