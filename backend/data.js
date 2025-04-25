@@ -28,7 +28,7 @@ class DatabaseHandler {
 
   static outingSchema = new mongoose.Schema({
     people: {
-      type: [String],
+      type: String,
       required: true
     },
     placesWent: {

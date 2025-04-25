@@ -6,23 +6,29 @@ const modalSubmit = {
   async execute (interaction) {
     if (!interaction.isModalSubmit()) return
 
-    if (interaction.customId === 'outingModal') {
-      await interaction.reply({ content: 'Your submission was received successfully!', flags: MessageFlags.Ephemeral })
-    }
-
     const date = interaction.fields.getTextInputValue('dateInput')
-    // Comma separated
-	  let people = interaction.fields.getTextInputValue('peopleInput')
-    people = people.replaceAll(/ /g, '')
-    people = people.split(',')
+    if (date.split('-').length !== 3) {
+      interaction.reply({ content: 'Invalid date format.', flags: MessageFlags.Ephemeral })
+      return
+    }
+    const people = interaction.fields.getTextInputValue('peopleInput')
     const location = interaction.fields.getTextInputValue('locationInput')
 
     // Save to database
-    await databaseHandler.Outing.create({
-      people,
-      placesWent: location,
-      date
-    })
+    try {
+      await databaseHandler.Outing.create({
+        people,
+        placesWent: location,
+        date
+      })
+    } catch (error) {
+      interaction.reply({ content: 'Invalid date.', flags: MessageFlags.Ephemeral })
+      return
+    }
+
+    if (interaction.customId === 'outingModal') {
+      await interaction.reply({ content: 'Your submission was received successfully!', flags: MessageFlags.Ephemeral })
+    }
   }
 }
 
