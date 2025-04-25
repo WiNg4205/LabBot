@@ -2,12 +2,22 @@ import { SlashCommandBuilder, ActionRowBuilder, UserSelectMenuBuilder, ButtonBui
 import databaseHandler from '../../data.js'
 import members from '../../members.js'
 
-async function addGame (gameType, date, results) {
-  const game = await databaseHandler.Game.create({
-    game: gameType,
-    date,
-    results
-  })
+async function addGame (gameType, date, results, interaction) {
+  let game
+  try {
+    game = await databaseHandler.Game.create({
+      game: gameType,
+      date,
+      results
+    })
+  } catch (error) {
+    if (gameType === 'pool') {
+      interaction.followUp({ content: 'Invalid date.', flags: MessageFlags.Ephemeral })
+    } else {
+      interaction.reply({ content: 'Invalid date.', flags: MessageFlags.Ephemeral })
+    }
+    return false
+  }
 
   // Add game to outing
   const objectId = game._id
@@ -21,6 +31,7 @@ async function addGame (gameType, date, results) {
     const winRate = ((player.gamesWon / player.gamesPlayed) * 100).toFixed(2)
     await databaseHandler.Player.findOneAndUpdate({ name: key }, { $set: { winRate } })
   })
+  return true
 }
 
 const gameCommand = {
@@ -47,7 +58,12 @@ const gameCommand = {
 
   async execute (interaction) {
     const game = interaction.options.get('game').value
-    const date = new Date(interaction.options.get('date').value)
+    let date = interaction.options.get('date').value
+    if (date.split('-').length !== 3) {
+      interaction.reply({ content: 'Invalid date format.', flags: MessageFlags.Ephemeral })
+      return
+    }
+    date = new Date(date)
 
     if (game === 'pool') {
       const userSelectPlay = new UserSelectMenuBuilder()
@@ -92,12 +108,12 @@ const gameCommand = {
       buttonCollector.on('collect', i => {
         if (i.user.id === interaction.user.id) {
           if (i.customId === 'confirm') {
-            confirmed = true
             if (!finalPlayers || !finalWinners) {
               i.reply({ content: 'Select at least 1 player or winner.', flags: MessageFlags.Ephemeral })
               return
             }
-            i.reply({ content: 'Confirmed.', flags: MessageFlags.Ephemeral })
+            confirmed = true
+            i.deferUpdate()
             buttonCollector.stop()
           } else if (i.customId === 'cancel') {
             i.reply({ content: 'Cancelled.', flags: MessageFlags.Ephemeral })
@@ -146,9 +162,13 @@ const gameCommand = {
           }
         })
 
+        // Sort results by value (points) in descending order
         const resultsArr = Array.from(results).sort((a, b) => b[1] - a[1])
         const sortedResults = new Map(resultsArr)
-        await addGame(game, date, sortedResults)
+        const success = await addGame(game, date, sortedResults, interaction)
+        if (success) {
+          interaction.followUp({ content: 'Game added successfully.', flags: MessageFlags.Ephemeral })
+        }
       })
     } else {
       if (!interaction.options.get('results')) {
@@ -158,15 +178,33 @@ const gameCommand = {
 
       const orderResults = interaction.options.get('results').value
       const userIds = orderResults.match(/\d+/g) // Only keep numbers from the string
+      if (userIds.length < 2) {
+        interaction.reply({ content: 'You must provide at least 2 players in results.', flags: MessageFlags.Ephemeral })
+        return
+      }
+
       const results = new Map()
+      let isValid = true
+      // Calculate points for each player
       userIds.forEach((element, index) => {
         const name = members[element]
+        if (!name) {
+          interaction.reply({ content: 'Invalid user mention.', flags: MessageFlags.Ephemeral })
+          isValid = false
+          return
+        }
         const points = (1 - (1 / (userIds.length - 1) * index)).toFixed(2)
         results.set(name, points)
       })
 
-      await addGame(game, date, results)
-      interaction.reply({ content: 'Game added successfully.', flags: MessageFlags.Ephemeral })
+      if (!isValid) {
+        return
+      }
+
+      const success = await addGame(game, date, results, interaction)
+      if (success) {
+        interaction.reply({ content: 'Game added successfully.', flags: MessageFlags.Ephemeral })
+      }
     }
   }
 }
