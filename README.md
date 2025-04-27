@@ -22,7 +22,7 @@ A private server discord bot built using [discord.js](https://discord.js.org/). 
 
 2. Install the dependencies:
     ```bash
-    npm install ./frontend ./backend ./switchbot
+    npm install 
     ```
 
 3. Set up your bot's token:
