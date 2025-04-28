@@ -3,7 +3,7 @@ import { SlashCommandBuilder, ActionRowBuilder, ModalBuilder, TextInputBuilder, 
 const modalCommand = {
   data: new SlashCommandBuilder()
     .setName('outing')
-    .setDescription('store an outing'),
+    .setDescription('Store an outing'),
   async execute (interaction) {
     const modal = new ModalBuilder()
       .setCustomId('outingModal')

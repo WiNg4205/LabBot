@@ -37,7 +37,7 @@ async function addGame (gameType, date, results, interaction) {
 const gameCommand = {
   data: new SlashCommandBuilder()
     .setName('game')
-    .setDescription('store a game result, requires /outing first')
+    .setDescription('Store a game result, requires /outing first')
     .addStringOption(option =>
       option.setName('game')
         .setDescription('game played')
