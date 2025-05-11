@@ -37,7 +37,7 @@ class DatabaseHandler {
     },
     date: {
       type: Date,
-      min: '2024-01-01'
+      min: '2022-01-01'
     },
     games: [
       {
@@ -54,7 +54,7 @@ class DatabaseHandler {
     },
     date: {
       type: Date,
-      min: '2024-01-01'
+      min: '2022-01-01'
     },
     results: {
       type: Map,
