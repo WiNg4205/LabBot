@@ -2,7 +2,6 @@
   "name": "LabBot",
   "private": true,
   "workspaces": [
-    "frontend",
     "backend",
     "switchbot"
   ]
