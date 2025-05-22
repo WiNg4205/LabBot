@@ -1,4 +1,3 @@
-import NavBar from "../components/NavBar"
 import { useEffect, useRef } from "react"
 import flatpickr from "flatpickr"
 import "flatpickr/dist/flatpickr.min.css"
@@ -21,7 +20,6 @@ const Calendar = () => {
   }, [])
 
   return <>
-    <NavBar />
     <h1>Calendar</h1>
     <input ref={inputRef} />
   </>

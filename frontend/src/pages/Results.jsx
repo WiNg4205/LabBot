@@ -1,9 +1,9 @@
-import NavBar from "../components/NavBar"
-
 const Results = () => {
   return <>
-    <NavBar />
-    <h1>Results</h1>
+    <div className="flex">
+      <div className="size-72 border">podium</div>
+      <div className="size-72 border">results</div>
+    </div>
   </>
 }
 
