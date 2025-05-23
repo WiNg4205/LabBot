@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom"
-import NavBar from "./components/NavBar"
+import Header from "./components/Header"
 
 const Layout = () => {
   return <div className="flex flex-col items-center">
-    <NavBar />
+    <Header />
     <Outlet />
   </div>
 }
