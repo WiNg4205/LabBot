@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react"
 import flatpickr from "flatpickr"
 import "flatpickr/dist/flatpickr.min.css"
 
-const Calendar = () => {
+const Events = () => {
   const inputRef = useRef(null)
   const fpInstance = useRef(null)
 
@@ -25,5 +25,5 @@ const Calendar = () => {
   </>
 }
 
-export default Calendar
+export default Events 
 

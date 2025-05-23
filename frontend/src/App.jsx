@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Overview from './pages/Overview'
-import Calendar from './pages/Calendar'
+
 import Results from './pages/Results'
 import Layout from './Layout'
 
