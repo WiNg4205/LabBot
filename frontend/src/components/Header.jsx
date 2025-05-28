@@ -27,10 +27,10 @@ const Header = () => {
         </div>
         <div className="flex items-center bg-slate-900 h-14 font-semibold">
           <div>
-            <Link to="/" className="px-2">Overview</Link>
-            <Link to="/events" className="px-2">Events</Link>
-            <Link to="/results" className="px-2">Results</Link>
-            <Link to="/docs" className="px-2">Docs</Link>      
+            <Link to="/" className="px-3 font-normal text-[16px]">Overview</Link>
+            <Link to="/events" className="px-3 font-normal text-[16px]">Events</Link>
+            <Link to="/results" className="px-3 font-normal text-[16px]">Results</Link>
+            <Link to="/docs" className="px-3 font-normal text-[16px]">Docs</Link>      
           </div>
           <div className="w-px h-8 bg-slate-500 mx-2"></div>
           <a href="https://github.com/WiNg4205/LabBot/tree/main" target="_blank" rel="noopener noreferrer">
@@ -39,7 +39,7 @@ const Header = () => {
           <a href="https://discord.com/oauth2/authorize?client_id=1111800916589432906&permissions=8&integration_type=0&scope=bot" target="_blank" rel="noopener noreferrer">
             <img src={DiscordIcon} alt="Discord SVG" className="size-6 mx-2" />
           </a>
-          <div className="text-sm ml-8 px-2 py-2 bg-indigo-950 hover:bg-slate-900 border border-slate-500 rounded-md">Sign in</div>
+          <div className="text-sm font-normal ml-8 px-2 py-2 bg-indigo-950 hover:bg-slate-900 border border-slate-500 rounded-md">Sign in</div>
         </div>
       </div>
     </div>
