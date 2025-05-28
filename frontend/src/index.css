@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  cursor: pointer;
+
+  height: 14px;
+  width: 14px;
+  background-image: url('./assets/xmark-solid.svg');
+}
