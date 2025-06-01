@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom"
-import GithubIcon from '../assets/github-logo.svg'
-import DiscordIcon from '../assets/discord-logo.svg'
 import LabBotIcon from '../assets/flask-solid.svg'
 
 

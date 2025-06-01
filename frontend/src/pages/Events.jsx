@@ -1,10 +1,9 @@
 import Calendar from "../components/Calendar"
 
 const Events = () => {
-  return <>
-    <h1>Calendar</h1>
+  return <div>
     <Calendar />
-  </>
+  </div>
 }
 
 export default Events 

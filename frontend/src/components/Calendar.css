@@ -154,7 +154,7 @@
 }
 
 .rdp-chevron {
-  display: inline-block;
+  display: none;
   fill: var(--rdp-accent-color);
 }
 
@@ -199,6 +199,7 @@
 
 .rdp-month_caption {
   display: flex;
+  justify-content: center;
   align-content: center;
   height: var(--rdp-nav-height);
   font-weight: bold;
