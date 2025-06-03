@@ -13,6 +13,11 @@ class MiniGameHandler {
     this.game = new GuessTheNumber('GuessTheNumber', null, null)
     return 'Guess the number between 1-10'
   }
+
+  async playHeadsOrTails () {
+    this.game = new HeadsOrTails('HeadsOrTails', null, null)
+    return 'Choose Heads or Tails!'
+  }
 }
 
 class MiniGame {
@@ -51,6 +56,21 @@ class GuessTheNumber extends MiniGame {
     } else {
       this.min = number + 1
       return ['Guess higher..', false]
+    }
+  }
+}
+
+class HeadsOrTails extends MiniGame {
+  constructor (name, players, teams) {
+    super(name, players, teams)
+    this.result = Math.random() < 0.5 ? 'Heads' : 'Tails'
+  }
+
+  play (input) {
+    if (input.toLowerCase() === this.result.toLowerCase()) {
+      return ['You guessed it right!', true]
+    } else {
+      return [`Wrong! It was ${this.result}.`, true]
     }
   }
 }
