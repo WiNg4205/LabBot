@@ -1,12 +1,24 @@
 import { useState } from "react";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 import { startOfMonth } from "date-fns";
-import dates from "../data/Events";
 import "./Calendar.css";
+import { useOutings } from "../context/OutingsContext";
+import { useEffect } from "react";
 
 
 const Calendar = () => {
-  const [selectedDate, setSelectedDate] = useState(dates[0]);
+  const getOutings = useOutings();
+
+  const [dates, setDates] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  useEffect(() => {
+    if (getOutings) {
+      const outingDates = getOutings.map(o => new Date(o.date)).reverse();
+      setDates(outingDates);
+      setSelectedDate(outingDates[0] || null);
+    }
+  }, [getOutings]);
 
   const defaultClassNames = getDefaultClassNames();
 
