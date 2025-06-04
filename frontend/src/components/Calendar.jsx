@@ -5,8 +5,6 @@ import dates from "../data/Events";
 import "./Calendar.css";
 
 
-
-
 const Calendar = () => {
   const [selectedDate, setSelectedDate] = useState(dates[0]);
 
