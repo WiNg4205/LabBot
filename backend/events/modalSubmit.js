@@ -11,6 +11,8 @@ const modalSubmit = {
       interaction.reply({ content: 'Invalid date format.', flags: MessageFlags.Ephemeral })
       return
     }
+    const time = interaction.fields.getTextInputValue('timeInput')
+    const dateTime = date + time
     const people = interaction.fields.getTextInputValue('peopleInput')
     const location = interaction.fields.getTextInputValue('locationInput')
 
@@ -19,7 +21,7 @@ const modalSubmit = {
       await databaseHandler.Outing.create({
         people,
         placesWent: location,
-        date
+        date: dateTime
       })
     } catch (error) {
       interaction.reply({ content: 'Invalid date.', flags: MessageFlags.Ephemeral })
