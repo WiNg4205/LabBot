@@ -13,7 +13,14 @@ const modalCommand = {
       .setCustomId('dateInput')
       .setLabel('Date of outing')
       .setPlaceholder('YYYY-MM-DD')
-      .setMaxLength(10)
+      .setMaxLength(100)
+      .setStyle(TextInputStyle.Short)
+
+    const timeInput = new TextInputBuilder()
+      .setCustomId('timeInput')
+      .setLabel('Time of outing')
+      .setPlaceholder('THH:00Z')
+      .setMaxLength(100)
       .setStyle(TextInputStyle.Short)
 
     const peopleInput = new TextInputBuilder()
@@ -31,11 +38,12 @@ const modalCommand = {
 
     // An action row only holds one text input so you need one action row per text input.
     const firstActionRow = new ActionRowBuilder().addComponents(dateInput)
-    const secondActionRow = new ActionRowBuilder().addComponents(peopleInput)
-    const thirdActionRow = new ActionRowBuilder().addComponents(locationInput)
+    const secondActionRow = new ActionRowBuilder().addComponents(timeInput)
+    const thirdActionRow = new ActionRowBuilder().addComponents(peopleInput)
+    const fourthActionRow = new ActionRowBuilder().addComponents(locationInput)
 
     // Add inputs to the modal
-    modal.addComponents(firstActionRow, secondActionRow, thirdActionRow)
+    modal.addComponents(firstActionRow, secondActionRow, thirdActionRow, fourthActionRow)
 
     // Show the modal to the user
     await interaction.showModal(modal)
