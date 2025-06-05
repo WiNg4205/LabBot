@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react"
 import useSWR from "swr"
 import fetcher from "../../fetcher"
+import { subHours } from "date-fns"
 
 const OutingsContext = createContext(undefined)
 const InitOutingsContext = createContext(undefined)
@@ -19,7 +20,12 @@ const OutingsProvider = ({ children }) => {
 
   useEffect(() => {
     if (outingsData) {
-      setOutings(outingsData)
+      // adjust to AEST time
+      const adjustedData = outingsData.map(o => ({
+        ...o,
+        date: subHours(new Date(o.date), 10).toISOString()
+      }))
+      setOutings(adjustedData)
     }
   }, [outingsData])
 
