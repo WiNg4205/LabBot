@@ -10,7 +10,6 @@ const Events = () => {
   const selectedOuting = getOutings?.find(o =>
     new Date(o.date).toDateString() === selectedDate.toDateString()
   )
-  console.log(selectedOuting)
 
   useEffect(() => {
     if (getOutings) {
