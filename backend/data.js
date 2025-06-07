@@ -11,18 +11,6 @@ class DatabaseHandler {
     name: {
       type: String,
       required: true
-    },
-    gamesPlayed: {
-      type: Number,
-      default: 0
-    },
-    gamesWon: {
-      type: Number,
-      default: 0
-    },
-    winRate: {
-      type: Number,
-      default: 0
     }
   })
 

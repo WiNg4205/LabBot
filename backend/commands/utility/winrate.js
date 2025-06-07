@@ -1,22 +1,29 @@
-import { SlashCommandBuilder, EmbedBuilder, MessageFlags } from 'discord.js'
+import { SlashCommandBuilder, EmbedBuilder } from 'discord.js'
 import databaseHandler from '../../data.js'
 
-async function getWinRateByGame (game) {
+async function getWinRate (game) {
   const results = []
   const players = await databaseHandler.Player.find()
   players.forEach(player => {
-    results.push({ name: player.name, points: 0, winRate: 0 })
+    results.push({ name: player.name, points: 0, numGames: 0 })
   })
 
+  let games
+  if (!game) {
+    games = await databaseHandler.Game.find()
+  } else {
+    games = await databaseHandler.Game.find({ game })
+  }
+
   // Calculate game win rate for each player
-  const games = await databaseHandler.Game.find({ game })
   games.forEach(game => {
     game.results.forEach((value, key) => {
       results[results.findIndex(player => player.name === key)].points += value
+      results[results.findIndex(player => player.name === key)].numGames += 1
     })
   })
   results.forEach(player => {
-    player.winRate = ((player.points / games.length) * 100).toFixed(2)
+    player.winRate = ((player.points / player.numGames) * 100).toFixed(2)
   })
 
   return results
@@ -47,17 +54,16 @@ const winrateCommand = {
     if (interaction.options.getString('game')) {
       game = interaction.options.getString('game')
       embed.setDescription(`Win rate for ${game}`)
-      const playerWinRates = await getWinRateByGame(game)
+      const playerWinRates = await getWinRate(game)
       for (let i = 0; i < playerWinRates.length; i++) {
         embed.addFields({ name: playerWinRates[i].name, value: playerWinRates[i].winRate + '%' })
       }
     } else {
       embed.setDescription('Win rate across all games')
       // Get players overall win rate
-      const players = await databaseHandler.Player.find()
-      for (let i = 0; i < players.length; i++) {
-        const winRate = ((players[i].gamesWon / players[i].gamesPlayed) * 100).toFixed(2)
-        embed.addFields({ name: players[i].name, value: winRate + '%' })
+      const playerWinRates = await getWinRate(null)
+      for (let i = 0; i < playerWinRates.length; i++) {
+        embed.addFields({ name: playerWinRates[i].name, value: playerWinRates[i].winRate + '%' })
       }
     }
 

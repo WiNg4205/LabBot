@@ -11,6 +11,7 @@ async function addGame (gameType, date, results, interaction) {
       results
     })
   } catch (error) {
+    // If the date is before 2022-01-01
     if (gameType === 'pool') {
       interaction.followUp({ content: 'Invalid date.', flags: MessageFlags.Ephemeral })
     } else {
@@ -24,13 +25,6 @@ async function addGame (gameType, date, results, interaction) {
   const query = { date }
   await databaseHandler.Outing.findOneAndUpdate(query, { $push: { games: objectId } }, { new: true, upsert: false })
 
-  // Update player scores and winrate
-  results.forEach(async (value, key) => {
-    await databaseHandler.Player.findOneAndUpdate({ name: key }, { $inc: { gamesWon: value, gamesPlayed: 1 } })
-    const player = await databaseHandler.Player.findOne({ name: key })
-    const winRate = ((player.gamesWon / player.gamesPlayed) * 100).toFixed(2)
-    await databaseHandler.Player.findOneAndUpdate({ name: key }, { $set: { winRate } })
-  })
   return true
 }
 
