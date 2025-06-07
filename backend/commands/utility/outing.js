@@ -19,14 +19,14 @@ const modalCommand = {
     const timeInput = new TextInputBuilder()
       .setCustomId('timeInput')
       .setLabel('Time of outing')
-      .setPlaceholder('THH:00Z')
+      .setPlaceholder('HH:MM (24-hour format)')
       .setMaxLength(100)
       .setStyle(TextInputStyle.Short)
 
     const peopleInput = new TextInputBuilder()
       .setCustomId('peopleInput')
       .setLabel('Who went')
-      .setPlaceholder('e.g. Kevin, William, Brian')
+      .setPlaceholder('e.g. Kev, Wil, Bri')
       .setMaxLength(100)
       .setStyle(TextInputStyle.Short)
 

@@ -39,6 +39,10 @@ class DatabaseHandler {
       type: Date,
       min: '2022-01-01'
     },
+    time: {
+      type: String,
+      required: true
+    },
     games: [
       {
         type: Schema.Types.ObjectId,
