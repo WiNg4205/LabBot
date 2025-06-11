@@ -15,7 +15,7 @@ const useInitPlayers = () => {
 
 const PlayersProvider = ({ children }) => {
   const { data: playersData } = useSWR("../api/players", fetcher)
-  const [Players, setPlayers] = useState(null)
+  const [Players, setPlayers] = useState([])
 
   useEffect(() => {
     if (playersData) {

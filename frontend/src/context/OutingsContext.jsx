@@ -16,7 +16,7 @@ const useInitOutings = () => {
 
 const OutingsProvider = ({ children }) => {
   const { data: outingsData } = useSWR("../api/outings", fetcher)
-  const [Outings, setOutings] = useState(null)
+  const [Outings, setOutings] = useState([])
 
   useEffect(() => {
     if (outingsData) {

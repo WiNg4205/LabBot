@@ -15,7 +15,7 @@ const useInitGames = () => {
 
 const GamesProvider = ({children}) => {
   const { data: gamesData } = useSWR("../api/games", fetcher);
-  const [Games, setGames] = useState(null)
+  const [Games, setGames] = useState([])
   useEffect(() => {
     if (gamesData) {
       setGames(gamesData)
