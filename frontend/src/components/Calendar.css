@@ -9,8 +9,8 @@
   
   --rdp-day_button-border-radius: 100%; /* The border radius of the day cells. */
   --rdp-day_button-border: 2px solid transparent; /* The border of the day cells. */
-  --rdp-day_button-height: 42px; /* The height of the day cells. */
-  --rdp-day_button-width: 42px; /* The width of the day cells. */
+  --rdp-day_button-height: 64px; /* The height of the day cells. */
+  --rdp-day_button-width: 64px; /* The width of the day cells. */
   
   --rdp-selected-border: 2px solid var(--rdp-accent-color); /* The border of the selected days. */
   --rdp-disabled-opacity: 0.5; /* The opacity of the disabled days. */
@@ -84,6 +84,7 @@
   width: var(--rdp-day-width);
   height: var(--rdp-day-height);
   text-align: center;
+  font-weight: semibold;
 }
 
 .rdp-day_button {
@@ -96,6 +97,7 @@
   justify-content: center;
   align-items: center;
   display: flex;
+  font-size: 1.25rem;
 
   width: var(--rdp-day_button-width);
   height: var(--rdp-day_button-height);
@@ -203,7 +205,6 @@
   align-content: center;
   height: var(--rdp-nav-height);
   font-weight: bold;
-  font-size: large;
 }
 
 .rdp-root[data-nav-layout="around"] .rdp-month,
@@ -265,6 +266,7 @@
   font-size: smaller;
   text-align: var(--rdp-weekday-text-align);
   text-transform: var(--rdp-weekday-text-transform);
+  font-weight: semibold;
 }
 
 .rdp-week_number {

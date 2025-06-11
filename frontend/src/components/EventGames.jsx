@@ -1,16 +1,16 @@
 const EventGames = ({games}) => {
-  return <table className="border mx-20 w-max">
+  return <table className="w-max text-sm mx-8">
     <thead>
       <tr>
-        <th className="px-4">GAME</th>
-        <th className="px-4">WINNER</th>        
+        <th className="w-24 font-semibold text-left">GAME</th>
+        <th className="w-60 font-semibold text-left">WINNER</th>        
       </tr>
     </thead>
     <tbody>
       {games.map((item) => (
         <tr key={item._id}>
-          <td className="px-4">{item.game}</td>
-          <td className="px-4">{Object.keys(item.results)
+          <td>{item.game}</td>
+          <td>{Object.keys(item.results)
                 .filter(name => item.results[name] === 1)
                 .join(", ")}
           </td>

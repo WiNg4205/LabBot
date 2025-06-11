@@ -10,9 +10,7 @@ const Events = () => {
   const [dates, setDates] = useState([])
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [selectedOuting, setSelectedOuting] = useState(null)
-  
 
-  
   useEffect(() => { // Initial data setup
     if (!getOutings?.length || !getGames.length || dates.length > 0) return
 
@@ -38,7 +36,7 @@ const Events = () => {
 
   if (!getOutings?.length || !getGames.length) return
   return (
-    <div className="flex gap-24">
+    <div className="flex gap-24 mt-[10vh]">
       {selectedOuting && (
         <>
           <Calendar dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
