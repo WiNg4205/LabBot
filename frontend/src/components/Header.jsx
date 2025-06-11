@@ -25,7 +25,7 @@ const Header = () => {
               </div>  
           </form>
         </div>
-        <div className="flex items-center bg-slate-900 h-14 font-semibold">
+        <div className="flex items-center h-14 font-semibold">
           <div>
             <Link to="/" className="px-3 font-normal text-[16px] hover:text-purple-400 transition duration-300">Overview</Link>
             <Link to="/events" className="px-3 font-normal text-[16px] hover:text-purple-400 transition duration-300">Events</Link>
