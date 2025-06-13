@@ -8,7 +8,7 @@ const data = [
   { name: 'Page E', uv: 450, pv: 2300, amt: 2300 },
 ];
 
-const Chart = ({ winrate }) => {
+const OverviewChart = ({ winrate }) => {
   const sortedData = [...winrate].sort((a, b) => b.winRate - a.winRate)
   return <>
     <div className="mb-24"></div>
@@ -21,4 +21,4 @@ const Chart = ({ winrate }) => {
   </>
 }
 
-export default Chart
+export default OverviewChart

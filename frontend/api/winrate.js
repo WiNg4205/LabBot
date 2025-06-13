@@ -13,6 +13,7 @@ export async function GET(request) {
   const players = await playersCollection.find({}).toArray()
 
   const results = []
+  const resultHistory = []
   players.forEach(player => {
     results.push({ name: player.name, points: 0, numGames: 0 })
   })
@@ -23,12 +24,14 @@ export async function GET(request) {
       player.points += key[1]
       player.numGames += 1
     })
-  })
-  results.forEach(player => {
-    player.winRate = ((player.points / player.numGames) * 100).toFixed(2)
+    results.forEach(player => {
+      player.winRate = ((player.points / player.numGames) * 100).toFixed(2)
+    })
+
+    resultHistory.push(results.map(p => ({ ...p })))
   })
 
-  return new Response(JSON.stringify(results), {
+  return new Response(JSON.stringify(resultHistory), {
     headers: { 'Content-Type': 'application/json' }
   })
 }
