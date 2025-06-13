@@ -1,0 +1,34 @@
+import dotenv from 'dotenv'
+import { MongoClient } from 'mongodb'
+
+dotenv.config()
+const uri = `mongodb+srv://Scientists:${process.env.MONGO_PWD}@cluster0.qivnnso.mongodb.net/results?retryWrites=true&w=majority`
+const client = new MongoClient(uri);
+
+export async function GET(request) {
+  const db = client.db('results')
+  const gamesCollection = db.collection('games')
+  const games = await gamesCollection.find({}).toArray()
+  const playersCollection = db.collection('players')
+  const players = await playersCollection.find({}).toArray()
+
+  const results = []
+  players.forEach(player => {
+    results.push({ name: player.name, points: 0, numGames: 0 })
+  })
+
+  games.forEach(game => {
+    Object.entries(game.results).forEach((key) => {
+      const player = results.find(p => p.name === key[0])
+      player.points += key[1]
+      player.numGames += 1
+    })
+  })
+  results.forEach(player => {
+    player.winRate = ((player.points / player.numGames) * 100).toFixed(2)
+  })
+
+  return new Response(JSON.stringify(results), {
+    headers: { 'Content-Type': 'application/json' }
+  })
+}

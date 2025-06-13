@@ -25,7 +25,7 @@ const Calendar = ({ dates, selectedDate, setSelectedDate }) => {
         disableNavigation
         classNames={{
           selected: "bg-fuchsia-500 text-zinc-200 rounded-full",
-          month_caption: "flex justify-center items-center h-12 font-bold text-3xl mb-6",
+          month_caption: "flex justify-center items-center h-12 font-extrabold text-3xl mb-6 text-fuchsia-400",
           root: `${defaultClassNames.root} p-5 text-3xl user-select-none self-start text-zinc-300`,
           chevron: `${defaultClassNames.chevron} fill-slate-400`
         }}

@@ -1,4 +1,4 @@
-import { LineChart, Line } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 
 const data = [
   { name: 'Page A', uv: 400, pv: 2400, amt: 2400 },
@@ -8,12 +8,17 @@ const data = [
   { name: 'Page E', uv: 450, pv: 2300, amt: 2300 },
 ];
 
-const Chart = () => {
-  return (
-    <LineChart width={400} height={400} data={data}>
-      <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-    </LineChart>
-  );
+const Chart = ({ winrate }) => {
+  const sortedData = [...winrate].sort((a, b) => b.winRate - a.winRate)
+  return <>
+    <div className="mb-24"></div>
+    <BarChart layout="vertical" width={600} height={300} data={sortedData} barCategoryGap={8}>
+      <XAxis type="number" />
+      <YAxis dataKey="name" type="category" />
+      <Tooltip />
+      <Bar dataKey="winRate" fill="#8884d8" />
+    </BarChart>
+  </>
 }
 
 export default Chart
