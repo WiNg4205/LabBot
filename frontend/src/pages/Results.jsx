@@ -1,30 +1,41 @@
+import { useGames } from "../context/GamesContext"
+import { useState, useEffect } from "react"
+import GamesHeader from "../components/ResultsHeader"
+import ResultsLeaderboard from "../components/ResultsLeaderboard"
+import ResultsData from "../components/ResultsData"
+
 const Results = () => {
+
+  function handleClick(e) {
+    const gameType = e.target.id
+    setGames(gameType)
+  }  
+
+  const [game, setGames] = useState("all")
+  const [filteredGames, setFilteredGames] = useState([])
+  const getGames = useGames()
+  getGames.sort((a, b) => new Date(b.date) - new Date(a.date)) 
+
+  useEffect(() => {
+    if (game === "all") {
+      setFilteredGames(getGames)
+      return
+    }
+
+    const filteredGames = getGames.filter(g => g.game === game) 
+    setFilteredGames(filteredGames)
+  }, [game, getGames])
+
   return <>
     <div className="flex">
       <div className="flex flex-col w-5xl">
-        <div className="flex flex-row w-full bg-zinc-800 gap-x-1 mt-2 rounded-md">
-          <span className="py-3 px-3 hover:bg-gray-700 rounded-md">All</span>
-          <span className="py-3 px-3 hover:bg-gray-700 rounded-md">Pool</span>
-          <span className="py-3 px-3 hover:bg-gray-700 rounded-md">Cards</span>
-          <span className="py-3 px-3 hover:bg-gray-700 rounded-md">Bowling</span>
-        </div>
+        <GamesHeader handleClick={handleClick}/>
         <div className="flex flex-row w-full">
-          <div className="flex flex-col w-2/5 mr-2">
-            <h2 className="text-2xl tracking-wider font-extrabold my-2">LEADERBOARD</h2>
-            <div className="flex bg-zinc-800 rounded-md">
-              Test
-            </div>
-          </div>
-          <div className="flex flex-col w-3/5">
-            <h2 className="text-2xl tracking-wider font-extrabold my-2">RESULTS</h2>
-            <div className="flex bg-zinc-800 rounded-md">
-              Test
-            </div>
-          </div>
+          <ResultsLeaderboard game={game}/>
+          <ResultsData games={filteredGames}/>
         </div>
       </div>
     </div>
-
   </>
 }
 
