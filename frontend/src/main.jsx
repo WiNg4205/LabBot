@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom"
 import GamesProvider from "./context/GamesContext.jsx"
 import OutingsProvider from './context/OutingsContext.jsx'
 import PlayersProvider from './context/PlayersContext.jsx'
+import AvatarsProvider from './context/AvatarsContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -13,7 +14,9 @@ createRoot(document.getElementById('root')).render(
       <GamesProvider>
         <OutingsProvider>
           <PlayersProvider>
-            <App />
+            <AvatarsProvider>
+              <App />
+            </AvatarsProvider>
           </PlayersProvider>
         </OutingsProvider>
       </GamesProvider>
