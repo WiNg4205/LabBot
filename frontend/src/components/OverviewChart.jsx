@@ -11,8 +11,7 @@ const data = [
 const OverviewChart = ({ winrate }) => {
   const sortedData = [...winrate].sort((a, b) => b.winRate - a.winRate)
   return <>
-    <div className="mb-24"></div>
-    <BarChart layout="vertical" width={600} height={300} data={sortedData} barCategoryGap={8}>
+    <BarChart layout="vertical" width={400} height={400} data={sortedData} barCategoryGap={12}>
       <XAxis type="number" />
       <YAxis dataKey="name" type="category" />
       <Tooltip />

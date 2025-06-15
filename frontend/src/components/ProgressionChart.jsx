@@ -11,11 +11,11 @@ const ProgressionChart = ({ winrate }) => {
   })
 
   return <>
-    <LineChart width={730} height={500} data={data}>
+    <LineChart width={600} height={400} data={data}>
       <XAxis dataKey={(_, index) => index} />
       <YAxis />
       <Tooltip
-        position={{ x: 800, y: 100 }}
+        position={{ x: 650, y: 100 }}
         content={({ payload, label, active }) => {
           if (active && payload && payload.length) {
             const sorted = [...payload].sort((a, b) => b.value - a.value);
