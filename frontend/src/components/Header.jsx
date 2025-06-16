@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import LabBotIcon from '../assets/flask-solid.svg'
 import SignIn from "./SignIn"
 
@@ -25,10 +25,33 @@ const Header = () => {
       </div>
       <div className="flex items-center h-14 font-semibold">
         <div>
-          <Link to="/" className="px-3 font-normal text-[16px] hover:text-indigo-300 hover:text-shadow-glow transition ease-in-out duration-250">Overview</Link>
-          <Link to="/events" className="px-3 font-normal text-[16px] hover:text-indigo-300 transition duration-250">Events</Link>
-          <Link to="/results" className="px-3 font-normal text-[16px] hover:text-indigo-300 transition duration-250">Results</Link>
-          <Link to="/docs" className="px-3 font-normal text-[16px] hover:text-indigo-300 transition duration-250">Docs</Link>      
+          <NavLink 
+            to="/events" 
+            className={({ isActive }) =>
+              "px-3 font-normal text-[16px] transition duration-250 " +
+              (isActive ? "text-indigo-400 font-bold" : "hover:text-indigo-300")
+            }
+          >
+            Events
+          </NavLink>
+          <NavLink
+            to="/results" 
+            className={({ isActive }) =>
+              "px-3 font-normal text-[16px] transition duration-250 " +
+              (isActive ? "text-indigo-400 font-bold" : "hover:text-indigo-300")
+            }
+          >
+            Results
+          </NavLink>
+          <NavLink
+            to="/docs"
+            className={({ isActive }) =>
+              "px-3 font-normal text-[16px] transition duration-250 " +
+              (isActive ? "text-indigo-400 font-bold" : "hover:text-indigo-300")
+            }
+          >
+            Docs
+          </NavLink>      
         </div>
         <div className="w-px h-8 bg-zinc-500 mx-2"></div>
         <a href="https://github.com/WiNg4205/LabBot/tree/main" target="_blank" rel="noopener noreferrer">

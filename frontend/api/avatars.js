@@ -19,7 +19,8 @@ export async function GET(request) {
     avatar: user.displayAvatarURL(),
     username: user.username,
   }))
-
+  client.destroy()
+  
   return new Response(JSON.stringify(users), {
     headers: { 'Content-Type': 'application/json' },
   })
