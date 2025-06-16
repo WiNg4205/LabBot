@@ -15,8 +15,9 @@ export async function GET(request) {
   const members = await guild.members.fetch()
 
   const users = members.map(({ user }) => ({
-    username: user.username,
+    id: user.id,
     avatar: user.displayAvatarURL(),
+    username: user.username,
   }))
   client.destroy()
   
