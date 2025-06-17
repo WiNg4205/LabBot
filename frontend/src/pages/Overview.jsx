@@ -1,7 +1,8 @@
 import { useState } from "react"
+import { useWinrates } from "../context/WinratesContext"
 import OverviewChart from "../components/OverviewChart"
 import ProgressionChart from "../components/ProgressionChart"
-import { useWinrates } from "../context/WinratesContext"
+import Features from "../components/Features"
 
 const Overview = () => {
   const winrates = useWinrates()
@@ -11,20 +12,29 @@ const Overview = () => {
     <p className="mt-8 text-4xl text-slate-400">A private server discord bot built using&nbsp;
       <a href="https://discord.js.org" target="_blank" rel="noopener" className="font-bold">discord.js</a>
     </p>
-    {winrates && (
-    <div className="mt-20 flex gap-20 items-center">
+    {!winrates ? (
+      <div className="border-8 border-t-transparent border-white rounded-full size-12 animate-spin mt-20" />
+    ) : (
       <div>
-        <div className="flex gap-2">
-          <button onClick={() => setToggle("total")} className={toggle === "total" ? 'text-fuchsia-300 font-bold' : ''}>Total</button>
-          <button onClick={() => setToggle("pool")} className={toggle === "pool" ? 'text-fuchsia-300 font-bold' : ''}>Pool</button>
-          <button onClick={() => setToggle("bowling")} className={toggle === "bowling" ? 'text-fuchsia-300 font-bold' : ''}>Bowling</button>
-          <button onClick={() => setToggle("cards")} className={toggle === "cards" ? 'text-fuchsia-300 font-bold' : ''}>Cards</button>
-        </div>      
-        <OverviewChart winrate={winrates[toggle][winrates[toggle].length - 1]} />        
+        <div className="mt-20 flex gap-20 items-center mb-20">
+          <div>
+            <div className="flex gap-2">
+              {["total", "pool", "bowling", "cards"].map(key => (
+                <button
+                  key={key}
+                  onClick={() => setToggle(key)}
+                  className={toggle === key ? 'text-fuchsia-300 font-bold' : ''}
+                >
+                  {key[0].toUpperCase() + key.slice(1)}
+                </button>
+              ))}
+            </div>
+            <OverviewChart winrate={winrates[toggle].at(-1)} />
+          </div>
+          <ProgressionChart winrate={winrates[toggle]} />
+        </div>
+        <Features />
       </div>
-
-      <ProgressionChart winrate={winrates[toggle]} />
-    </div>
     )}
   </div>
 }

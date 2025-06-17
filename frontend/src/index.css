@@ -13,3 +13,46 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
+@layer utilities {
+  @keyframes fade-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-200px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .fade-in-left {
+    opacity: 0;
+    transition: opacity 2s ease, transform 2s ease;
+  }
+
+  .fade-in-left.visible {
+    animation: fade-in-left 2s ease forwards;
+  }
+}
+
+@layer utilities {
+  @keyframes fade-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(200px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .fade-in-right {
+    opacity: 0;
+    transition: opacity 2s ease, transform 2s ease;
+  }
+
+  .fade-in-right.visible {
+    animation: fade-in-right 2s ease forwards;
+  }
+}
