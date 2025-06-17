@@ -19,8 +19,8 @@ const EventData = ({ selectedOuting }) => {
   return (
     <div className="w-108 border border-zinc-600 mt-8 flex flex-col bg-zinc-800 rounded-xl py-4 px-12">
       <div className="flex flex-col h-48">
-        <h1 className="self-center font-bold text-2xl text-fuchsia-400 mb-4">Round 10</h1>
-        <p><b>Time:</b> {new Date(selectedOuting.date).toLocaleTimeString('en-AU', { hour: 'numeric', minute: '2-digit' })}</p>
+        <h1 className="self-center font-bold text-2xl text-fuchsia-400 mb-4">Round {selectedOuting.index}</h1>
+        <p><b>Time:</b> {selectedOuting.time}</p>
         <p><b>Restaurant:</b> {selectedOuting.placesWent}</p>
         <p><b>People:</b> {selectedOuting.people}</p>
       </div>

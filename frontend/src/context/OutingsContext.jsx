@@ -20,10 +20,9 @@ const OutingsProvider = ({ children }) => {
 
   useEffect(() => {
     if (outingsData) {
-      // adjust to AEST time
-      const adjustedData = outingsData.map(o => ({
+      const adjustedData = outingsData.map((o, index) => ({
         ...o,
-        date: subHours(new Date(o.date), 10).toISOString()
+        index : index + 1,
       }))
       setOutings(adjustedData)
     }
