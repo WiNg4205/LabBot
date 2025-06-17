@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react"
 
-const FadeInLeftOnScroll = ({ children }) => {
+const FadeInLeftOnScroll = ({ children, delay = 0 }) => {
   const ref = useRef()
   const [visible, setVisible] = useState(false)
 
@@ -14,7 +14,11 @@ const FadeInLeftOnScroll = ({ children }) => {
   }, [])
 
   return (
-    <div ref={ref} className={`fade-in-left ${visible ? "visible" : ""}`}>
+    <div
+      ref={ref}
+      className={`fade-in-left ${visible ? "visible" : ""}`}
+      style={{ transitionDelay: `${delay}s` }}
+    >
       {children}
     </div>
   )
