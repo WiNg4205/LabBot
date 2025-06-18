@@ -14,9 +14,9 @@ const ResultsData = ({ games }) => {
 
   return (
     <div className="flex flex-col w-3/5 box-border">
-      <h2 className="text-2xl tracking-wider font-extrabold my-2">RESULTS</h2>
+      <h2 className="text-xl tracking-wider font-extrabold my-4">RECENT GAMES</h2>
       {games.map((game, index) => (
-        <div key={index} className="flex justify-between bg-zinc-800 rounded-md p-4 mb-2 border-l-6 min-h-24 max-h-24">
+        <div key={index} className="flex justify-between bg-zinc-800 rounded-md p-4 mb-2 border-l-6 border-l-slate-400 border-[0.5px] border-gray-500 min-h-24 max-h-24">
           <div className="flex flex-col justify-center">
             <p className="text-sm font-semibold text-slate-100">{game.game.charAt(0).toUpperCase() + game.game.slice(1)}</p>
             <p className="text-sm font-extralight">{new Date(game.date).toLocaleDateString()}</p>

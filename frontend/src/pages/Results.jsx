@@ -32,7 +32,7 @@ const Results = () => {
       <div className="flex flex-col w-5xl">
         <GamesHeader handleClick={handleClick}/>
         <div className="flex flex-row w-full">
-          <ResultsLeaderboard />
+          <ResultsLeaderboard gameType={game}/>
           <ResultsData games={filteredGames}/>
         </div>
       </div>
