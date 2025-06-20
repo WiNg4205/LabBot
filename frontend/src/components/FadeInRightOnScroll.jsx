@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react"
 
-const FadeInRightOnScroll = ({ children }) => {
+const FadeInRightOnScroll = ({ children, className = "" }) => {
   const ref = useRef()
   const [visible, setVisible] = useState(false)
 
@@ -14,7 +14,7 @@ const FadeInRightOnScroll = ({ children }) => {
   }, [])
 
   return (
-    <div ref={ref} className={`fade-in-right ${visible ? "visible" : ""}`}>
+    <div ref={ref} className={`fade-in-right ${className} ${visible ? "visible" : ""}`}>
       {children}
     </div>
   )

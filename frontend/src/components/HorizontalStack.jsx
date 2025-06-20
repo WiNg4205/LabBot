@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react"
 
-const FadeInRightOnScroll = ({ children, className = "" }) => {
+const HorizontalStack = ({ children, delay = 0, className = "" }) => {
   const ref = useRef()
   const [visible, setVisible] = useState(false)
 
@@ -14,10 +14,15 @@ const FadeInRightOnScroll = ({ children, className = "" }) => {
   }, [])
 
   return (
-    <div ref={ref} className={`fade-in-left ${className} ${visible ? "visible" : ""}`}>
+    <div
+      ref={ref}
+      className={`fade-in-stack ${className} ${visible ? "visible" : ""}`}
+      style={{ transitionDelay: `${delay}s` }}
+    >
       {children}
     </div>
   )
 }
 
-export default FadeInRightOnScroll
+export default HorizontalStack
+ 
