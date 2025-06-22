@@ -16,10 +16,10 @@ const ResultsData = ({ games }) => {
     <div className="flex flex-col w-3/5 box-border">
       <h2 className="text-xl tracking-wider font-extrabold my-4">RECENT GAMES</h2>
       {games.map((game, index) => (
-        <div key={index} className="flex justify-between bg-zinc-800 rounded-md p-4 mb-1 border-l-6 border-l-slate-600 min-h-24 max-h-24">
+        <div key={index} className="flex justify-between bg-zinc-800 rounded-md p-4 mb-1 border-l-6 border-l-zinc-600 min-h-24 max-h-24">
           <div className="flex flex-col justify-center">
-            <p className="text-sm font-semibold text-slate-100">{game.game.charAt(0).toUpperCase() + game.game.slice(1)}</p>
-            <p className="text-sm font-extralight">{new Date(game.date).toLocaleDateString()}</p>
+            <p className="text-sm font-bold text-slate-100">{game.game.charAt(0).toUpperCase() + game.game.slice(1)}</p>
+            <p className="text-sm font-extralight text-slate-400">{new Date(game.date).toLocaleDateString()}</p>
           </div>
           {getAvatars.length > 0 && <div className="grid grid-flow-col grid-rows-3 gap-6 items-center">
             {Object.entries(game.results).map((result, index) => (
