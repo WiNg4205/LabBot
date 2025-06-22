@@ -1,7 +1,7 @@
-import { useAvatars } from "../context/AvatarsContext"
-import WinratesProvider, { useWinrates } from "../context/WinratesContext"
+import { useAvatars } from "../../context/AvatarsContext"
+import WinratesProvider, { useWinrates } from "../../context/WinratesContext"
 import { useState, useEffect } from "react" 
-import names from "../utility/names"
+import names from "../../utility/names"
 
 const ResultsLeaderboard = ({ gameType }) => {
 

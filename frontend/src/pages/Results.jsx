@@ -1,8 +1,8 @@
 import { useGames } from "../context/GamesContext"
 import { useState, useEffect } from "react"
-import GamesHeader from "../components/ResultsHeader"
-import ResultsLeaderboard from "../components/ResultsLeaderboard"
-import ResultsData from "../components/ResultsData"
+import GamesHeader from "../components/results/ResultsHeader"
+import ResultsLeaderboard from "../components/results/ResultsLeaderboard"
+import ResultsData from "../components/results/ResultsData"
 
 const Results = () => {
 

@@ -1,5 +1,5 @@
-import Calendar from "../components/Calendar"
-import EventData from "../components/EventData"
+import Calendar from "../components/events/Calendar"
+import EventData from "../components/events/EventData"
 import { useOutings } from "../context/OutingsContext"
 import { useGames } from "../context/GamesContext"
 import { useState, useEffect } from "react"

@@ -1,5 +1,5 @@
-import { useAvatars } from "../context/AvatarsContext"
-import names from "../utility/names"
+import { useAvatars } from "../../context/AvatarsContext"
+import names from "../../utility/names"
 
 const ResultsData = ({ games }) => {
 

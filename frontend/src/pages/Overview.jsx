@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { useWinrates } from "../context/WinratesContext"
-import OverviewChart from "../components/OverviewChart"
-import ProgressionChart from "../components/ProgressionChart"
-import Features from "../components/Features"
+import OverviewChart from "../components/overview/OverviewChart"
+import ProgressionChart from "../components/overview/ProgressionChart"
+import Features from "../components/overview/Features"
 
 const Overview = () => {
   const winrates = useWinrates()

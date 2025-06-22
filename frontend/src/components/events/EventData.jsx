@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useGames } from "../context/GamesContext"
+import { useGames } from "../../context/GamesContext"
 import EventGames from "./EventGames"
 
 const EventData = ({ selectedOuting }) => {
