@@ -59,11 +59,11 @@ body {
 
   .fade-in-right {
     opacity: 0;
-    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 2s ease, transform 2s ease;
   }
 
   .fade-in-right.visible {
-    animation: fade-in-right 1s ease forwards;
+    animation: fade-in-right 2s ease forwards;
   }
 
   /* fade-in-left */
@@ -80,10 +80,23 @@ body {
 
   .fade-in-left {
     opacity: 0;
-    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 2s ease, transform 2s ease;
   }
 
   .fade-in-left.visible {
-    animation: fade-in-left 1s ease forwards;
+    animation: fade-in-left 2s ease forwards;
   }
+
+.blinking-caret {
+  border-right: 2px solid oklch(70.5% 0.015 286.067);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  from, to { border-color: transparent }
+  50% { border-color: oklch(83.3% 0.145 321.434); }
+}
+
+
+
 }
