@@ -8,10 +8,11 @@ import FadeInLeftOnScroll from "./FadeInLeftOnScroll"
 import FadeInRightOnScroll from "./FadeInRightOnScroll"
 import HorizontalStack from "./HorizontalStack"
 import TypeWriter from "./TypeWriter"
+import TableAnimation from "./TableAnimation"
 
 
 const Features = () => {
-  return <div className="max-w-[80%] mx-auto flex flex-col items-center">
+  return <div className="max-w-[80%] mx-auto flex flex-col items-center mb-20">
     <h2 className="text-5xl text-zinc-200 font-bold">Tech Stack</h2>
     <div className="flex justify-center gap-4 mt-10">
       {[NodeJSLogo, ViteLogo, VercelLogo, ReactLogo, TailwindCSSLogo, MongoDBLogo].map((logo, i) => (
@@ -29,8 +30,9 @@ const Features = () => {
         <div className="text-center text-xl font-bold">Slash Commands</div>
         <TypeWriter className="mt-8 mx-8 text-2xl text-zinc-400" text="/command" />
       </FadeInRightOnScroll>
-      <FadeInLeftOnScroll className="bg-zinc-800 border border-zinc-700 rounded-lg col-span-2 p-4">
-        <div className="text-center text-xl font-bold">Score Tracking</div>
+      <FadeInLeftOnScroll className="flex flex-col items-center bg-zinc-800 border border-zinc-700 rounded-lg col-span-2 p-4">
+        <div className="text-center text-xl font-bold mb-4">Score Tracking</div>
+        <TableAnimation />
       </FadeInLeftOnScroll>
       <FadeInRightOnScroll className="bg-zinc-800 border border-zinc-700 rounded-lg size-full col-span-2 p-4">
         <div className="text-center text-xl font-bold">Calendar UI</div>
@@ -39,7 +41,6 @@ const Features = () => {
         <div className="text-center text-xl font-bold">Admin</div>
       </FadeInLeftOnScroll>
     </div>
-
   </div> 
 }
 
