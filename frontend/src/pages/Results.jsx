@@ -31,7 +31,7 @@ const Results = () => {
       <div className="flex flex-col w-5xl">
         <ResultsHeader selected={searchParams.get("game")} setSelected={setSearchParams}/>
         <div className="flex flex-row w-full">
-          <ResultsLeaderboard gameType={searchParams.get("game")}/>
+          <ResultsLeaderboard gameType={searchParams.get("game") || "all"}/>
           <ResultsData games={filteredGames}/>
         </div>
       </div>

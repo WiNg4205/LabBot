@@ -25,7 +25,7 @@ const ResultsLeaderboard = ({ gameType }) => {
       <h2 className="text-xl tracking-wider font-extrabold my-4">LEADERBOARD</h2>
       <div className="flex flex-col border-[0.5px] bg-zinc-900 border-none gap-[2px]">
         {winrates.map((player, index) => (
-          <div className={`flex justify-between items-center rounded-md ${
+          <div key={index} className={`flex justify-between items-center rounded-md ${
               index === 0 ? "border-l-4 border-l-[#b48811] border-none bg-gradient-to-r from-[#63593e] from-[0%] to-zinc-800 to-30%"
               : index === 1 ? "border-l-4 border-l-[#8E8D8D] border-none bg-gradient-to-r from-[#5f5f5f] from[0%] to-zinc-800 to-30%"
               : index === 2 ? "border-l-4 border-l-[#895E1A] border-none bg-gradient-to-r from-[#5f4c30] from-[0%] to-zinc-800 to-30%"
@@ -40,7 +40,7 @@ const ResultsLeaderboard = ({ gameType }) => {
                   : ""
                 }`}
               >
-                <div class={`w-10 h-10 flex items-center justify-center ${
+                <div className={`w-10 h-10 flex items-center justify-center ${
                   index <= 2 ? "bg-zinc-800 rounded-full" : ""
                   }`}
                 >
