@@ -2,7 +2,7 @@ const ResultsHeader = ({ selected, setSelected }) => {
 
   function handleClick(e) {
     const gameType = e.target.id
-    setSelected(gameType)
+    setSelected(`game=${gameType}`)
   }  
   
   return (

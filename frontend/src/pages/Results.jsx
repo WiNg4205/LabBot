@@ -3,31 +3,35 @@ import { useState, useEffect } from "react"
 import ResultsHeader from "../components/results/ResultsHeader"
 import ResultsLeaderboard from "../components/results/ResultsLeaderboard"
 import ResultsData from "../components/results/ResultsData"
+import { useSearchParams } from "react-router-dom"
 
 const Results = () => {
-
-  const [game, setGames] = useState("all")
+  const [searchParams, setSearchParams] = useSearchParams()
   const [filteredGames, setFilteredGames] = useState([])
   const getGames = useGames()
   getGames.sort((a, b) => new Date(b.date) - new Date(a.date)) 
 
   useEffect(() => {
-    if (game === "all") {
+    setSearchParams(`game=${searchParams.get("game") || "all"}`)
+  }, [searchParams, setSearchParams])
+
+  useEffect(() => {
+    if (searchParams.get("game") === "all") {
       setFilteredGames(getGames)
       return
     }
 
-    const filteredGames = getGames.filter(g => g.game === game) 
-    console.log("Filtered Games: ", filteredGames)
+    const filteredGames = getGames.filter(g => g.game === searchParams.get("game")) 
+    // console.log("Filtered Games: ", filteredGames)
     setFilteredGames(filteredGames)
-  }, [game, getGames])
+  }, [getGames, searchParams, setSearchParams])
 
   return <>
     <div className="flex">
       <div className="flex flex-col w-5xl">
-        <ResultsHeader selected={game} setSelected={setGames}/>
+        <ResultsHeader selected={searchParams.get("game")} setSelected={setSearchParams}/>
         <div className="flex flex-row w-full">
-          <ResultsLeaderboard gameType={game}/>
+          <ResultsLeaderboard gameType={searchParams.get("game")}/>
           <ResultsData games={filteredGames}/>
         </div>
       </div>
