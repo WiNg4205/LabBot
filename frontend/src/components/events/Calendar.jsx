@@ -1,10 +1,10 @@
-import { DayPicker, getDefaultClassNames } from "react-day-picker";
-import { startOfMonth } from "date-fns";
-import "./Calendar.css";
+import { DayPicker, getDefaultClassNames } from "react-day-picker"
+import { startOfMonth } from "date-fns"
+import "./Calendar.css"
 
 
 const Calendar = ({ dates, selectedDate, setSelectedDate }) => {
-  const defaultClassNames = getDefaultClassNames();
+  const defaultClassNames = getDefaultClassNames()
 
   const prevDate = () => setSelectedDate(d => dates[Math.min(dates.indexOf(d) + 1, dates.length - 1)]);
   const nextDate = () => setSelectedDate(d => dates[Math.max(dates.indexOf(d) - 1, 0)]);
@@ -40,4 +40,4 @@ const Calendar = ({ dates, selectedDate, setSelectedDate }) => {
   );
 };
 
-export default Calendar;
+export default Calendar
