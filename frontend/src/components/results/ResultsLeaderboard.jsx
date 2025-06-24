@@ -5,7 +5,8 @@ import names from "../../utility/names"
 
 const ResultsLeaderboard = ({ gameType }) => {
 
-  const getAvatars = useAvatars() || []
+  const getAvatars = useAvatars()
+  console.log("getAvatars: ", getAvatars)
   const getWinrates = useWinrates()
   const [winrates, setWinrates] = useState([])
   
@@ -23,7 +24,21 @@ const ResultsLeaderboard = ({ gameType }) => {
   return (
     <div className="flex flex-col w-2/5 mr-8">
       <h2 className="text-xl tracking-wider font-extrabold my-4">LEADERBOARD</h2>
-      <div className="flex flex-col border-[0.5px] bg-zinc-900 border-none gap-[2px]">
+      {getAvatars.length <= 0 ? (
+          <div class="flex animate-pulse bg-zinc-800 p-4 rounded-md">
+            <div class="flex-1 space-y-6 py-1">
+              <div class="h-2 rounded bg-zinc-700"></div>
+              <div class="space-y-3">
+                <div class="grid grid-cols-3 gap-4">
+                  <div class="col-span-2 h-2 rounded bg-zinc-700"></div>
+                  <div class="col-span-1 h-2 rounded bg-zinc-700"></div>
+                </div>
+                <div class="h-2 rounded bg-zinc-700"></div>
+              </div>
+            </div>
+          </div>
+      ) : (
+        <div className="flex flex-col border-[0.5px] bg-zinc-900 border-none gap-[2px]">
         {winrates.map((player, index) => (
           <div key={index} className={`flex justify-between items-center rounded-md ${
               index === 0 ? "border-l-[#b48811] bg-gradient-to-r from-[#63593e] from-[0%] to-zinc-800 to-30%"
@@ -60,6 +75,7 @@ const ResultsLeaderboard = ({ gameType }) => {
           </div>
         ))}
       </div>
+      )}
     </div>
   )
 }

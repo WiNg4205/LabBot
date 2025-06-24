@@ -5,32 +5,41 @@ const ResultsData = ({ games }) => {
 
   const getAvatars = useAvatars() || []
   console.log("avatars: ", getAvatars)
-  
-  // games.map(game => {
-  //   Object.entries(game.results).map(result => {
-  //     console.log("result: ", result)
-  //   })
-  // })
 
   return (
     <div className="flex flex-col w-3/5 box-border">
       <h2 className="text-xl tracking-wider font-extrabold my-4">RECENT GAMES</h2>
-      {games.map((game, index) => (
-        <div key={index} className="flex justify-between bg-zinc-800 rounded-md p-4 mb-1 border-l-6 border-l-zinc-600 min-h-24 max-h-24">
-          <div className="flex flex-col justify-center">
-            <p className="text-sm font-bold text-slate-100">{game.game.charAt(0).toUpperCase() + game.game.slice(1)}</p>
-            <p className="text-sm font-extralight text-slate-400">{new Date(game.date).toLocaleDateString()}</p>
+      {getAvatars.length <= 0 ? (
+        <div class="flex animate-pulse bg-zinc-800 p-4 rounded-md">
+          <div class="flex-1 space-y-6 py-1">
+            <div class="h-2 rounded bg-zinc-700"></div>
+            <div class="space-y-3">
+              <div class="grid grid-cols-3 gap-4">
+                <div class="col-span-2 h-2 rounded bg-zinc-700"></div>
+                <div class="col-span-1 h-2 rounded bg-zinc-700"></div>
+              </div>
+              <div class="h-2 rounded bg-zinc-700"></div>
+            </div>
           </div>
-          {getAvatars.length > 0 && <div className="grid grid-flow-col grid-rows-3 gap-6 items-center">
-            {Object.entries(game.results).map((result, index) => (
-               <a key={index} className="flex gap-x-2 min-w-28 max-w-28" href={''} aria-disabled="true">
-                <img src={getAvatars.find(avatar => avatar.username === names[result[0]])["avatar"]} alt="avatar" className="rounded-full size-6" />
-                <span className="text-sm truncate">{result[0]}</span>
-              </a>
-            ))}
-          </div>}
         </div>
-      ))}
+      ) : (
+        games.map((game, index) => (
+          <div key={index} className="flex justify-between bg-zinc-800 rounded-md p-4 mb-1 border-l-6 border-l-zinc-600 min-h-24 max-h-24">
+            <div className="flex flex-col justify-center">
+              <p className="text-sm font-bold text-slate-100">{game.game.charAt(0).toUpperCase() + game.game.slice(1)}</p>
+              <p className="text-sm font-extralight text-slate-400">{new Date(game.date).toLocaleDateString()}</p>
+            </div>
+            <div className="grid grid-flow-col grid-rows-3 gap-6 items-center">
+              {Object.entries(game.results).map((result, index) => (
+                <a key={index} className="flex gap-x-2 min-w-28 max-w-28" href={''} aria-disabled="true">
+                  <img src={getAvatars.find(avatar => avatar.username === names[result[0]])["avatar"]} alt="avatar" className="rounded-full size-6" />
+                  <span className="text-sm truncate">{result[0]}</span>
+                </a>
+              ))}
+          </div>
+        </div>
+        ))
+      )}
     </div>
   )
 }
