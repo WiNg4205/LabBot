@@ -25,4 +25,3 @@ const HorizontalStack = ({ children, delay = 0, className = "" }) => {
 }
 
 export default HorizontalStack
- 

@@ -110,4 +110,23 @@ body {
   .fade-slide-in {
     animation: fade-slide-in 2s ease forwards;
   }
+
+  @keyframes pop-twice {
+    0%, 30%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    10%, 20% {
+      transform: scale(1.1);
+      opacity: 0.9;
+    }
+    15%, 25% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .pop {
+    animation: pop-twice 3s ease-in-out infinite;
+  }
 }
