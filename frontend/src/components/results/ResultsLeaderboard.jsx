@@ -6,7 +6,6 @@ import names from "../../utility/names"
 const ResultsLeaderboard = ({ gameType }) => {
 
   const getAvatars = useAvatars()
-  console.log("getAvatars: ", getAvatars)
   const getWinrates = useWinrates()
   const [winrates, setWinrates] = useState([])
   
@@ -24,21 +23,24 @@ const ResultsLeaderboard = ({ gameType }) => {
   return (
     <div className="flex flex-col w-2/5 mr-8">
       <h2 className="text-xl tracking-wider font-extrabold my-4">LEADERBOARD</h2>
-      {getAvatars.length <= 0 ? (
-          <div class="flex animate-pulse bg-zinc-800 p-4 rounded-md">
-            <div class="flex-1 space-y-6 py-1">
-              <div class="h-2 rounded bg-zinc-700"></div>
-              <div class="space-y-3">
-                <div class="grid grid-cols-3 gap-4">
-                  <div class="col-span-2 h-2 rounded bg-zinc-700"></div>
-                  <div class="col-span-1 h-2 rounded bg-zinc-700"></div>
+        {getAvatars.length <= 0 ? (
+          <div className="flex flex-col bg-zinc-900 gap-[2px]">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div class="flex justify-between items-center rounded-md animate-pulse bg-zinc-800 h-[54px]">
+                <div className="flex items-center py-1 pl-4">
+                  <div className={`size-12 p-[3px] rounded-full bg-zinc-800 ${
+                    i <= 2 ? "border-3 border-zinc-700"
+                    : ""
+                  }`}></div>
+                  <div className="ml-4 bg-zinc-700 rounded-full size-9"></div>
+                  <span className="ml-4 text-sm font-bold w-16 h-3.5 bg-zinc-700 rounded-md"></span>
                 </div>
-                <div class="h-2 rounded bg-zinc-700"></div>
+                <span className="mr-4 w-12 h-3.5 bg-zinc-700 rounded-md"></span>
               </div>
-            </div>
+            ))}
           </div>
       ) : (
-        <div className="flex flex-col border-[0.5px] bg-zinc-900 border-none gap-[2px]">
+        <div className="flex flex-col bg-zinc-900 gap-[2px]">
         {winrates.map((player, index) => (
           <div key={index} className={`flex justify-between items-center rounded-md ${
               index === 0 ? "border-l-[#b48811] bg-gradient-to-r from-[#63593e] from-[0%] to-zinc-800 to-30%"

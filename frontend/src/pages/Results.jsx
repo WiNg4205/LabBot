@@ -1,5 +1,5 @@
 import { useGames } from "../context/GamesContext"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import ResultsHeader from "../components/results/ResultsHeader"
 import ResultsLeaderboard from "../components/results/ResultsLeaderboard"
 import ResultsData from "../components/results/ResultsData"
