@@ -2,9 +2,7 @@ import { useAvatars } from "../../context/AvatarsContext"
 import names from "../../utility/names"
 
 const ResultsData = ({ games }) => {
-
   const getAvatars = useAvatars() || []
-  console.log("avatars: ", getAvatars)
 
   return (
     <div className="flex flex-col w-3/5 box-border">
