@@ -8,6 +8,7 @@ import OutingsProvider from './context/OutingsContext.jsx'
 import PlayersProvider from './context/PlayersContext.jsx'
 import AvatarsProvider from './context/AvatarsContext.jsx'
 import WinratesProvider from './context/WinratesContext.jsx'
+import StreaksProvider from './context/StreaksContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -17,7 +18,9 @@ createRoot(document.getElementById('root')).render(
           <PlayersProvider>
             <AvatarsProvider>
               <WinratesProvider>
-                <App />
+                <StreaksProvider>
+                  <App />
+                </StreaksProvider>
               </WinratesProvider>
             </AvatarsProvider>
           </PlayersProvider>

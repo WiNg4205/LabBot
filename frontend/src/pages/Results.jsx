@@ -1,9 +1,11 @@
 import { useGames } from "../context/GamesContext"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import ResultsHeader from "../components/results/ResultsHeader"
 import ResultsLeaderboard from "../components/results/ResultsLeaderboard"
 import ResultsData from "../components/results/ResultsData"
+import ResultsStreak from "../components/results/ResultsStreak"
 import { useSearchParams } from "react-router-dom"
+
 
 const Results = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -31,7 +33,10 @@ const Results = () => {
       <div className="flex flex-col w-5xl">
         <ResultsHeader selected={searchParams.get("game")} setSelected={setSearchParams}/>
         <div className="flex flex-row w-full">
-          <ResultsLeaderboard gameType={searchParams.get("game") || "all"}/>
+          <div className="flex flex-col w-2/5 mr-8">
+            <ResultsLeaderboard gameType={searchParams.get("game") || "all"}/>
+            <ResultsStreak/>
+          </div>
           <ResultsData games={filteredGames}/>
         </div>
       </div>

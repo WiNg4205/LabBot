@@ -5,28 +5,28 @@ import names from "../../utility/names"
 
 const ResultsLeaderboard = ({ gameType }) => {
 
-  const getAvatars = useAvatars()
+  const getAvatars = useAvatars() || []
   const getWinrates = useWinrates()
   const [winrates, setWinrates] = useState([])
   
   useEffect(() => {
-    if (getWinrates?.length < 0 || !getWinrates) return
+    if (!getWinrates || getWinrates?.length < 0) return
 
     if (gameType === 'all') {
       setWinrates(getWinrates['total'].at(-1).sort((a, b) => b.winRate - a.winRate))
     } else {
       setWinrates(getWinrates[gameType].at(-1).sort((a, b) => b.winRate - a.winRate))
     }
-    console.log("winrates: ", winrates)
-  }, [gameType, getWinrates, winrates])
+
+  }, [gameType, getWinrates])
 
   return (
-    <div className="flex flex-col w-2/5 mr-8">
+    <div className="flex flex-col">
       <h2 className="text-xl tracking-wider font-extrabold my-4">LEADERBOARD</h2>
         {getAvatars.length <= 0 ? (
           <div className="flex flex-col bg-zinc-900 gap-[2px]">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div class="flex justify-between items-center rounded-md animate-pulse bg-zinc-800 h-[54px]">
+              <div key={i} className="flex justify-between items-center rounded-md animate-pulse bg-zinc-800 h-[54px]">
                 <div className="flex items-center py-1 pl-4">
                   <div className={`size-12 p-[3px] rounded-full bg-zinc-800 ${
                     i <= 2 ? "border-3 border-zinc-700"
