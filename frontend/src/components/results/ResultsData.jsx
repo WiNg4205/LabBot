@@ -5,7 +5,6 @@ import ResultsStats from "./ResultsStats"
 import { useState } from "react"
 
 const ResultsData = ({ games }) => {
-
   const getAvatars = useAvatars() || []
   const [selectedGame, setSelectedGame] = useState(null)
 

@@ -1,5 +1,5 @@
 import { useAvatars } from "../../context/AvatarsContext"
-import WinratesProvider, { useWinrates } from "../../context/WinratesContext"
+import { useWinrates } from "../../context/WinratesContext"
 import { useState, useEffect } from "react" 
 import names from "../../utility/names"
 
