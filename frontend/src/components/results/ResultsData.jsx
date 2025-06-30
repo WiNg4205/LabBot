@@ -1,10 +1,13 @@
 import { useAvatars } from "../../context/AvatarsContext"
 import names from "../../utility/names"
-import BottomArrow from "../../assets/bottom-arrow.svg"
+import ResultsDropdown from "./ResultsDropdown"
+import ResultsStats from "./ResultsStats"
+import { useState } from "react"
 
 const ResultsData = ({ games }) => {
 
   const getAvatars = useAvatars() || []
+  const [selectedGame, setSelectedGame] = useState(null)
 
   return (
     <div className="flex flex-col w-3/5 box-border">
@@ -29,24 +32,27 @@ const ResultsData = ({ games }) => {
         ))
       ) : (
         games.map((game, index) => (
-          <div key={index} className="flex bg-zinc-800 rounded-md mb-1 border-l-6 border-l-zinc-600 min-h-24 max-h-24">
-            <div className="flex flex-1 justify-between pl-4 py-4">
-              <div className="flex flex-col justify-center">
-                <p className="text-sm font-bold text-slate-100">{game.game.charAt(0).toUpperCase() + game.game.slice(1)}</p>
-                <p className="text-sm text-slate-400">{new Date(game.date).toLocaleDateString()}</p>
+          <div key={index} className="flex flex-col" >
+            <div className={`flex bg-zinc-800 rounded-md border-l-6 border-l-zinc-500 min-h-24 max-h-24 ${
+              index === games.length - 1 ? "mb-0" : "mb-1"
+            }`}>
+              <div className="flex flex-1 justify-between pl-4 py-4">
+                <div className="flex flex-col justify-center">
+                  <p className="text-sm font-bold text-slate-100">{game.game.charAt(0).toUpperCase() + game.game.slice(1)}</p>
+                  <p className="text-sm text-slate-400">{new Date(game.date).toLocaleDateString()}</p>
+                </div>
+                <div className="grid grid-flow-col grid-rows-3 gap-6 items-center">
+                  {Object.entries(game.results).map((result, index) => (
+                    <a key={index} className="flex gap-x-2 min-w-28 max-w-28" href={''} aria-disabled="true">
+                      <img src={getAvatars.find(avatar => avatar.username === names[result[0]])["avatar"]} alt="avatar" className="rounded-full size-6" />
+                      <span className="text-sm truncate py-0.5">{result[0]}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
-              <div className="grid grid-flow-col grid-rows-3 gap-6 items-center">
-                {Object.entries(game.results).map((result, index) => (
-                  <a key={index} className="flex gap-x-2 min-w-28 max-w-28" href={''} aria-disabled="true">
-                    <img src={getAvatars.find(avatar => avatar.username === names[result[0]])["avatar"]} alt="avatar" className="rounded-full size-6" />
-                    <span className="text-sm truncate py-0.5">{result[0]}</span>
-                  </a>
-                ))}
-              </div>
+              <ResultsDropdown id={index} selectedGame={selectedGame} setSelectedGame={setSelectedGame}/>
             </div>
-            <div className="flex flex-col justify-end bg-zinc-700 px-4 py-2 rounded-tr-md rounded-br-md cursor-pointer hover:bg-zinc-800 transition duration-300">
-              <img className="size-4" src={BottomArrow} alt="arrow"></img>
-            </div>
+            <ResultsStats id={index} selectedGame={selectedGame} />
           </div>
         ))
       )}

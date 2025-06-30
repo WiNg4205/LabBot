@@ -70,7 +70,7 @@ export async function GET(request) {
     })
   })
 
-  console.log("Streaks:", streaks)
+  // console.log("Streaks:", streaks)
 
   return new Response(JSON.stringify(games), {
     headers: { 'Content-Type': 'application/json' }
