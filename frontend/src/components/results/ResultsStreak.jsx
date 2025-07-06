@@ -13,14 +13,11 @@ const ResultsStreak = () => {
         <div></div>
       ) : (
         <div className="flex p-6 items-center bg-zinc-800 rounded-md">
-          <div className="flex flex-col items-center justify-center gap-y-0.5">
-            <div className="flex relative size-10">
-              <img src={getAvatars[0].avatar} className="size-10 rounded-full" alt="avatar"/>
-              <img src={FireLogo} className="absolute size-8 -top-3 -right-3" alt="fire"/>
-            </div>
-            <div className="text-sm font-bold">Joseph</div>
-            <hr className="w-8 border-1 border-zinc-900 mt-1" />
-            <div className="text-sm text-slate-400">22</div>
+          <div class="rank-1-bg border rounded-2xl p-6 relative overflow-hidden transition-all duration-400 ease-out min-w-32 text-center scale-110">
+            <div class="absolute inset-0 w-full h-full rounded-full glow-gold opacity-60 pointer-events-none transition-opacity duration-300"></div>
+              <img class="size-14 mx-auto mb-3 rounded-full" src={getAvatars[0].avatar}/>
+              <div class="text-base font-semibold text-white mb-2 tracking-tight">Joseph</div>
+              <div class="text-3xl font-extrabold leading-none rank-1-text">2</div>
           </div>
        </div>
       )}

@@ -44,9 +44,9 @@ const ResultsLeaderboard = ({ gameType }) => {
         <div className="flex flex-col bg-zinc-900 gap-[2px]">
         {winrates.map((player, index) => (
           <div key={index} className={`flex justify-between items-center rounded-md ${
-              index === 0 ? "border-l-[#b48811] bg-gradient-to-r from-[#63593e] from-[0%] to-zinc-800 to-30%"
-              : index === 1 ? "border-l-[#8E8D8D] bg-gradient-to-r from-[#5f5f5f] from[0%] to-zinc-800 to-30%"
-              : index === 2 ? "border-l-[#895E1A] bg-gradient-to-r from-[#5f4c30] from-[0%] to-zinc-800 to-30%"
+              index === 0 ? "border-l-[#b48811] bg-gradient-to-r from-[#63593e] from-[0%] to-zinc-800 to-30% hover:to-100%"
+              : index === 1 ? "border-l-[#8E8D8D] bg-gradient-to-r from-[#5f5f5f] from[0%] to-zinc-800 to-30% hover:to-100%"
+              : index === 2 ? "border-l-[#895E1A] bg-gradient-to-r from-[#5f4c30] from-[0%] to-zinc-800 to-30% hover:to-100%"
               : "bg-zinc-800"
             }`}
           >
