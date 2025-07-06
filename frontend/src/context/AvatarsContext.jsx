@@ -7,7 +7,8 @@ const AvatarsContext = createContext(undefined)
 const useAvatars = () => useContext(AvatarsContext)
 
 const AvatarsProvider = ({ children }) => {
-  const { data: avatarsData } = useSWR("../api/avatars", fetcher)
+  const userId = localStorage.getItem('discord_user_id')
+  const { data: avatarsData } = useSWR(`../api/avatars?user_id=${userId}`, fetcher)
   const [avatars, setAvatars] = useState([])
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { useGames } from "../context/GamesContext"
+import { useData } from "../context/DataContext"
 import { useState, useEffect } from "react"
 import ResultsHeader from "../components/results/ResultsHeader"
 import ResultsLeaderboard from "../components/results/ResultsLeaderboard"
@@ -10,7 +10,8 @@ import { useSearchParams } from "react-router-dom"
 const Results = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [filteredGames, setFilteredGames] = useState([])
-  const getGames = useGames()
+  const data = useData()
+  const getGames = data.games
   getGames.sort((a, b) => new Date(b.date) - new Date(a.date)) 
 
   useEffect(() => {

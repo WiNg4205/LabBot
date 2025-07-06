@@ -9,15 +9,23 @@ const SignIn = () => {
 
   useEffect(() => {
     const fragment = new URLSearchParams(window.location.hash.slice(1))
-    const accessToken = fragment.get('access_token')
-    const tokenType = fragment.get('token_type') || 'Bearer'
+    let accessToken = fragment.get('access_token')
+    const tokenType = fragment.get('token_type')
+
+    if (accessToken) {
+      localStorage.setItem('discord_access_token', accessToken)
+      localStorage.setItem('discord_token_type', tokenType)
+      window.history.replaceState(null, '', window.location.pathname)
+    } else {
+      accessToken = localStorage.getItem('discord_access_token')
+    }
 
     if (!accessToken) return
 
-    window.history.replaceState(null, '', window.location.pathname)
+    const type = localStorage.getItem('discord_token_type') || 'Bearer'
 
     fetch('https://discord.com/api/users/@me', {
-      headers: { authorization: `${tokenType} ${accessToken}` },
+      headers: { authorization: `${type} ${accessToken}` },
     })
       .then(res => res.json())
       .then(data => setUserData(data))

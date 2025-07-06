@@ -1,12 +1,12 @@
 import Calendar from "../components/events/Calendar"
 import EventData from "../components/events/EventData"
-import { useOutings } from "../context/OutingsContext"
-import { useGames } from "../context/GamesContext"
+import { useData } from "../context/DataContext"
 import { useState, useEffect } from "react"
 
 const Events = () => {
-  const getOutings = useOutings()
-  const getGames = useGames()
+  const data = useData()
+  const getOutings = data.outings
+  const getGames = data.games
   const [dates, setDates] = useState([])
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [selectedOuting, setSelectedOuting] = useState(null)

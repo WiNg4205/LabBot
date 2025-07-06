@@ -1,11 +1,12 @@
 import { useState } from "react"
-import { useWinrates } from "../context/WinratesContext"
+import { useData } from "../context/DataContext"
 import OverviewChart from "../components/overview/OverviewChart"
 import ProgressionChart from "../components/overview/ProgressionChart"
 import Features from "../components/overview/Features"
 
 const Overview = () => {
-  const winrates = useWinrates()
+  const data = useData()
+  const winrates = data.resultHistory
   const [toggle, setToggle] = useState("total")
   return <div className="mt-40 flex flex-col items-center">
     <h1 className="font-semibold text-8xl text-zinc-100">LabBot</h1>

@@ -1,12 +1,13 @@
 import { useAvatars } from "../../context/AvatarsContext"
-import { useWinrates } from "../../context/WinratesContext"
+import { useData } from "../../context/DataContext"
 import { useState, useEffect } from "react" 
 import names from "../../utility/names"
 
 const ResultsLeaderboard = ({ gameType }) => {
 
   const getAvatars = useAvatars() || []
-  const getWinrates = useWinrates()
+  const data = useData()
+  const getWinrates = data.resultHistory
   const [winrates, setWinrates] = useState([])
   
   useEffect(() => {

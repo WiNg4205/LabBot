@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
-import { useGames } from "../../context/GamesContext"
+import { useData } from "../../context/DataContext"
 import EventGames from "./EventGames"
 
 const EventData = ({ selectedOuting }) => {
   const [games, setGames] = useState([])
   const [loaded, setLoaded] = useState(false)
-  const getGames = useGames()
+  const data = useData()
+  const getGames = data.games
 
   function formatTime24to12(time24) {
     if (!time24) return '';

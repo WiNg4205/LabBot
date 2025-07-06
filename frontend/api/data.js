@@ -6,12 +6,18 @@ const uri = `mongodb+srv://Scientists:${process.env.MONGO_PWD}@cluster0.qivnnso.
 const client = new MongoClient(uri)
 
 export async function GET(request) {
+  const { searchParams } = new URL(request.url)
+  const id = searchParams.get('user_id')
+
   const db = client.db('results')
+  const playersCollection = db.collection('players')
+  const players = await playersCollection.find({}).toArray()  
   const gamesCollection = db.collection('games')
   const games = await gamesCollection.find({}).toArray()
-  const playersCollection = db.collection('players')
-  const players = await playersCollection.find({}).toArray()
+  const outingsCollection = db.collection('outings')
+  const outings = await outingsCollection.find({}).toArray()
 
+  // CALCULATE WINRATES
   const results = []
   const resultHistory = {}
   resultHistory["total"] = []
@@ -89,7 +95,71 @@ export async function GET(request) {
     resultHistory["cards"].push(results.map(p => ({ ...p })))
   })
 
-  return new Response(JSON.stringify(resultHistory), {
+
+  // CALCULATE STREAKS
+  const gameTypes = ["bowling", "pool", "cards"]
+  const streaks = {}
+  
+  players.forEach(player => {
+    streaks["all"] = {}
+    streaks["all"][player.name] = 0
+
+    gameTypes.forEach(gameType => {
+      if (!streaks[gameType]) {
+        streaks[gameType] = {}
+      }
+      streaks[gameType][player.name] = 0
+    })
+  })
+
+  const gamesByPlayer = {}
+  players.forEach(player => {
+    const playerGames = games.filter(game => {
+      return Object.keys(game.results).includes(player.name)
+    })
+    gamesByPlayer[player.name] = playerGames
+  })
+
+  players.forEach(player => {
+    const playerGames = gamesByPlayer[player.name]
+    let currentStreak = 0
+
+    for (let i = 0; i < playerGames.length; i++) {
+      const result = playerGames[i].results[player.name]
+      if (result >= 0.5) {
+        currentStreak += 1
+      } else {
+        break 
+      }
+    }
+    streaks["all"][player.name] = currentStreak
+
+    gameTypes.forEach(gameType => {
+      let gameStreak = 0
+      for (let i = 0; i < playerGames.length; i++) {
+        const game = playerGames[i]
+    
+        if (game.game === gameType) {
+          const result = game.results[player.name]
+
+          if (result >= 0.5) {
+            gameStreak += 1
+          } else {
+            break 
+          }
+        }
+      }
+      streaks[gameType][player.name] = gameStreak
+    })
+  })
+
+
+  const userIds = players.map(p => p.user_id)
+  if (!userIds.includes(id)) { // if user is not signed in or not in guild -> anonymise data
+
+  }
+
+  return new Response(JSON.stringify({games, players, outings, resultHistory, streaks}), {
     headers: { 'Content-Type': 'application/json' }
   })
 }
