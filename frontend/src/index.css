@@ -164,35 +164,35 @@ body {
   }
   
   .rank-1-text {
-      background: linear-gradient(to bottom, #ebd197 30%, #b48811 70%, #a2790d 90%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    background: linear-gradient(to bottom, #ebd197 30%, #b48811 70%, #a2790d 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .rank-2-text {
-      background: linear-gradient(to bottom, #B3B6B5 30%, #8E8D8D 70%, #656564 90%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    background: linear-gradient(to bottom, #B3B6B5 30%, #8E8D8D 70%, #656564 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .rank-3-text {
-      background: linear-gradient(to bottom, #B08D57 30%, #895E1A 70%, #804A00 90%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    background: linear-gradient(to bottom, #B08D57 30%, #895E1A 70%, #804A00 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .glow-gold {
-      background: radial-gradient(circle, rgba(235, 209, 151, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(235, 209, 151, 0.08) 0%, transparent 70%);
   }
 
   .glow-silver {
-      background: radial-gradient(circle, rgba(179, 182, 181, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(179, 182, 181, 0.08) 0%, transparent 70%);
   }
 
   .glow-bronze {
-      background: radial-gradient(circle, rgba(176, 141, 87, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(176, 141, 87, 0.08) 0%, transparent 70%);
   }
 }

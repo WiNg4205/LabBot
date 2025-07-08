@@ -51,7 +51,7 @@ const ResultsData = ({ games }) => {
               </div>
               <ResultsDropdown id={index} selectedGame={selectedGame} setSelectedGame={setSelectedGame}/>
             </div>
-            <ResultsStats id={index} selectedGame={selectedGame} />
+            <ResultsStats id={index} selectedGame={selectedGame} game={game} />
           </div>
         ))
       )}

@@ -1,6 +1,5 @@
 import { useData } from "../../context/DataContext"
 import { useAvatars } from "../../context/AvatarsContext"
-import FireLogo from "../../assets/fire.svg"
 const ResultsStreak = () => {
   const data = useData()
   const getStreaks = data.streaks
