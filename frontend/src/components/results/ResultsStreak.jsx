@@ -1,5 +1,6 @@
 import { useData } from "../../context/DataContext"
 import { useAvatars } from "../../context/AvatarsContext"
+
 const ResultsStreak = () => {
   const data = useData()
   const getStreaks = data.streaks

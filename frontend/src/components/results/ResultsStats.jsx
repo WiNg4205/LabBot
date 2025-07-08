@@ -1,5 +1,4 @@
 import { useAvatars } from "../../context/AvatarsContext"
-import names from "../../utility/names"
 
 const ResultsStats = ({ id, selectedGame, game}) => {
 
@@ -21,7 +20,7 @@ const ResultsStats = ({ id, selectedGame, game}) => {
               ${index === winners.length - 1 ? "rounded-b-md" : ""}
             `}
           >
-              <img src={getAvatars.find(avatar => avatar.username === names[winner[0]])["avatar"]} alt="avatar" className="rounded-full size-6" />
+              <img src={getAvatars.find(avatar => avatar.username === winner[0])["avatar"]} alt="avatar" className="rounded-full size-6" />
               <span className="text-sm truncate min-w-15">{winner[0]}</span>
               <div className="flex items-center bg-zinc-500 rounded-2xl px-2 py-0.5">
                 {game.game === "pool" ? (
@@ -43,7 +42,7 @@ const ResultsStats = ({ id, selectedGame, game}) => {
               ${index === winners.length - 1 ? "rounded-b-md" : ""}
             `}
           >
-              <img src={getAvatars.find(avatar => avatar.username === names[loser[0]])["avatar"]} alt="avatar" className="rounded-full size-6" />
+              <img src={getAvatars.find(avatar => avatar.username === loser[0])["avatar"]} alt="avatar" className="rounded-full size-6" />
               <span className="text-sm truncate min-w-15">{loser[0]}</span>
                 <div className="flex items-center bg-zinc-500 rounded-2xl px-2 py-0.5">
                 {game.game === "pool" ? (
