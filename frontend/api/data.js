@@ -156,8 +156,60 @@ export async function GET(request) {
 
   const userIds = players.map(p => p.user_id)
   if (!userIds.includes(id)) { // if user is not signed in or not in guild -> anonymise data
+    const anonymise = players.reduce((acc, player, i) => {
+      acc[player.name] = `Player ${i + 1}`
+      return acc
+    }, {})
 
+    players.forEach(player => {
+      player.name = anonymise[player.name]
+    })
+
+    games.forEach(game => {
+      const results = game.results
+      const newResult = new Map()
+        for (const [key, value] of Object.entries(results)) {
+          newResult[anonymise[key]] = value
+        }
+      game.results = newResult
+    })
+
+    resultHistory.bowling.forEach(game => {
+      game.forEach(player => {
+        player.name = anonymise[player.name]
+      })
+    })
+
+    resultHistory.cards.forEach(game => {
+      game.forEach(player => {
+        player.name = anonymise[player.name]
+      })
+    })
+
+    resultHistory.pool.forEach(game => {
+      game.forEach(player => {
+        player.name = anonymise[player.name]
+      })
+    })
+
+    resultHistory.total.forEach(game => {
+      game.forEach(player => {
+        player.name = anonymise[player.name]
+      })
+    })
+
+    for (const category in streaks) {
+      const original = streaks[category]
+      const updated = {}
+      for (const name in original) {
+        const newName = anonymise[name]
+        updated[newName] = original[name]
+      }
+      streaks[category] = updated
+    }
   }
+
+
 
   return new Response(JSON.stringify({games, players, outings, resultHistory, streaks}), {
     headers: { 'Content-Type': 'application/json' }

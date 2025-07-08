@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
-import fetcher from '../../fetcher'
+import fetcher from '../utility/fetcher'
 
 const SignIn = () => {
   const [userData, setUserData] = useState(null)

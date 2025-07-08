@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react"
 import useSWR from "swr"
-import fetcher from "../../fetcher"
+import fetcher from "../utility/fetcher"
 
 const AvatarsContext = createContext(undefined)
 

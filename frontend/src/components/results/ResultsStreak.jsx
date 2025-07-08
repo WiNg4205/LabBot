@@ -12,11 +12,11 @@ const ResultsStreak = () => {
         <div></div>
       ) : (
         <div className="flex p-6 items-center bg-zinc-800 rounded-md">
-          <div class="rank-1-bg border rounded-2xl p-6 relative overflow-hidden transition-all duration-400 ease-out min-w-32 text-center scale-110">
-            <div class="absolute inset-0 w-full h-full rounded-full glow-gold opacity-60 pointer-events-none transition-opacity duration-300"></div>
-              <img class="size-14 mx-auto mb-3 rounded-full" src={getAvatars[0].avatar}/>
-              <div class="text-base font-semibold text-white mb-2 tracking-tight">Joseph</div>
-              <div class="text-3xl font-extrabold leading-none rank-1-text">2</div>
+          <div className="rank-1-bg border rounded-2xl p-6 relative overflow-hidden transition-all duration-400 ease-out min-w-32 text-center scale-110">
+            <div className="absolute inset-0 w-full h-full rounded-full glow-gold opacity-60 pointer-events-none transition-opacity duration-300"></div>
+              <img className="size-14 mx-auto mb-3 rounded-full" src={getAvatars[0].avatar}/>
+              <div className="text-base font-semibold text-white mb-2 tracking-tight">Joseph</div>
+              <div className="text-3xl font-extrabold leading-none rank-1-text">2</div>
           </div>
        </div>
       )}

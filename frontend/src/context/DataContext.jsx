@@ -1,14 +1,14 @@
 import { createContext, useContext } from "react"
 import useSWR from "swr"
-import fetcher from "../../fetcher"
+import fetcher from "../utility/fetcher"
 
 const DataContext = createContext(undefined)
 
 const useData = () => useContext(DataContext)
 
 const DataProvider = ({ children }) => {
-  const { data } = useSWR("../api/data", fetcher)
-  console.log(data)
+  const userId = localStorage.getItem('discord_user_id')
+  const { data } = useSWR(`../api/data?user_id=${userId}`, fetcher)
   if (!data) return null
 
   return (
