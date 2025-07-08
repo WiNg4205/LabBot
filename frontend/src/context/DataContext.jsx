@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react"
 import useSWR from "swr"
-import fetcher from "../../fetcher"
+import fetcher from "../utility/fetcher"
 
 const DataContext = createContext(undefined)
 
