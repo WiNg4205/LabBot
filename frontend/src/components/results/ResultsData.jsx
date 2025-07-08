@@ -1,5 +1,4 @@
 import { useAvatars } from "../../context/AvatarsContext"
-import names from "../../utility/names"
 import ResultsDropdown from "./ResultsDropdown"
 import ResultsStats from "./ResultsStats"
 import { useState } from "react"
@@ -43,7 +42,7 @@ const ResultsData = ({ games }) => {
                 <div className="grid grid-flow-col grid-rows-3 gap-6 items-center">
                   {Object.entries(game.results).map((result, index) => (
                     <a key={index} className="flex gap-x-2 min-w-28 max-w-28" href={''} aria-disabled="true">
-                      <img src={getAvatars.find(avatar => avatar.username === names[result[0]])["avatar"]} alt="avatar" className="rounded-full size-6" />
+                      <img src={getAvatars.find(avatar => avatar.username === result[0])["avatar"]} alt="avatar" className="rounded-full size-6" />
                       <span className="text-sm truncate py-0.5">{result[0]}</span>
                     </a>
                   ))}

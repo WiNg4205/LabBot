@@ -1,10 +1,8 @@
 import { useAvatars } from "../../context/AvatarsContext"
 import { useData } from "../../context/DataContext"
 import { useState, useEffect } from "react" 
-import names from "../../utility/names"
 
 const ResultsLeaderboard = ({ gameType }) => {
-
   const getAvatars = useAvatars() || []
   const data = useData()
   const getWinrates = data.resultHistory
@@ -71,7 +69,7 @@ const ResultsLeaderboard = ({ gameType }) => {
                   }>{index + 1}</span>
                 </div>
               </div>
-              <div>{ getAvatars.length > 0 && <img src={getAvatars.find(avatar => avatar.username === names[player.name]).avatar} alt="Avatar" className="rounded-full size-9 ml-4" /> }</div>
+              <div>{ getAvatars.length > 0 && <img src={getAvatars.find(avatar => avatar.username === player.name)["avatar"]} alt="Avatar" className="rounded-full size-9 ml-4" /> }</div>
               <span className="ml-4 text-sm font-bold">{ getAvatars.length > 0 && player.name }</span>
             </div>
             <span className="pr-4 text-sm text-slate-400">{player.winRate + '%'}</span>
