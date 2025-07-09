@@ -3,12 +3,15 @@ import { useAvatars } from "../../context/AvatarsContext"
 const ResultsStats = ({ id, selectedGame, game}) => {
 
   const getAvatars = useAvatars() || []
+
+  const ranks = ["👑", "2nd", "3rd", "4th", "5th", "6th"]
   const winners = Object.entries(game.results).filter(result => result[1] >= 0.5)
   const losers = Object.entries(game.results).filter(result => result[1] < 0.5) 
-  const ranks = ["👑", "2nd", "3rd", "4th", "5th", "6th"]
+  const totalRows = winners.length + losers.length
+  const isOdd = totalRows % 2 !== 0
 
   return (
-    <div className={`flex flex-1 mb-1 bg-zinc-800  gap-2 ${
+    <div className={`flex flex-1 mb-1 gap-2 ${
       selectedGame === id ? "block" : "hidden"}`}
     >
       <div className="flex flex-col w-1/2 bg-[#28344E] rounded-md border-[1px] border-[#5383E8]">
@@ -31,6 +34,11 @@ const ResultsStats = ({ id, selectedGame, game}) => {
               </div>
             </div>
           ))}
+          {isOdd && winners.length === 2 && (
+            <div className="flex items-center gap-x-2 p-2 bg-[#1c2941] rounded-b-md">
+              <span className="size-6">&nbsp;</span>
+            </div>
+          )}
         </div>
       </div>
       <div className="flex flex-col w-1/2 bg-[#59343B] rounded-md border-[1px] border-[#E84057]">
@@ -39,10 +47,10 @@ const ResultsStats = ({ id, selectedGame, game}) => {
           {losers.map((loser, index) => (
               <div key={index} className={`flex items-center gap-x-2 p-2
               ${index % 2 === 0 ? "bg-[#4b2930]" : "bg-[#59343B]"}
-              ${index === winners.length - 1 ? "rounded-b-md" : ""}
+              ${index === losers.length - 1 ? "rounded-b-md" : ""}
             `}
           >
-              <img src={getAvatars.find(avatar => avatar.username === loser[0])["avatar"]} alt="avatar" className="rounded-full size-6" />
+            <img src={getAvatars.find(avatar => avatar.username === loser[0])["avatar"]} alt="avatar" className="rounded-full size-6" />
               <span className="text-sm truncate min-w-15">{loser[0]}</span>
                 <div className="flex items-center bg-zinc-500 rounded-2xl px-2 py-0.5">
                 {game.game === "pool" ? (
@@ -53,6 +61,11 @@ const ResultsStats = ({ id, selectedGame, game}) => {
               </div>
             </div>
           ))}
+          {isOdd && losers.length === 2 && (
+            <div className="flex items-center gap-x-2 p-2 bg-[#4b2930] rounded-b-md">
+              <span className="size-6">&nbsp;</span>
+            </div>
+          )}
         </div>
       </div>
     </div>

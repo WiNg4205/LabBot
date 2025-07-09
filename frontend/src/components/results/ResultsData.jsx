@@ -13,7 +13,7 @@ const ResultsData = ({ games }) => {
 
       {getAvatars.length <= 0 ? (
         Array.from({ length: 20 }).map((_, i) => (
-          <div key={i} className="flex animate-pulse justify-between bg-zinc-800 rounded-md p-4 mb-1 border-l-6 border-l-zinc-600 min-h-24 max-h-24">
+          <div key={i} className="flex animate-pulse justify-between bg-zinc-800 rounded-md p-4 mb-1 border-l-6 border-l-zinc-500 min-h-24 max-h-24">
             <div className ="flex flex-col justify-center space-y-2">  
               <div className="h-3.5 w-10 rounded-md bg-zinc-700"></div>
               <div className="h-3.5 w-20 rounded-md bg-zinc-700"></div>
@@ -31,9 +31,7 @@ const ResultsData = ({ games }) => {
       ) : (
         games.map((game, index) => (
           <div key={index} className="flex flex-col" >
-            <div className={`flex bg-zinc-800 rounded-md border-l-6 border-l-zinc-500 min-h-24 max-h-24 ${
-              index === games.length - 1 ? "mb-0" : "mb-1"
-            }`}>
+            <div className="flex bg-zinc-800 rounded-md border-l-6 border-l-zinc-500 min-h-24 max-h-24 mb-1">
               <div className="flex flex-1 justify-between pl-4 py-4">
                 <div className="flex flex-col justify-center">
                   <p className="text-sm font-bold text-slate-100">{game.game.charAt(0).toUpperCase() + game.game.slice(1)}</p>
