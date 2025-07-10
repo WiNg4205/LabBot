@@ -3,9 +3,17 @@ import ResultsDropdown from "./ResultsDropdown"
 import ResultsStats from "./ResultsStats"
 import { useState } from "react"
 
-const ResultsData = ({ games }) => {
+const ResultsData = ({ games, numGames, setNumGames, hide, setHide }) => {
   const getAvatars = useAvatars() || []
   const [selectedGame, setSelectedGame] = useState(null)
+
+  const handleShowMore = () => {
+    if (numGames + 5 >= games.length) {
+      setHide(true)
+    } 
+  
+    setNumGames(prev => prev + 5)    
+  }
 
   return (
     <div className="flex flex-col w-3/5 box-border">
@@ -29,29 +37,34 @@ const ResultsData = ({ games }) => {
           </div>
         ))
       ) : (
-        games.map((game, index) => (
-          <div key={index} className="flex flex-col" >
-            <div className="flex bg-zinc-800 rounded-md border-l-6 border-l-zinc-500 min-h-24 max-h-24 mb-1">
-              <div className="flex flex-1 justify-between pl-4 py-4">
-                <div className="flex flex-col justify-center">
-                  <p className="text-sm font-bold text-slate-100">{game.game.charAt(0).toUpperCase() + game.game.slice(1)}</p>
-                  <p className="text-sm text-slate-400">{new Date(game.date).toLocaleDateString()}</p>
+        games.map((game, index) => 
+          index < numGames && (
+            <div key={index} className="flex flex-col" >
+              <div className="flex bg-zinc-800 rounded-md border-l-6 border-l-zinc-500 min-h-24 max-h-24 mb-1">
+                <div className="flex flex-1 justify-between pl-4 py-4">
+                  <div className="flex flex-col justify-center">
+                    <p className="text-sm font-bold text-slate-100">{game.game.charAt(0).toUpperCase() + game.game.slice(1)}</p>
+                    <p className="text-sm text-slate-400">{new Date(game.date).toLocaleDateString()}</p>
+                  </div>
+                  <div className="grid grid-flow-col grid-rows-3 gap-6 items-center">
+                    {Object.entries(game.results).map((result, index) => (
+                      <a key={index} className="flex gap-x-2 min-w-28 max-w-28" href={''} aria-disabled="true">
+                        <img src={getAvatars.find(avatar => avatar.username === result[0])["avatar"]} alt="avatar" className="rounded-full size-6" />
+                        <span className="text-sm truncate py-0.5">{result[0]}</span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
-                <div className="grid grid-flow-col grid-rows-3 gap-6 items-center">
-                  {Object.entries(game.results).map((result, index) => (
-                    <a key={index} className="flex gap-x-2 min-w-28 max-w-28" href={''} aria-disabled="true">
-                      <img src={getAvatars.find(avatar => avatar.username === result[0])["avatar"]} alt="avatar" className="rounded-full size-6" />
-                      <span className="text-sm truncate py-0.5">{result[0]}</span>
-                    </a>
-                  ))}
-                </div>
+                <ResultsDropdown id={index} selectedGame={selectedGame} setSelectedGame={setSelectedGame}/>
               </div>
-              <ResultsDropdown id={index} selectedGame={selectedGame} setSelectedGame={setSelectedGame}/>
+              <ResultsStats id={index} selectedGame={selectedGame} game={game} />
             </div>
-            <ResultsStats id={index} selectedGame={selectedGame} game={game} />
-          </div>
-        ))
+          )
+        )
       )}
+      <div className={`flex justify-center items-center bg-zinc-800 rounded-md py-3 border-[0.5px] border-[#424254] cursor-pointer mb-1 hover:bg-[#2f2f33] ${hide ? "hidden" : "block"}`} onClick={handleShowMore}>
+        <span className="text-sm text-slate-100" >Show more</span>
+      </div>
     </div>
   )
 }

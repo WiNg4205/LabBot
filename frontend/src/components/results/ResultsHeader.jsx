@@ -1,8 +1,10 @@
-const ResultsHeader = ({ selected, setSelected }) => {
+const ResultsHeader = ({ selected, setSelected, setNumGames, setHide }) => {
 
   function handleClick(e) {
     const gameType = e.target.id
     setSelected(`game=${gameType}`)
+    setNumGames(10) 
+    setHide(false)
   }  
   
   return (
