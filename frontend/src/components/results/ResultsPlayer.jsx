@@ -1,6 +1,6 @@
 import { useAvatars } from "../../context/AvatarsContext"
 
-const ResultsPlayer = ({ isWinner, player, index, rankIndex, playerLength, game}) => {
+const ResultsPlayer = ({ isWinner, player, index, rankIndex, playerLength, game }) => {
 
   const getAvatars = useAvatars() || []
   const ranks = ["👑", "2nd", "3rd", "4th", "5th", "6th"]

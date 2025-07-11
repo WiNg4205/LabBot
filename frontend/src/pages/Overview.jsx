@@ -26,7 +26,7 @@ const Overview = () => {
                   onClick={() => setToggle(key)}
                   className={toggle === key ? 'text-fuchsia-300 font-bold' : ''}
                 >
-                  {key[0].toUpperCase() + key.slice(1)}
+                  <span className="cursor-pointer hover:text-fuchsia-300">{key[0].toUpperCase() + key.slice(1)}</span>
                 </button>
               ))}
             </div>

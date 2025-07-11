@@ -16,7 +16,7 @@ const ResultsStats = ({ id, selectedGame, game}) => {
         <h3 className="text-sm font-bold text-[#5383E8] pl-2 pr-4 pt-2 pb-1">WIN</h3>
         <div className="flex flex-col">
           {winners.map((winner, index) => (
-            <ResultsPlayer isWinner={true} player={winner} index={index} rankIndex={index} isOdd ={isOdd} playerLength={winners.length} game={game}/>
+            <ResultsPlayer isWinner={true} player={winner} index={index} rankIndex={index} isOdd={isOdd} playerLength={winners.length} game={game}/>
           ))}
           {isOdd && winners.length === 2 && (
             <div className="flex items-center gap-x-2 p-2 bg-[#1c2941] rounded-b-md">

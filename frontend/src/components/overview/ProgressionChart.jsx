@@ -14,7 +14,7 @@ const ProgressionChart = ({ winrate }) => {
   const colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"]
 
   return (
-    <LineChart width={600} height={400} data={data}>
+    <LineChart width={600} height={428} data={data}>
       <XAxis dataKey={(_, index) => index} />
       <YAxis />
       <Tooltip
@@ -36,7 +36,7 @@ const ProgressionChart = ({ winrate }) => {
           return null
         }}
       />
-      <Legend />
+      <Legend verticalAlign='top' height={40} />
       {playerNames.map((name, i) => (
         <Line
           key={name}
