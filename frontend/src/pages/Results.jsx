@@ -10,7 +10,7 @@ import { useSearchParams } from "react-router-dom"
 const Results = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [filteredGames, setFilteredGames] = useState([])
-  const [numGames, setNumGames] = useState(10) 
+  const [numGames, setNumGames] = useState(20) 
   const [hide, setHide] = useState(false)
 
   const data = useData()

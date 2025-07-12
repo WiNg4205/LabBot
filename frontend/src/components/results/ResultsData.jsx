@@ -8,11 +8,11 @@ const ResultsData = ({ games, numGames, setNumGames, hide, setHide }) => {
   const [selectedGame, setSelectedGame] = useState(null)
 
   const handleShowMore = () => {
-    if (numGames + 5 >= games.length) {
+    if (numGames + 20 >= games.length) {
       setHide(true)
     } 
   
-    setNumGames(prev => prev + 5)    
+    setNumGames(prev => prev + 20)    
   }
 
   return (

@@ -1,5 +1,4 @@
 import ResultsPlayer from "./ResultsPlayer"
-import { useAvatars } from "../../context/AvatarsContext"
 
 const ResultsStats = ({ id, selectedGame, game}) => {
 
