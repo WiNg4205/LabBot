@@ -9,9 +9,9 @@ import Layout from './Layout'
 function App() {
   return (
     <>
-      <link rel="stylesheet"
+      {/* <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Noto+Sans">
-      </link>
+      </link> */}
       <Routes>
         <Route element={<Layout />}>
           <Route path='/' element={<Overview />} />
