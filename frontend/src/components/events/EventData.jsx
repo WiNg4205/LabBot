@@ -27,7 +27,7 @@ const EventData = ({ selectedOuting, outingNumber }) => {
   
   if (!loaded) return
   return (
-    <div className="w-108 border border-zinc-600 mt-8 flex flex-col bg-zinc-800 rounded-xl py-4 px-12">
+    <div className="w-108 border border-zinc-700 mt-8 flex flex-col bg-zinc-800 rounded-xl py-4 px-12">
       <div className="flex flex-col h-48">
         <h1 className="self-center font-bold text-2xl text-fuchsia-400 mb-4">Round {outingNumber}</h1>
         <p><b>Time:</b> {formatTime24to12(selectedOuting.time)}</p>

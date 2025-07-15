@@ -4,20 +4,18 @@ import Events from './pages/Events'
 import Results from './pages/Results'
 import Docs from './pages/Docs'
 import Layout from './Layout'
-
+import ProfilePage from './pages/ProfilePage'
 
 function App() {
   return (
     <>
-      {/* <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Noto+Sans">
-      </link> */}
       <Routes>
         <Route element={<Layout />}>
           <Route path='/' element={<Overview />} />
           <Route path='/events' element={<Events />} />
           <Route path='/results' element={<Results />} />
           <Route path='/docs' element={<Docs />} />
+          <Route path='/players/:name' element={<ProfilePage />} />
         </Route>
       </Routes>
     </>

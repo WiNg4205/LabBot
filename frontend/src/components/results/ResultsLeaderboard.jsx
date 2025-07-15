@@ -21,7 +21,7 @@ const ResultsLeaderboard = ({ gameType }) => {
 
   return (
     <div className="flex flex-col">
-      <h2 className="text-xl tracking-wider font-extrabold my-4">LEADERBOARD</h2>
+      <h2 className="text-xl font-extrabold my-4">LEADERBOARD</h2>
         {getAvatars.length <= 0 ? (
           <div className="flex flex-col bg-zinc-900 gap-[2px]">
             {Array.from({ length: 6 }).map((_, i) => (

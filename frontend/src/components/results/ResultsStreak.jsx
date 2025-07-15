@@ -8,7 +8,7 @@ const ResultsStreak = () => {
 
   return (
     <div className="flex flex-col">
-      <h2 className="text-xl tracking-wider font-extrabold my-4">STREAKS</h2>
+      <h2 className="text-xl font-extrabold my-4">STREAKS</h2>
       {getAvatars.length <= 0 ? (
         <div></div>
       ) : (
