@@ -39,7 +39,7 @@ const SignIn = () => {
     return (
       <a
         id="login"
-        href={`https://discord.com/oauth2/authorize?client_id=1111800916589432906&response_type=token&redirect_uri=http%3A%2F%2F${import.meta.env.VITE_BASE_URL}&scope=identify`}
+        href={`https://discord.com/oauth2/authorize?client_id=1111800916589432906&response_type=token&redirect_uri=https%3A%2F%2F${import.meta.env.VITE_BASE_URL}&scope=identify`}
         className="text-sm font-normal ml-4 px-2 py-2 bg-indigo-950 hover:bg-slate-900 border border-slate-500 rounded-md transition duration-300"
       >
         Sign in
