@@ -28,18 +28,17 @@ const Results = () => {
     }
 
     const filteredGames = getGames.filter(g => g.game === searchParams.get("game")) 
-    // console.log("Filtered Games: ", filteredGames)
     setFilteredGames(filteredGames)
   }, [getGames, searchParams, setSearchParams])
 
   return <>
     <div className="flex">
-      <div className="flex flex-col w-5xl">
+      <div className="flex flex-col min-w-6xl max-w-6xl">
         <ResultsHeader selected={searchParams.get("game")} setSelected={setSearchParams} setNumGames={setNumGames} setHide={setHide}/>
         <div className="flex flex-row w-full">
-          <div className="flex flex-col w-2/5 mr-8">
+          <div className="flex flex-col w-[45%] mr-8">
             <ResultsLeaderboard gameType={searchParams.get("game") || "all"}/>
-            <ResultsStreak/>
+            <ResultsStreak selected={searchParams.get("game")} />
           </div>
           <ResultsData games={filteredGames} numGames={numGames} setNumGames={setNumGames} hide={hide} setHide={setHide}/>
         </div>

@@ -20,13 +20,13 @@ const ProfilePage = () => {
       </div>
       <div className="flex gap-4">
         <div className="flex flex-col w-1/2">
-          <h2 className="text-xl font-extrabold my-4">GAME PERFORMANCE</h2>
+          <h2 className="text-xl font-extrabold my-4">OVERALL PERFORMANCE</h2>
           <div className="flex bg-zinc-800 rounded-md border border-zinc-700 p-4">
             <span className="text-md  text-slate-100">Overall Performance</span>
           </div>
         </div>
         <div className="flex flex-col w-1/2">
-          <h2 className="text-xl font-extrabold my-4">OVERALL PERFORMANCE</h2>
+          <h2 className="text-xl font-extrabold my-4">GAME PERFORMANCE</h2>
           <div className="flex bg-zinc-800 rounded-md border border-zinc-700 p-4">
             <span className="text-md text-slate-100">Game Performance</span>
           </div>

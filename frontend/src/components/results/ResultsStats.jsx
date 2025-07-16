@@ -15,7 +15,7 @@ const ResultsStats = ({ id, selectedGame, game}) => {
         <h3 className="text-sm font-bold text-[#5383E8] pl-2 pr-4 pt-2 pb-1">WIN</h3>
         <div className="flex flex-col">
           {winners.map((winner, index) => (
-            <ResultsPlayer isWinner={true} player={winner} index={index} rankIndex={index} isOdd={isOdd} playerLength={winners.length} game={game}/>
+            <ResultsPlayer key={index} isWinner={true} player={winner} index={index} rankIndex={index} isOdd={isOdd} playerLength={winners.length} game={game}/>
           ))}
           {isOdd && winners.length === 2 && (
             <div className="flex items-center gap-x-2 p-2 bg-[#1c2941] rounded-b-md">
@@ -26,9 +26,9 @@ const ResultsStats = ({ id, selectedGame, game}) => {
       </div>
       <div className="flex flex-col w-1/2 bg-[#59343B] rounded-md border-[1px] border-[#E84057]">
         <h3 className="text-sm font-bold text-[#E84057] pl-2 pr-4 pt-2 pb-1">LOSS</h3>
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
           {losers.map((loser, index) => (
-            <ResultsPlayer isWinner={false} player={loser} index={index} rankIndex={index + winners.length} isOdd={isOdd} playerLength={losers.length} game={game}/>
+            <ResultsPlayer key={index} isWinner={false} player={loser} index={index} rankIndex={index + winners.length} isOdd={isOdd} playerLength={losers.length} game={game}/>
           ))}
           {isOdd && losers.length === 2 && (
             <div className="flex items-center gap-x-2 p-2 bg-[#4b2930] rounded-b-md">

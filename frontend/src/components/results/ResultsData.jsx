@@ -16,7 +16,7 @@ const ResultsData = ({ games, numGames, setNumGames, hide, setHide }) => {
   }
 
   return (
-    <div className="flex flex-col w-3/5 box-border">
+    <div className="flex flex-col w-[55%] box-border">
       <h2 className="text-xl font-extrabold my-4">RECENT GAMES</h2>
 
       {getAvatars.length <= 0 ? (
