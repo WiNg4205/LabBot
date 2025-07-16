@@ -1,5 +1,4 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts'
-import CustomTooltip from './CustomTooltip'
 
 const OverviewChart = ({ winrate }) => {
   const sortedData = [...winrate].sort((a, b) => b.winRate - a.winRate)

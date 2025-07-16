@@ -44,7 +44,7 @@ const Header = () => {
             Results
           </NavLink>
           <NavLink
-            to="/docs"
+            to="/docs/design-philosophy"
             className={({ isActive }) =>
               "px-3 font-normal text-[16px] transition duration-250 " +
               (isActive ? "text-indigo-300 font-bold" : "hover:text-indigo-200")
