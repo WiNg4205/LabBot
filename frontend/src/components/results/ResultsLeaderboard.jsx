@@ -1,32 +1,31 @@
 import { useAvatars } from "../../context/AvatarsContext"
-import { useWinrates } from "../../context/WinratesContext"
+import { useData } from "../../context/DataContext"
 import { useState, useEffect } from "react" 
-import names from "../../utility/names"
 
 const ResultsLeaderboard = ({ gameType }) => {
-
-  const getAvatars = useAvatars()
-  const getWinrates = useWinrates()
+  const getAvatars = useAvatars() || []
+  const data = useData()
+  const getWinrates = data.resultHistory
   const [winrates, setWinrates] = useState([])
   
   useEffect(() => {
-    if (getWinrates?.length < 0 || !getWinrates) return
+    if (!getWinrates || getWinrates?.length < 0) return
 
     if (gameType === 'all') {
       setWinrates(getWinrates['total'].at(-1).sort((a, b) => b.winRate - a.winRate))
     } else {
       setWinrates(getWinrates[gameType].at(-1).sort((a, b) => b.winRate - a.winRate))
     }
-    console.log("winrates: ", winrates)
-  }, [gameType, getWinrates, winrates])
+
+  }, [gameType, getWinrates])
 
   return (
-    <div className="flex flex-col w-2/5 mr-8">
-      <h2 className="text-xl tracking-wider font-extrabold my-4">LEADERBOARD</h2>
+    <div className="flex flex-col">
+      <h2 className="text-xl font-extrabold my-4">LEADERBOARD</h2>
         {getAvatars.length <= 0 ? (
           <div className="flex flex-col bg-zinc-900 gap-[2px]">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div class="flex justify-between items-center rounded-md animate-pulse bg-zinc-800 h-[54px]">
+              <div key={i} className="flex justify-between items-center rounded-md animate-pulse bg-zinc-800 h-[54px]">
                 <div className="flex items-center py-1 pl-4">
                   <div className={`size-12 p-[3px] rounded-full bg-zinc-800 ${
                     i <= 2 ? "border-3 border-zinc-700"
@@ -43,9 +42,9 @@ const ResultsLeaderboard = ({ gameType }) => {
         <div className="flex flex-col bg-zinc-900 gap-[2px]">
         {winrates.map((player, index) => (
           <div key={index} className={`flex justify-between items-center rounded-md ${
-              index === 0 ? "border-l-[#b48811] bg-gradient-to-r from-[#63593e] from-[0%] to-zinc-800 to-30%"
-              : index === 1 ? "border-l-[#8E8D8D] bg-gradient-to-r from-[#5f5f5f] from[0%] to-zinc-800 to-30%"
-              : index === 2 ? "border-l-[#895E1A] bg-gradient-to-r from-[#5f4c30] from-[0%] to-zinc-800 to-30%"
+              index === 0 ? "border-l-[#b48811] bg-gradient-to-r from-[#63593e] from-[0%] to-zinc-800 to-30% hover:to-100%"
+              : index === 1 ? "border-l-[#8E8D8D] bg-gradient-to-r from-[#5f5f5f] from[0%] to-zinc-800 to-30% hover:to-100%"
+              : index === 2 ? "border-l-[#895E1A] bg-gradient-to-r from-[#5f4c30] from-[0%] to-zinc-800 to-30% hover:to-100%"
               : "bg-zinc-800"
             }`}
           >
@@ -70,7 +69,7 @@ const ResultsLeaderboard = ({ gameType }) => {
                   }>{index + 1}</span>
                 </div>
               </div>
-              <div>{ getAvatars.length > 0 && <img src={getAvatars.find(avatar => avatar.username === names[player.name]).avatar} alt="Avatar" className="rounded-full size-9 ml-4" /> }</div>
+              <div>{ getAvatars.length > 0 && <img src={getAvatars.find(avatar => avatar.username === player.name)["avatar"]} alt="Avatar" className="rounded-full size-9 ml-4" /> }</div>
               <span className="ml-4 text-sm font-bold">{ getAvatars.length > 0 && player.name }</span>
             </div>
             <span className="pr-4 text-sm text-slate-400">{player.winRate + '%'}</span>

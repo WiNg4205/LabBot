@@ -1,15 +1,16 @@
 import Calendar from "../components/events/Calendar"
 import EventData from "../components/events/EventData"
-import { useOutings } from "../context/OutingsContext"
-import { useGames } from "../context/GamesContext"
+import { useData } from "../context/DataContext"
 import { useState, useEffect } from "react"
 
 const Events = () => {
-  const getOutings = useOutings()
-  const getGames = useGames()
+  const data = useData()
+  const getOutings = data.outings
+  const getGames = data.games
   const [dates, setDates] = useState([])
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [selectedOuting, setSelectedOuting] = useState(null)
+  const [outingNumber, setOutingNumber] = useState(0)
 
   useEffect(() => { // Initial data setup
     if (!getOutings?.length || !getGames.length || dates.length > 0) return
@@ -21,6 +22,10 @@ const Events = () => {
     const outing = getOutings.find(o =>
       new Date(o.date).toDateString() === outingDates[0].toDateString()
     )
+    const index = getOutings.findIndex(o =>
+      new Date(o.date).toDateString() === outingDates[0].toDateString()
+    )
+    setOutingNumber(index + 1)
     setSelectedOuting(outing)
     
     sessionStorage.setItem('selectedOuting', JSON.stringify(outing))
@@ -31,6 +36,10 @@ const Events = () => {
     const outing = getOutings.find(o =>
       new Date(o.date).toDateString() === selectedDate.toDateString()
     )
+    const index = getOutings.findIndex(o =>
+      new Date(o.date).toDateString() === selectedDate.toDateString()
+    )
+    setOutingNumber(index + 1)
     setSelectedOuting(outing)      
   }, [selectedDate])
 
@@ -40,7 +49,7 @@ const Events = () => {
       {selectedOuting && (
         <>
           <Calendar dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-          <EventData selectedOuting={selectedOuting} />
+          <EventData selectedOuting={selectedOuting} outingNumber={outingNumber} />
         </>
       )}
     </div>

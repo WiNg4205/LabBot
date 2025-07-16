@@ -1,11 +1,12 @@
 import { useState } from "react"
-import { useWinrates } from "../context/WinratesContext"
+import { useData } from "../context/DataContext"
 import OverviewChart from "../components/overview/OverviewChart"
 import ProgressionChart from "../components/overview/ProgressionChart"
 import Features from "../components/overview/Features"
 
 const Overview = () => {
-  const winrates = useWinrates()
+  const data = useData()
+  const winrates = data.resultHistory
   const [toggle, setToggle] = useState("total")
   return <div className="mt-40 flex flex-col items-center">
     <h1 className="font-semibold text-8xl text-zinc-100">LabBot</h1>
@@ -23,9 +24,9 @@ const Overview = () => {
                 <button
                   key={key}
                   onClick={() => setToggle(key)}
-                  className={toggle === key ? 'text-fuchsia-300 font-bold' : ''}
+                  className={toggle === key ? 'text-fuchsia-400 font-semibold' : ''}
                 >
-                  {key[0].toUpperCase() + key.slice(1)}
+                  <span className="cursor-pointer hover:text-fuchsia-400">{key[0].toUpperCase() + key.slice(1)}</span>
                 </button>
               ))}
             </div>

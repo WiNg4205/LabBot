@@ -14,6 +14,69 @@ body {
   @apply bg-zinc-900 text-zinc-300 min-h-screen;
 }
 
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/NotoSans-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/NotoSans-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/NotoSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/NotoSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/NotoSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/NotoSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/NotoSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/NotoSans-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/NotoSans-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
 @layer utilities {
   /* fade-in-stack */
   @keyframes fade-in-stack {
@@ -128,5 +191,71 @@ body {
 
   .pop {
     animation: pop-twice 3s ease-in-out infinite;
+  }
+
+  .rank-1-bg {
+    background: linear-gradient(135deg, rgba(235, 209, 151, 0.15) 0%, rgba(180, 136, 17, 0.1) 50%, rgba(39, 39, 42, 1) 100%);
+    border-color: rgba(235, 209, 151, 0.3);
+    box-shadow: 0 8px 32px rgba(235, 209, 151, 0.2), 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .rank-1-bg:hover {
+    border-color: rgba(235, 209, 151, 0.4);
+    box-shadow: 0 16px 48px rgba(235, 209, 151, 0.3), 0 6px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .rank-2-bg {
+    background: linear-gradient(135deg, rgba(179, 182, 181, 0.15) 0%, rgba(142, 141, 141, 0.1) 50%, rgba(25, 25, 25, 0.6) 100%);
+    border-color: rgba(179, 182, 181, 0.3);
+    box-shadow: 0 6px 24px rgba(179, 182, 181, 0.15), 0 3px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .rank-2-bg:hover {
+    border-color: rgba(179, 182, 181, 0.4);
+    box-shadow: 0 12px 36px rgba(179, 182, 181, 0.25), 0 5px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .rank-3-bg {
+    background: linear-gradient(135deg, rgba(176, 141, 87, 0.15) 0%, rgba(137, 94, 26, 0.1) 50%, rgba(25, 25, 25, 0.6) 100%);
+    border-color: rgba(176, 141, 87, 0.3);
+    box-shadow: 0 5px 20px rgba(176, 141, 87, 0.15), 0 2px 10px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .rank-3-bg:hover {
+    border-color: rgba(176, 141, 87, 0.4);
+    box-shadow: 0 10px 32px rgba(176, 141, 87, 0.25), 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  
+  .rank-1-text {
+    background: linear-gradient(to bottom, #ebd197 30%, #b48811 70%, #a2790d 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .rank-2-text {
+    background: linear-gradient(to bottom, #B3B6B5 30%, #8E8D8D 70%, #656564 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .rank-3-text {
+    background: linear-gradient(to bottom, #B08D57 30%, #895E1A 70%, #804A00 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-gold {
+    background: radial-gradient(circle, rgba(235, 209, 151, 0.08) 0%, transparent 70%);
+  }
+
+  .glow-silver {
+    background: radial-gradient(circle, rgba(179, 182, 181, 0.08) 0%, transparent 70%);
+  }
+
+  .glow-bronze {
+    background: radial-gradient(circle, rgba(176, 141, 87, 0.08) 0%, transparent 70%);
   }
 }

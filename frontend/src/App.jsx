@@ -7,14 +7,11 @@ import Installation from './pages/Docs/Installation'
 import Commands from './pages/Docs/Commands'
 import GameInstructions from './pages/Docs/GameInstructions'
 import Layout from './Layout'
-
+import ProfilePage from './pages/ProfilePage'
 
 function App() {
   return (
     <>
-      <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Noto+Sans">
-      </link>
       <Routes>
         <Route element={<Layout />}>
           <Route path='/' element={<Overview />} />

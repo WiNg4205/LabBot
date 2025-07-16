@@ -1,13 +1,14 @@
 import { createContext, useContext, useState, useEffect } from "react"
 import useSWR from "swr"
-import fetcher from "../../fetcher"
+import fetcher from "../utility/fetcher"
 
 const AvatarsContext = createContext(undefined)
 
 const useAvatars = () => useContext(AvatarsContext)
 
 const AvatarsProvider = ({ children }) => {
-  const { data: avatarsData } = useSWR("../api/avatars", fetcher)
+  const userId = localStorage.getItem('discord_user_id')
+  const { data: avatarsData } = useSWR(`../api/avatars?user_id=${userId}`, fetcher)
   const [avatars, setAvatars] = useState([])
 
   useEffect(() => {

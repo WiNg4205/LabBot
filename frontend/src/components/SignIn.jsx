@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import members from '../utility/members'
+import useSWR from 'swr'
+import fetcher from '../utility/fetcher'
 
 const SignIn = () => {
+  const [userData, setUserData] = useState(null)
   const [user, setUser] = useState(null)
   const [avatar, setAvatar] = useState(null)
 
@@ -26,14 +28,22 @@ const SignIn = () => {
       headers: { authorization: `${type} ${accessToken}` },
     })
       .then(res => res.json())
-      .then(data => {
-        if (data.id in members) {
-          setUser(`${data.username}#${data.discriminator}`)
-          setAvatar(`https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png`)
-        }
-      })
+      .then(data => setUserData(data))
       .catch(console.error)
   }, [])
+
+  const { data: authenticated } = useSWR(
+    () => (userData ? `../api/auth?user_id=${userData.id}` : null),
+    fetcher
+  )
+
+  useEffect(() => {
+    if (authenticated && userData) {
+      localStorage.setItem('discord_user_id', userData.id)
+      setUser(`${userData.username}#${userData.discriminator}`)
+      setAvatar(`https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`)
+    }
+  }, [authenticated, userData])
 
   if (!user) {
     return (
