@@ -38,7 +38,7 @@ const ResultsStreak = ({ selected }) => {
       ) : (
         arrayStreaks.length >= 3 && (
           <div className="flex">
-            <div className="flex p-6 items-center bg-zinc-800 rounded-md">
+            <div className="flex p-6 items-center bg-zinc-800 rounded-l-md">
               <div className="rank-1-bg rank-1-bg:hover border rounded-2xl p-6 relative overflow-hidden transition-all duration-400 ease-out min-w-30 text-center scale-110">
                 <div className="absolute inset-0 w-full h-full rounded-full glow-gold opacity-60 pointer-events-none transition-opacity duration-300"></div>
                   <img className="size-14 mx-auto mb-3 rounded-full" src={getAvatars.find(player => player.username === arrayStreaks[0].name).avatar}/>
@@ -46,7 +46,7 @@ const ResultsStreak = ({ selected }) => {
                   <div className="text-2xl font-black leading-none rank-1-text">{arrayStreaks[0].streak}</div>
               </div>
             </div>
-            <div className="flex p-6 items-center bg-zinc-800 rounded-md">
+            <div className="flex p-6 items-center bg-zinc-800">
               <div className="rank-2-bg rank-2-bg:hover border rounded-2xl p-6 relative overflow-hidden transition-all duration-400 ease-out min-w-30 text-center scale-110">
                 <div className="absolute inset-0 w-full h-full rounded-full glow-silver opacity-60 pointer-events-none transition-opacity duration-300"></div>
                   <img className="size-14 mx-auto mb-3 rounded-full" src={getAvatars.find(player => player.username === arrayStreaks[1].name).avatar}/>
@@ -54,7 +54,7 @@ const ResultsStreak = ({ selected }) => {
                   <div className="text-2xl font-black leading-none rank-2-text">{arrayStreaks[1].streak}</div>
               </div>
             </div>
-            <div className="flex p-6 items-center bg-zinc-800 rounded-md">
+            <div className="flex p-6 items-center bg-zinc-800 rounded-r-md">
               <div className="rank-3-bg rank-3-bg:hover border rounded-2xl p-6 relative overflow-hidden transition-all duration-400 ease-out min-w-30 text-center scale-110">
                 <div className="absolute inset-0 w-full h-full rounded-full glow-bronze opacity-60 pointer-events-none transition-opacity duration-300"></div>
                   <img className="size-14 mx-auto mb-3 rounded-full" src={getAvatars.find(player => player.username === arrayStreaks[2].name).avatar}/>
