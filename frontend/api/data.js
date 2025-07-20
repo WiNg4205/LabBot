@@ -29,7 +29,7 @@ export async function GET(request) {
   players.forEach(player => {
     results.push({ name: player.name, points: 0, numGames: 0 })
   })
-  games.forEach(game => {
+  games.slice().reverse().forEach(game => {
     Object.entries(game.results).forEach((key) => {
       const player = results.find(p => p.name === key[0])
       player.points += key[1]
