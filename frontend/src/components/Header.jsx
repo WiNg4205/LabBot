@@ -1,9 +1,36 @@
 import { Link, NavLink } from "react-router-dom"
 import LabBotIcon from '../assets/flask-solid.svg'
 import SignIn from "./SignIn"
-
+import { useState } from "react"
+import { useAvatars } from "../context/AvatarsContext"
+import { useNavigate } from "react-router-dom"
 
 const Header = () => {
+
+  const getAvatars = useAvatars() || []
+  const [filteredAvatars, setFilteredAvatars] = useState(getAvatars)
+  const [focused, setFocused] = useState(false)
+  const navigate = useNavigate()
+
+  const handleSearch = (e) => {
+    const searchValue = e.target.value.toLowerCase()
+    setFilteredAvatars(getAvatars.filter(avatar =>
+      avatar.username.toLowerCase().includes(searchValue)
+    ))
+  }
+
+  const handleProfileClick = (e) => {
+    let username
+    if (e.target.tagName === 'IMG') {
+      username = e.target.name
+    } else if (e.target.tagName === 'SPAN') {
+      username = e.target.textContent
+    } else if (e.target.tagName === 'DIV') {
+      username = e.target.id
+    }
+    navigate(`/players/${username}`)
+  }
+
   return <div className="sticky top-0 z-50 bg-zinc-900 flex min-w-full justify-center border-b border-zinc-600">
     <div className="flex justify-between w-[90rem]">
       <div className="flex items-center">
@@ -12,15 +39,33 @@ const Header = () => {
           <h1 className="text-xl font-semibold">LabBot</h1>
         </Link>
         <form className="max-w-md mx-auto pl-4">   
-            <label htmlFor="default-search" className="mb-2 text-sm font-medium sr-only">Search</label>
-            <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg className="w-4 h-4 text-zinc-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                    </svg>
-                </div>
-                <input autoComplete="off" type="search" id="default-search" className="outline-transparent hover:outline-indigo-300 hover:outline-1 block w-32 py-2 ps-10 text-sm text-slate-300 rounded-lg bg-zinc-800 focus:outline-none transition duration-300" placeholder="Search" required />
-            </div>  
+          <label htmlFor="default-search" className="mb-2 text-sm font-medium sr-only">Search</label>
+          <div className="relative">
+            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+              <svg className="w-4 h-4 text-zinc-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+              </svg>
+            </div>
+            <input autoComplete="off" type="search" id="default-search" className="outline-transparent hover:outline-indigo-300 hover:outline-1 block w-40 py-2 ps-10 text-sm text-slate-300 rounded-md bg-zinc-800 focus:outline-none transition duration-300" placeholder="Search" required 
+              onFocus={() => {setFocused(true)}} 
+              onBlur={() => setTimeout(() => setFocused(false), 100)}
+              onChange={handleSearch}
+            />
+            {focused && (
+              <div className="absolute z-10 w-40 mt-0.5">
+                {filteredAvatars.map((avatar, id) => (
+                  <div key={id} id={avatar.username} className={`flex w-full items-center py-2 pl-2 bg-zinc-800 hover:bg-zinc-900 cursor-pointer
+                    ${id === 0 ? "rounded-t-md" : ""} 
+                    ${id === filteredAvatars.length - 1 ? "rounded-b-md" : ""}`}
+                    onClick={handleProfileClick}
+                  >
+                    <img src={avatar.avatar} alt={avatar.username} className="w-6 h-6 rounded-full mr-2" name={avatar.username} />
+                    <span className="text-sm text-slate-300">{avatar.username}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>  
         </form>
       </div>
       <div className="flex items-center h-14 font-semibold">
