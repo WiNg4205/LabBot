@@ -9,27 +9,68 @@ const ProfilePage = () => {
   const data = useData()
   const getWinrates = data.resultHistory
   getWinrates['total'].at(-1).sort((a, b) => b.winRate - a.winRate)
-  const rank = getWinrates['total'].at(-1).findIndex(player => player.name === name)
+  const overallRank = getWinrates['total'].at(-1).findIndex(player => player.name === name)
+  const overallPlayerData = getWinrates['total'].at(-1).find(player => player.name === name)
+    
+  const playerDataByGame = {}
+  const games = ['pool', 'bowling', 'cards']
+  games.forEach(game => {
+    const player = getWinrates[game].at(-1).find(player => player.name === name)
+    getWinrates[game].at(-1).sort((a, b) => b.winRate - a.winRate)
+    const rank = getWinrates[game].at(-1).findIndex(player => player.name === name)
+    playerDataByGame[game] = { ...player, rank }
+  })
 
   return (
-    <div className="flex flex-col w-5xl mt-2">
-      <div className="flex flex-col bg-zinc-800 items-center justify-center w-5xl rounded-md p-4 border border-zinc-700">
+    <div className="flex flex-col w-6xl mt-2">
+      <div className="flex flex-col bg-zinc-800 items-center justify-center w-6xl rounded-md p-4 border border-zinc-700">
         <img src={getAvatars.find(avatar => avatar.username === name)?.avatar} alt="avatar" className="rounded-full size-24 border-[#efefef] border-3 mb-4" />
         <span className="text-2xl text-slate-100 font-bold tracking-wide">{name}</span>
-        <span className="text-sm text-slate-400">Rank #{rank + 1}</span>
+        <span className="text-sm text-[#c89b3c] font-semibold">Rank #{overallRank + 1}</span>
       </div>
-      <div className="flex gap-4">
-        <div className="flex flex-col w-1/2">
-          <h2 className="text-xl font-extrabold my-4">OVERALL PERFORMANCE</h2>
-          <div className="flex bg-zinc-800 rounded-md border border-zinc-700 p-4">
-            <span className="text-md  text-slate-100">Overall Performance</span>
+      <div className="flex flex-col">
+        <h2 className="text-xl font-extrabold my-4">OVERALL PERFORMANCE</h2>
+        <div className="flex bg-zinc-800 rounded-md border border-zinc-700 p-6">
+          <div className="flex gap-6 justify-between w-full">
+            <div className="flex flex-col w-1/3 items-center bg-[#424248] rounded-md p-6 text-center border border-zinc-600 hover:border-fuchsia-400">
+              <span className="font-extrabold text-2xl text-slate-100 pb-1">{overallPlayerData.winRate}%<br/></span>
+              <span className="text-sm text-slate-400 font-semibold">WIN RATE</span>
+            </div>
+            <div className="flex flex-col w-1/3 items-center bg-[#424248] rounded-md p-6 text-center border border-zinc-600 hover:border-fuchsia-400">
+              <span className="font-extrabold text-2xl text-slate-100 pb-1">{overallPlayerData.numGames}<br /></span>
+              <span className="text-sm text-slate-400 font-semibold">TOTAL GAMES</span>
+            </div>
+              <div className="flex flex-col w-1/3 items-center bg-[#424248] rounded-md p-6 text-center border border-zinc-600 hover:border-fuchsia-400">
+              <span className="font-extrabold text-2xl text-slate-100 pb-1">23<br /></span>
+              <span className="text-sm text-slate-400 font-semibold">OUTINGS</span>
+            </div>
           </div>
         </div>
-        <div className="flex flex-col w-1/2">
-          <h2 className="text-xl font-extrabold my-4">GAME PERFORMANCE</h2>
-          <div className="flex bg-zinc-800 rounded-md border border-zinc-700 p-4">
-            <span className="text-md text-slate-100">Game Performance</span>
-          </div>
+        <h2 className="text-xl font-extrabold my-4">GAME PERFORMANCE</h2>
+        <div className="flex flex-col bg-zinc-800 rounded-md border border-zinc-700 p-6 gap-6">
+          {Object.entries(playerDataByGame).map(([game, player], index) => (
+            <div key={index} className="flex justify-between items-center bg-[#424248] rounded-md py-3 pl-3 border border-zinc-600 hover:border-fuchsia-400">
+              <div className="flex items-center">
+                <div className="flex items-center justify-center bg-fuchsia-400 rounded-md p-2 mr-2">
+                  <span>
+                    {game === 'pool' && '🎱'}
+                    {game === 'bowling' && '🎳'}
+                    {game === 'cards' && '🃏'}
+                  </span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm text-slate-100 font-semibold">{game.charAt(0).toUpperCase() + game.slice(1)}</span>
+                  <span className="text-xs text-slate-400 font-normal">{player.numGames} games played</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-x-4">
+                <span className="text-lg font-bold text-slate-100">{player.winRate}%</span>
+                <div className="flex item-center justify-center bg-[#c89b3c26] border border-[#c89b3c] rounded-md p-1 mr-2">
+                  <span className="text-xs text-[#c89b3c]">#{player.rank + 1}</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
