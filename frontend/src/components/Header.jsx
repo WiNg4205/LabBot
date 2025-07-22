@@ -38,7 +38,7 @@ const Header = () => {
           <img src={LabBotIcon} alt="LabBot SVG" className="size-6 mx-1"/>
           <h1 className="text-xl font-semibold">LabBot</h1>
         </Link>
-        <form className="max-w-md mx-auto pl-4">   
+        <form className="max-w-md mx-auto pl-4" onSubmit={(e) => e.preventDefault()}>   
           <label htmlFor="default-search" className="mb-2 text-sm font-medium sr-only">Search</label>
           <div className="relative">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
