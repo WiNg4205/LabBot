@@ -55,7 +55,7 @@ const ProfilePage = () => {
                   </span>
                   <div className="flex flex-col justify-center h-full">
                     <span className="font-extrabold text-3xl text-slate-100 pb-2">{numWins}</span>
-                    <span className="text-sm text-slate-400 font-bold tracking-wider">🏆 ALL-TIME WINS</span>
+                    <span className="text-sm text-slate-400 font-bold tracking-wider px-8">🏆 ALL-TIME WINS</span>
                   </div>
                 </div>
                 <div className="flex flex-col flex-1 gap-6">
@@ -78,8 +78,6 @@ const ProfilePage = () => {
                     <span className="text-sm text-slate-400 font-semibold tracking-wider">OUTINGS</span>
                   </div>
                 </div>
-            
-           
               </div>
             </div>
             <h2 className="text-xl font-extrabold my-4">GAME PERFORMANCE</h2>
