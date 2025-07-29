@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 
 const GameInstructions = () => {
   return (
-    <div className="w-full min-h-screen flex bg-white text-gray-800 font-sans">
+    <div className="w-full min-h-screen flex bg-zinc-900 text-zinc-300 font-sans">
       {/* Left Sidebar (thinner) */}
-      <aside className="w-50 bg-gray-100 p-4 sticky top-0 h-screen overflow-auto border-r hidden md:block">
+      <aside className="w-50 p-4 sticky top-0 h-screen overflow-auto border-r hidden md:block">
         <nav className="space-y-4">
           <h2 className="text-lg font-bold mb-3">Introduction</h2>
           <ul className="space-y-2 text-sm">
@@ -18,7 +18,7 @@ const GameInstructions = () => {
 
       {/* Main Content (expanded) */}
       <main className="flex-1 p-8 ml-12 mr-12 mt-4">
-        <h3 className="font-bold text-3xl mb-12">Design Philosophy</h3>
+        <h3 className="font-bold text-3xl mb-12">Game Instructions</h3>
         <hr className="my-4 border-t-2 border-gray-200" />
 
         <section id="design-philosophy" className="mb-12">
@@ -46,11 +46,11 @@ const GameInstructions = () => {
       </main>
 
       {/* Right Sidebar (thinner) */}
-      <aside className="w-50 bg-gray-50 p-4 sticky top-0 h-screen overflow-auto border-l hidden xl:block">
+      <aside className="w-50 p-4 sticky top-0 h-screen overflow-auto border-l hidden xl:block">
         <nav className="space-y-4">
           <h2 className="text-md font-bold mb-2">On this page</h2>
           <ul className="text-sm space-y-1">
-            <li><a href="#design-philosophy" className="text-gray-500 hover:text-gray-900">Design Philosophy</a></li>
+            <li><a href="#design-philosophy" className="hover:text-indigo-200">Design Philosophy</a></li>
           </ul>
         </nav>
       </aside>

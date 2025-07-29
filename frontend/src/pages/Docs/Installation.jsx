@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 
 const Installation = () => {
   return (
-    <div className="w-full min-h-screen flex bg-white text-gray-800 font-sans">
+    <div className="w-full min-h-screen flex bg-zinc-900 text-zinc-300 font-sans">
       {/* Left Sidebar (thinner) */}
-      <aside className="w-50 bg-gray-100 p-4 sticky top-0 h-screen overflow-auto border-r hidden md:block">
+      <aside className="w-50 p-4 sticky top-0 h-screen overflow-auto border-r hidden md:block">
         <nav className="space-y-4">
           <h2 className="text-lg font-bold mb-3">Introduction</h2>
           <ul className="space-y-2 text-sm">
@@ -46,11 +46,11 @@ const Installation = () => {
       </main>
 
       {/* Right Sidebar (thinner) */}
-      <aside className="w-50 bg-gray-50 p-4 sticky top-0 h-screen overflow-auto border-l hidden xl:block">
+      <aside className="w-50 p-4 sticky top-0 h-screen overflow-auto border-l hidden xl:block">
         <nav className="space-y-4">
           <h2 className="text-md font-bold mb-2">On this page</h2>
           <ul className="text-sm space-y-1">
-            <li><a href="#design-philosophy" className="text-gray-500 hover:text-gray-900">Design Philosophy</a></li>
+            <li><a href="#design-philosophy" className="hover:text-indigo-200">Design Philosophy</a></li>
           </ul>
         </nav>
       </aside>
