@@ -21,6 +21,7 @@ function App() {
           <Route path='/docs/installation' element={<Installation />} />
           <Route path='/docs/commands' element={<Commands />} />
           <Route path='/docs/game-instructions' element={<GameInstructions />} />
+          <Route path='/players/:name' element={<ProfilePage />} />
         </Route>
       </Routes>
     </>

@@ -14,6 +14,7 @@ export async function GET(request) {
   const players = await playersCollection.find({}).toArray()  
   const gamesCollection = db.collection('games')
   const games = await gamesCollection.find({}).toArray()
+  games.reverse().sort((a, b) => new Date(b.date) - new Date(a.date)) 
   const outingsCollection = db.collection('outings')
   const outings = await outingsCollection.find({}).toArray()
 
@@ -28,7 +29,7 @@ export async function GET(request) {
   players.forEach(player => {
     results.push({ name: player.name, points: 0, numGames: 0 })
   })
-  games.forEach(game => {
+  games.slice().reverse().forEach(game => {
     Object.entries(game.results).forEach((key) => {
       const player = results.find(p => p.name === key[0])
       player.points += key[1]
@@ -95,7 +96,6 @@ export async function GET(request) {
     resultHistory["cards"].push(results.map(p => ({ ...p })))
   })
 
-
   // CALCULATE STREAKS
   const gameTypes = ["bowling", "pool", "cards"]
   const streaks = {}
@@ -153,7 +153,6 @@ export async function GET(request) {
     })
   })
 
-
   const userIds = players.map(p => p.user_id)
   if (!userIds.includes(id)) { // if user is not signed in or not in guild -> anonymise data
     const anonymise = players.reduce((acc, player, i) => {
@@ -208,7 +207,6 @@ export async function GET(request) {
       streaks[category] = updated
     }
   }
-
 
 
   return new Response(JSON.stringify({games, players, outings, resultHistory, streaks}), {

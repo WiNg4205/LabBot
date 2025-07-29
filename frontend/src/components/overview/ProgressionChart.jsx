@@ -1,4 +1,5 @@
 import { LineChart, XAxis, YAxis, Tooltip, Legend, Line } from 'recharts'
+import CustomTooltip from './ProgressionChartTooltip'
 
 const ProgressionChart = ({ winrate }) => {
   const data = []
@@ -18,23 +19,7 @@ const ProgressionChart = ({ winrate }) => {
       <XAxis dataKey={(_, index) => index} />
       <YAxis />
       <Tooltip
-        position={{ x: 650, y: 100 }}
-        content={({ payload, label, active }) => {
-          if (active && payload && payload.length) {
-            const sorted = [...payload].sort((a, b) => b.value - a.value)
-            return (
-              <div style={{ backgroundColor: 'white', padding: 10, border: '1px solid #ccc' }}>
-                <p>{`Index: ${label}`}</p>
-                {sorted.map(entry => (
-                  <p key={entry.dataKey} style={{ color: entry.color }}>
-                    {entry.dataKey}: {entry.value}
-                  </p>
-                ))}
-              </div>
-            )
-          }
-          return null
-        }}
+        content= {<CustomTooltip />}
       />
       <Legend verticalAlign='top' height={40} />
       {playerNames.map((name, i) => (
