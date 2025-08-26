@@ -1,56 +1,89 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Installation = () => {
   return (
-    <div className="w-full min-h-screen flex bg-zinc-900 text-zinc-300 font-sans">
+    <div className="w-full flex bg-zinc-900 text-zinc-300">
       {/* Left Sidebar (thinner) */}
-      <aside className="w-50 p-4 sticky top-0 h-screen overflow-auto border-r hidden md:block">
+      <aside className="w-50 p-4 sticky top-0 h-screen border-r border-zinc-600 hidden md:block">
         <nav className="space-y-4">
-          <h2 className="text-lg font-bold mb-3">Introduction</h2>
-          <ul className="space-y-2 text-sm">
-            <li><Link to="/docs/design-philosophy" className="text-black-100 hover:text-blue-800">Design Philosophy</Link></li>
-            <li><Link to="/docs/installation" className="text-indigo-600 font-semibold hover:text-blue-800">Installation + Setup</Link></li>
-            <li><Link to="/docs/commands" className="text-black-100 hover:text-blue-800">Commands</Link></li>
-            <li><Link to="/docs/game-instructions" className="text-black-100 hover:text-blue-800">Game Instructions</Link></li>
-          </ul>
+          <h2 className="text-lg font-bold mb-3">Documentation</h2>
+          <div className="flex flex-col space-y-2 text-sm">
+             <NavLink
+              to="/docs/installation" 
+              className={({ isActive }) =>
+                "px-3 font-normal text-sm transition duration-250 " +
+                (isActive ? "text-indigo-300 font-bold" : "hover:text-indigo-200")
+              }
+            >
+              Installation
+            </NavLink>
+            <NavLink
+              to="/docs/commands"
+              className={({ isActive }) =>
+                "px-3 font-normal text-sm transition duration-250 " +
+                (isActive ? "text-indigo-300 font-bold" : "hover:text-indigo-200")
+              }
+            >
+              Commands
+            </NavLink> 
+            <NavLink 
+              to="/docs/design-philosophy" 
+              className={({ isActive }) =>
+                "px-3 font-normal text-sm transition duration-250 " +
+                (isActive ? "text-indigo-300 font-bold" : "hover:text-indigo-200")
+              }
+            >
+              Design Philosophy
+            </NavLink>      
+          </div>
         </nav>
       </aside>
 
       {/* Main Content (expanded) */}
       <main className="flex-1 p-8 ml-12 mr-12 mt-4">
-        <h3 className="font-bold text-3xl mb-12">Installation + setup</h3>
+        <h3 className="font-bold text-3xl mb-12">Installation</h3>
         <hr className="my-4 border-t-2 border-gray-200" />
-
-        <section id="design-philosophy" className="mb-12">
-          <h2 className="text-2xl font-semibold mb-2">Getting Started</h2>
-          <p>Instructions on how to get started...</p>
+        <div className="text-md mb-4">This page outlines the steps to run the discord bot in a personal server.</div>
+        <section id="installation">
+          <div className="font-bold text-xl mb-4">1. Clone the repository</div>
+          <div className="bg-zinc-800 p-4 rounded-md text-sm">
+            <code>
+              git clone <span className="text-fuchsia-400">https://github.com/WiNg4205/LabBot.git<br/></span>
+              <span className="text-fuchsia-400">cd</span> project-root
+            </code>
+          </div>
+          <div className="font-bold text-xl my-4">2. Install the dependencies</div>
+          <div className="bg-zinc-800 p-4 rounded-md text-sm">
+            <code>
+              npm install
+            </code>
+          </div>
+          <div className="font-bold text-xl my-4">3. Set up your bot's token</div>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>Go to <a className="text-indigo-300 underline" href="https://discord.com/developers/applications">Discord Developer Portal</a></li>
+            <li>Create a new application and bot</li>
+            <li>Copy the bot token into a .env file or set it as an environment variable.</li>
+          </ul>
         </section>
-
-        <section id="installation" className="mb-12">
-          <h2 className="text-2xl font-semibold mb-2">installation</h2>
-          <h3 id="fast" className="text-xl font-medium mt-4">Fast game-instructions</h3>
-          <p>Details on speed...</p>
-          <h3 id="hmr" className="text-xl font-medium mt-4">Hot Module Replacement</h3>
-          <p>Details on HMR...</p>
-        </section>
-
-        <section id="commands" className="mb-12">
-          <h2 className="text-2xl font-semibold mb-2">commands</h2>
-          <p>commands options...</p>
-        </section>
-
-        <section id="game-instructions">
-          <h2 className="text-2xl font-semibold mb-2">game-instructions</h2>
-          <p>game-instructions instructions...</p>
+        <section id="usage">
+          <h3 className="font-bold text-2xl mt-12 mb-4">Usage</h3>
+          <div>To run the bot, use the following command:</div>
+           <div className="bg-zinc-800 p-4 rounded-md text-sm my-4">
+            <code>
+              <span className="text-fuchsia-400">cd</span> backend<br/>
+              <span>npm start</span>
+            </code>
+          </div>
         </section>
       </main>
 
       {/* Right Sidebar (thinner) */}
-      <aside className="w-50 p-4 sticky top-0 h-screen overflow-auto border-l hidden xl:block">
+      <aside className="w-50 p-4 sticky top-0 border-l border-zinc-600 hidden xl:block">
         <nav className="space-y-4">
-          <h2 className="text-md font-bold mb-2">On this page</h2>
+          <h2 className="text-lg font-bold mb-2">On this page</h2>
           <ul className="text-sm space-y-1">
-            <li><a href="#design-philosophy" className="hover:text-indigo-200">Design Philosophy</a></li>
+            <li><a href="#design-philosophy" className="hover:text-indigo-300 px-3">Installation</a></li>
+            <li><a href="#usage" className="hover:text-indigo-300 px-3">Usage</a></li>
           </ul>
         </nav>
       </aside>
