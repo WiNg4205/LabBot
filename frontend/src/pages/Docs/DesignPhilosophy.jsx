@@ -44,7 +44,7 @@ const DesignPhilosophy = () => {
         <h3 className="font-bold text-3xl mb-8">Design Philosophy</h3>
         <hr className="my-4 border-t-2 border-gray-200 border-0.5" />
 
-        <section className="space-y-3">
+        <section id="design-philosophy" className="space-y-3">
           <div>This website draws a lot of inspiration from other platforms including Vite, Tailwind and op.gg.</div>
           <div>We aimed to create an interactive and responsive website with a dark mode aesthetic.</div>
         </section>
