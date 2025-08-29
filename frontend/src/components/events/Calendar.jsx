@@ -18,11 +18,11 @@ const Calendar = ({ dates, selectedDate, setSelectedDate }) => {
       </button>
 
       <DayPicker
-        key={startOfMonth(selectedDate).toISOString()}
+        animate
+        mode="single"
         month={startOfMonth(selectedDate)}
         selected={selectedDate}
-        mode="single"
-        disableNavigation
+        className="custom-animate"
         classNames={{
           selected: "bg-fuchsia-500 text-zinc-200 rounded-full",
           month_caption: "flex justify-center items-center h-12 font-extrabold text-3xl mb-6 text-fuchsia-400",

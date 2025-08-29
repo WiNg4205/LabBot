@@ -55,6 +55,11 @@
   --rdp-animation_timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.custom-animate {
+  --rdp-animation_duration: 0.3s;
+  --rdp-animation_timing: ease-in-out; 
+}
+
 .user-select-none {
   user-select: none;
   -webkit-user-select: none; /* Safari */
