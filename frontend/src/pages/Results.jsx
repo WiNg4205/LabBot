@@ -19,10 +19,8 @@ const Results = () => {
 
   useEffect(() => {
     setSearchParams(`game=${searchParams.get("game") || "all"}`)
-  }, [searchParams, setSearchParams])
-
-  useEffect(() => {
-    if (searchParams.get("game") === "all") {
+    // Search params is not set on first render so this useEffect runs twice (i.e. need to check for null)
+    if (searchParams.get("game") === "all" || !searchParams.get("game")) {
       setFilteredGames(getGames)
       return
     }
@@ -34,11 +32,11 @@ const Results = () => {
   return <>
     <div className="flex">
       <div className="flex flex-col min-w-6xl max-w-6xl">
-        <ResultsHeader selected={searchParams.get("game")} setSelected={setSearchParams} setNumGames={setNumGames} setHide={setHide}/>
+        <ResultsHeader selected={searchParams.get("game") || "all"} setSelected={setSearchParams} setNumGames={setNumGames} setHide={setHide}/>
         <div className="flex flex-row w-full">
           <div className="flex flex-col w-[45%] mr-8">
             <ResultsLeaderboard gameType={searchParams.get("game") || "all"}/>
-            <ResultsStreak selected={searchParams.get("game")} />
+            <ResultsStreak selected={searchParams.get("game") || "all"} />
           </div>
           <ResultsData games={filteredGames} numGames={numGames} setNumGames={setNumGames} hide={hide} setHide={setHide}/>
         </div>
