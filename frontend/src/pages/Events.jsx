@@ -29,7 +29,7 @@ const Events = () => {
     setSelectedOuting(outing)
     
     sessionStorage.setItem('selectedOuting', JSON.stringify(outing))
-  }, [getOutings, getGames])
+  }, [getOutings, getGames, dates.length])
 
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Events = () => {
     )
     setOutingNumber(index + 1)
     setSelectedOuting(outing)      
-  }, [selectedDate])
+  }, [selectedDate, getOutings])
 
   if (!getOutings?.length || !getGames.length) return
   return (

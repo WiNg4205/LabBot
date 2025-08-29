@@ -1,5 +1,5 @@
 const EventGames = ({games}) => {
-  return <table className="w-max text-sm mx-8">
+  return <table className="w-max text-md">
     <thead>
       <tr>
         <th className="w-24 font-semibold text-left">GAME</th>

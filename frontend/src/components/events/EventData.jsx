@@ -23,7 +23,7 @@ const EventData = ({ selectedOuting, outingNumber }) => {
       .filter(Boolean)
     )
     setLoaded(true)
-  }, [selectedOuting])
+  }, [getGames, selectedOuting])
   
   if (!loaded) return
   return (
@@ -36,7 +36,7 @@ const EventData = ({ selectedOuting, outingNumber }) => {
       </div>
 
       <h2 className="text-fuchsia-400 self-center font-bold mb-2 text-lg">RESULTS</h2>
-      <div className="">{ selectedOuting.games.length === 0 ? '' : <EventGames games={games} /> }</div> 
+      <div>{ selectedOuting.games.length === 0 ? '' : <EventGames games={games} /> }</div> 
     </div>
   )
 }
