@@ -16,9 +16,9 @@ const Installation = () => {
   }
 
   return (
-    <div className="w-full flex bg-zinc-900 text-zinc-300">
+    <div className="w-full flex justify-center h-screen bg-zinc-900 text-zinc-300">
       {/* Left Sidebar (thinner) */}
-      <aside className="w-50 p-4 sticky top-0 h-screen border-r border-zinc-600 hidden md:block">
+      <aside className="w-52 p-4 fixed inset-y-12 left-0 h-screen border-r border-zinc-600 hidden md:block">
         <nav className="space-y-4">
           <h2 className="text-lg font-bold mb-3">Documentation</h2>
           <div className="flex flex-col space-y-2 text-sm">
@@ -54,7 +54,7 @@ const Installation = () => {
       </aside>
 
       {/* Main Content (expanded) */}
-      <main className="flex-1 p-8 ml-12 mr-12 mt-4">
+      <main className="flex-col w-[90rem] p-8 mt-4 overflow-y-auto">
         <h3 className="font-bold text-3xl mb-12">Installation</h3>
         <hr className="my-4 border-t-2 border-gray-200" />
         <div className="text-md mb-4">This page outlines the steps to run the discord bot in a personal server.</div>
@@ -113,7 +113,7 @@ const Installation = () => {
       </main>
 
       {/* Right Sidebar (thinner) */}
-      <aside className="w-50 p-4 sticky top-0 border-l border-zinc-600 hidden xl:block">
+      <aside className="w-52 p-4 fixed inset-y-12 right-0 h-screen border-l border-zinc-600 hidden xl:block">
         <nav className="space-y-4">
           <h2 className="text-lg font-bold mb-2">On this page</h2>
           <ul className="text-sm space-y-1">

@@ -2,9 +2,9 @@ import { NavLink } from 'react-router-dom'
 
 const DesignPhilosophy = () => {
   return (
-    <div className="w-full min-h-screen flex bg-zinc-900 text-zinc-300">
+    <div className="w-full flex justify-center h-screen bg-zinc-900 text-zinc-300">
       {/* Left Sidebar (thinner) */}
-      <aside className="w-50 p-4 sticky top-0 h-screen overflow-auto border-r border-zinc-600 hidden md:block">
+      <aside className="w-52 p-4 fixed inset-y-12 left-0 h-screen border-r border-zinc-600 hidden md:block">
         <nav className="space-y-4">
           <h2 className="text-lg font-bold mb-3">Documentation</h2>
           <div className="flex flex-col space-y-2 text-sm">
@@ -40,8 +40,8 @@ const DesignPhilosophy = () => {
       </aside>
 
       {/* Main Content (expanded) */}
-      <main className="flex-1 p-8 ml-12 mr-12 mt-4">
-        <h3 className="font-bold text-3xl mb-8">Design Philosophy</h3>
+      <main className="flex-col w-[90rem] p-8 mt-4">
+        <h3 className="font-bold text-3xl mb-12">Design Philosophy</h3>
         <hr className="my-4 border-t-2 border-gray-200 border-0.5" />
 
         <section id="design-philosophy" className="space-y-3">
@@ -51,7 +51,7 @@ const DesignPhilosophy = () => {
       </main>
 
       {/* Right Sidebar (thinner) */}
-      <aside className="w-50 p-4 sticky top-0 h-screen overflow-auto border-l border-zinc-600 hidden xl:block">
+      <aside className="w-52 p-4 fixed inset-y-12 right-0 h-screen border-l border-zinc-600 hidden xl:block">
         <nav className="space-y-4">
           <h2 className="text-lg font-bold mb-2">On this page</h2>
           <ul className="text-sm space-y-1">
