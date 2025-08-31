@@ -5,6 +5,7 @@ import SignIn from "./SignIn"
 import { useState } from "react"
 import { useAvatars } from "../context/AvatarsContext"
 import { useNavigate } from "react-router-dom"
+import Portal from "./Portal.jsx"
 
 const Header = () => {
 
@@ -33,6 +34,7 @@ const Header = () => {
   }
 
   return <div className="sticky top-0 z-50 bg-zinc-900 flex md:justify-center min-w-full border-b border-zinc-600">
+    <Portal />
     <div className="flex justify-between w-full md:w-[48rem] lg:w-[60rem] xl:w-[74rem] 2xl:w-[90rem]">
       <div className="flex items-center pl-2">
         <Link to="/" className="flex items-center">
