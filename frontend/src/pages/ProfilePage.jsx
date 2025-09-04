@@ -49,9 +49,9 @@ const ProfilePage = () => {
               <div className="flex gap-6 w-full">
                 <div className="flex rounded-md p-8 text-center border border-[#c89b3c] shadow-md shadow-[#c89b3c]/20 bg-[#c89b3c26] relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-md"></div>
-                  <span class="absolute flex size-3 -top-1 -right-1">
-                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#c89b3c] opacity-75"></span>
-                    <span class="inline-flex size-3 rounded-full bg-[#c89b3c]"></span>
+                  <span className="absolute flex size-3 -top-1 -right-1">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#c89b3c] opacity-75"></span>
+                    <span className="inline-flex size-3 rounded-full bg-[#c89b3c]"></span>
                   </span>
                   <div className="flex flex-col justify-center h-full">
                     <span className="font-extrabold text-3xl text-slate-100 pb-2">{numWins}</span>

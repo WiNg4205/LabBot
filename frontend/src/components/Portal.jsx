@@ -1,6 +1,7 @@
-import { createPortal } from 'react-dom';
-import ModalContent from './ModalContent.jsx';
-import { useToggleModal, useModal } from '../context/ModalContext.jsx';
+import { createPortal } from 'react-dom'
+import { useToggleModal, useModal } from '../context/ModalContext.jsx'
+import ModalContent from './ModalContent.jsx'
+import dots from '../assets/three-dots.svg'
 
 const Portal = () => {
   const setModal = useToggleModal()
@@ -9,13 +10,13 @@ const Portal = () => {
   return (
     <>
       <button onClick={() => {
-        setModal(true);
+        setModal(true)
       }}>
-        Show modal using a portal
+        <img src={dots} alt="Dots" className="flex md:hidden size-6 mr-2 rounded-sm hover:bg-zinc-700"/>
       </button>
       {showModal && createPortal(
         <ModalContent onClose={() => setModal(false)} />,
-        document.body  )}
+        document.body )}
     </>
   )
 }

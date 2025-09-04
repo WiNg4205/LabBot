@@ -14,7 +14,6 @@ const Events = () => {
 
   useEffect(() => { // Initial data setup
     if (!getOutings?.length || !getGames.length || dates.length > 0) return
-
     
     const outingDates = getOutings.map(o => new Date(o.date)).reverse()
     setDates(outingDates)
@@ -43,7 +42,10 @@ const Events = () => {
     setSelectedOuting(outing)      
   }, [selectedDate, getOutings])
 
-  if (!getOutings?.length || !getGames.length) return
+  if (!getOutings?.length || !getGames.length || dates.length === 0 || !selectedOuting || !selectedDate) {
+    return
+  }
+ 
   return (
     <div className="flex gap-24 mt-[10vh]">
       {selectedOuting && (
