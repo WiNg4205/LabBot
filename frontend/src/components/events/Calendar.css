@@ -86,8 +86,8 @@
 }
 
 .rdp-day {
-  width: var(--rdp-day-width);
-  height: var(--rdp-day-height);
+  /* width: var(--rdp-day-width);
+  height: var(--rdp-day-height); */
   text-align: center;
   font-weight: semibold;
 }
@@ -102,12 +102,11 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  font-size: 1.25rem;
-
-  width: var(--rdp-day_button-width);
+  /* font-size: 1.25rem; */
+  /* width: var(--rdp-day_button-width);
   height: var(--rdp-day_button-height);
   border: var(--rdp-day_button-border);
-  border-radius: var(--rdp-day_button-border-radius);
+  border-radius: var(--rdp-day_button-border-radius); */
 }
 
 .rdp-day_button:disabled {

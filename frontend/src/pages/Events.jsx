@@ -39,7 +39,7 @@ const Events = () => {
       new Date(o.date).toDateString() === selectedDate.toDateString()
     )
     setOutingNumber(index + 1)
-    setSelectedOuting(outing)      
+    setSelectedOuting(outing)       
   }, [selectedDate, getOutings])
 
   if (!getOutings?.length || !getGames.length || dates.length === 0 || !selectedOuting || !selectedDate) {
@@ -47,7 +47,7 @@ const Events = () => {
   }
  
   return (
-    <div className="flex gap-24 mt-[10vh]">
+    <div className="flex flex-col items-center justify-center w-full px-4 gap-12 mt-[5vh] xl:flex-row xl:gap-24 xl:mt-[10vh]">
       {selectedOuting && (
         <>
           <Calendar dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />

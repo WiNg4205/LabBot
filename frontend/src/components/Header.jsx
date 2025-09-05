@@ -33,7 +33,7 @@ const Header = () => {
   }
 
   return <div className="sticky top-0 z-2 bg-zinc-900 flex md:justify-center min-w-full border-b border-zinc-600">
-    <div className="flex justify-between w-full md:w-[48rem] lg:w-[60rem] xl:w-[74rem] 2xl:w-[90rem]">
+    <div className="flex justify-between w-full md:w-[48rem] lg:w-[64rem] xl:w-[80rem] 2xl:w-[90rem]">
       <div className="flex items-center pl-4">
         <Link to="/" className="flex items-center">
           <img src={LabBotIcon} alt="LabBot SVG" className="size-6"/>
