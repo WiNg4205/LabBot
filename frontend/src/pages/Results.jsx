@@ -30,16 +30,14 @@ const Results = () => {
   }, [getGames, searchParams, setSearchParams])
 
   return <>
-    <div className="flex">
-      <div className="flex flex-col min-w-6xl max-w-6xl">
-        <ResultsHeader selected={searchParams.get("game") || "all"} setSelected={setSearchParams} setNumGames={setNumGames} setHide={setHide}/>
-        <div className="flex flex-row w-full">
-          <div className="flex flex-col w-[45%] mr-8">
-            <ResultsLeaderboard gameType={searchParams.get("game") || "all"}/>
-            <ResultsStreak selected={searchParams.get("game") || "all"} />
-          </div>
-          <ResultsData games={filteredGames} numGames={numGames} setNumGames={setNumGames} hide={hide} setHide={setHide}/>
+    <div className="flex flex-col items-center w-full px-4 xl:w-6xl xl:px-0">
+      <ResultsHeader selected={searchParams.get("game") || "all"} setSelected={setSearchParams} setNumGames={setNumGames} setHide={setHide}/>
+      <div className="flex flex-col md:flex-row w-full">
+        <div className="flex flex-col w-full md:w-[45%] md:mr-8">
+          <ResultsLeaderboard gameType={searchParams.get("game") || "all"}/>
+          <ResultsStreak selected={searchParams.get("game") || "all"} />
         </div>
+        <ResultsData games={filteredGames} numGames={numGames} setNumGames={setNumGames} hide={hide} setHide={setHide}/>
       </div>
     </div>
   </>

@@ -16,7 +16,7 @@ const ResultsData = ({ games, numGames, setNumGames, hide, setHide }) => {
   }
 
   return (
-    <div className="flex flex-col w-[55%] box-border">
+    <div className="flex flex-col w-full md:w-[55%] box-border">
       <h2 className="text-xl font-extrabold my-4">RECENT GAMES</h2>
 
       {getAvatars.length <= 0 ? (
@@ -39,7 +39,7 @@ const ResultsData = ({ games, numGames, setNumGames, hide, setHide }) => {
       ) : (
         games.map((game, index) => 
           index < numGames && (
-            <div key={index} className="flex flex-col" >
+            <div key={index} className="flex flex-col">
               <div className="flex bg-zinc-800 rounded-md border-l-6 border-l-zinc-500 min-h-24 max-h-24 mb-1">
                 <div className="flex flex-1 justify-between pl-4 py-4">
                   <div className="flex flex-col justify-center">
@@ -48,7 +48,7 @@ const ResultsData = ({ games, numGames, setNumGames, hide, setHide }) => {
                   </div>
                   <div className="grid grid-flow-col grid-rows-3 gap-6 items-center">
                     {Object.entries(game.results).map((result, index) => (
-                      <a key={index} className="flex gap-x-2 min-w-28 max-w-28" href={`/players/${result[0]}`} aria-disabled="true">
+                      <a key={index} className="flex gap-x-2 w-20 sm:w-28" href={`/players/${result[0]}`} aria-disabled="true">
                         <img src={getAvatars.find(avatar => avatar.username === result[0])["avatar"]} alt="avatar" className="rounded-full size-6" />
                         <span className="text-sm truncate py-0.5">{result[0]}</span>
                       </a>
