@@ -37,43 +37,43 @@ const ProfilePage = () => {
   return (
     <>
       {getAvatars.length > 0 && (
-        <div className="flex flex-col w-6xl mt-2">
-          <div className="flex flex-col bg-zinc-800 items-center justify-center w-6xl rounded-md p-4 border border-zinc-700">
+        <div className="flex flex-col w-full p-6 xl:w-6xl ">
+          <div className="flex flex-col bg-zinc-800 items-center justify-center xl:w-6xl rounded-md py-4 border border-zinc-700">
             <img src={getAvatars.find(avatar => avatar.username === name)?.avatar} alt="avatar" className="rounded-full size-24 border-[#efefef] border-3 mb-4" />
             <span className="text-2xl text-slate-100 font-bold tracking-wide">{name}</span>
             <span className="text-sm text-[#c89b3c] font-semibold">Rank #{overallRank + 1}</span>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col xl:w-6xl">
             <h2 className="text-xl font-extrabold my-4">OVERALL PERFORMANCE</h2>
             <div className="flex bg-zinc-800 rounded-md border border-zinc-700 p-6">
-              <div className="flex gap-6 w-full">
-                <div className="flex rounded-md p-8 text-center border border-[#c89b3c] shadow-md shadow-[#c89b3c]/20 bg-[#c89b3c26] relative">
+              <div className="flex flex-col md:flex-row gap-6 w-full">
+                <div className="flex rounded-md p-4 md:p-8 text-center border border-[#c89b3c] shadow-md shadow-[#c89b3c]/20 bg-[#c89b3c26] relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-md"></div>
                   <span className="absolute flex size-3 -top-1 -right-1">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#c89b3c] opacity-75"></span>
                     <span className="inline-flex size-3 rounded-full bg-[#c89b3c]"></span>
                   </span>
-                  <div className="flex flex-col justify-center h-full">
+                  <div className="flex flex-col flex-1 text-center md:justify-center">
                     <span className="font-extrabold text-3xl text-slate-100 pb-2">{numWins}</span>
                     <span className="text-sm text-slate-400 font-bold tracking-wider px-8">🏆 ALL-TIME WINS</span>
                   </div>
                 </div>
                 <div className="flex flex-col flex-1 gap-6">
-                  <div className="flex flex-1 flex-col items-center bg-[#424248] rounded-md p-6 text-center border border-zinc-600 hover:border-fuchsia-400 shadow-md shadow-[#424248]/50">
+                  <div className="flex flex-1 flex-col items-center bg-[#424248] rounded-md p-4 md:p-6 text-center border border-zinc-600 hover:border-fuchsia-400 shadow-md shadow-[#424248]/50">
                     <span className="font-extrabold text-2xl text-slate-100 pb-1">{overallPlayerData.winRate}%<br/></span>
                     <span className="text-sm text-slate-400 font-semibold tracking-wider">WIN RATE</span>
                   </div>
-                  <div className="flex flex-1 flex-col items-center bg-[#424248] rounded-md p-6 text-center border border-zinc-600 hover:border-fuchsia-400 shadow-md shadow-[#424248]/50">
+                  <div className="flex flex-1 flex-col items-center bg-[#424248] rounded-md p-4 md:p-6 text-center border border-zinc-600 hover:border-fuchsia-400 shadow-md shadow-[#424248]/50">
                     <span className="font-extrabold text-2xl text-slate-100 pb-1">{overallPlayerData.numGames}<br /></span>
                     <span className="text-sm text-slate-400 font-semibold tracking-wider">TOTAL GAMES</span>
                   </div>
                 </div>
                 <div className="flex flex-col flex-1 gap-6">
-                  <div className="flex flex-1 flex-col items-center bg-[#424248] rounded-md p-6 text-center border border-zinc-600 hover:border-fuchsia-400 shadow-md shadow-[#424248]/50">
+                  <div className="flex flex-1 flex-col items-center bg-[#424248] rounded-md p-4 md:p-6 text-center border border-zinc-600 hover:border-fuchsia-400 shadow-md shadow-[#424248]/50">
                     <span className="font-extrabold text-2xl text-slate-100 pb-1">{overallPlayerData.points.toFixed(2)}<br/></span>
                     <span className="text-sm text-slate-400 font-semibold tracking-wider">TOTAL POINTS</span>
                   </div>
-                  <div className="flex flex-1 flex-col items-center bg-[#424248] rounded-md p-6 text-center border border-zinc-600 hover:border-fuchsia-400 shadow-md shadow-[#424248]/50">
+                  <div className="flex flex-1 flex-col items-center bg-[#424248] rounded-md p-4 md:p-6 text-center border border-zinc-600 hover:border-fuchsia-400 shadow-md shadow-[#424248]/50">
                     <span className="font-extrabold text-2xl text-slate-100 pb-1">{numOutings}<br /></span>
                     <span className="text-sm text-slate-400 font-semibold tracking-wider">OUTINGS</span>
                   </div>
@@ -83,7 +83,7 @@ const ProfilePage = () => {
             <h2 className="text-xl font-extrabold my-4">GAME PERFORMANCE</h2>
             <div className="flex flex-col bg-zinc-800 rounded-md border border-zinc-700 p-6 gap-6">
               {Object.entries(playerDataByGame).map(([game, player], index) => (
-                <div key={index} className="flex justify-between items-center bg-[#424248] rounded-md py-3 pl-3 border border-zinc-600 hover:border-fuchsia-400 shadow-md shadow-[#424248]/50">
+                <div key={index} className="flex gap-4 justify-between items-center bg-[#424248] rounded-md py-3 pl-3 border border-zinc-600 hover:border-fuchsia-400 shadow-md shadow-[#424248]/50">
                   <div className="flex items-center">
                     <div className="flex items-center justify-center bg-fuchsia-400 rounded-md p-2 mr-2">
                       <span>
