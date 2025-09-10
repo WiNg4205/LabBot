@@ -13,7 +13,7 @@ const ModalContent = ({ onClose }) => {
     }
 
    prevPath.current = location.pathname
-  }, [location.pathname])
+  }, [onClose, location.pathname])
 
   return (
     <div className="flex flex-col">

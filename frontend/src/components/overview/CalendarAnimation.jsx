@@ -47,7 +47,8 @@ const CalendarAnimation = () => {
           selected: "bg-fuchsia-500 text-zinc-200 rounded-full",
           month_caption: "flex justify-center items-center h-12 font-extrabold text-3xl mb-6 text-fuchsia-400",
           root: `${defaultClassNames.root} p-5 text-3xl user-select-none self-start text-zinc-300 h-48`,
-          chevron: `${defaultClassNames.chevron} fill-slate-400`
+          chevron: `${defaultClassNames.chevron} fill-slate-400`,
+          day_button: `${defaultClassNames.day_button} h-10 w-10 sm:h-13 sm:w-13 rounded-full border-2 border-transparent md:w-16 md:h-16`,
         }}
       />
     </div>
