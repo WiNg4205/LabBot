@@ -3,7 +3,8 @@ import fetch from 'node-fetch'
 const urls = {
   quote: 'https://zenquotes.io/api/random',
   joke: 'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist',
-  weather: 'https://api.open-meteo.com/v1/forecast?latitude=-33.8678&longitude=151.2073&current_weather=true&timezone=Australia%2FSydney'
+  weather: 'https://api.open-meteo.com/v1/forecast?latitude=-33.8678&longitude=151.2073&current_weather=true&timezone=Australia%2FSydney',
+  word: 'https://random-word-api.herokuapp.com/word'
 }
 
 const weatherCodes = {
@@ -49,6 +50,35 @@ class ApiHandler {
     output += `**Weather:** ${weather}\n`
     output += `**Time:** ${time} AEST`
     return output
+  }
+
+  async getWord () {
+    try {
+      const res = await fetch(urls.word)
+      const data = await res.json()
+      const word = data[0].charAt(0).toUpperCase() + data[0].slice(1)
+      
+      const dictRes = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+      const dictData = await dictRes.json()
+      
+      // Check if the dictionary API returned valid data
+      if (!dictData || !Array.isArray(dictData) || dictData.length === 0) {
+        return `**Word:** ${word}\n**Definition:** Sorry, no definition found for this word.`
+      }
+      
+      const meanings = dictData[0].meanings
+      if (!meanings || meanings.length === 0 || !meanings[0].definitions || meanings[0].definitions.length === 0) {
+        return `**Word:** ${word}\n**Definition:** Sorry, no definition found for this word.`
+      }
+      
+      const definition = meanings[0].definitions[0].definition
+      const example = meanings[0].definitions[0].example || 'No example available'
+      
+      return `**Word:** ${word}\n**Definition:** ${definition}\n**Example:** ${example}`
+    } catch (error) {
+      console.error('Error fetching word:', error)
+      return 'Sorry, there was an error fetching a word. Please try again later.'
+    }
   }
 }
 
