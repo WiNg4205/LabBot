@@ -4,7 +4,7 @@ const urls = {
   quote: 'https://zenquotes.io/api/random',
   joke: 'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist',
   weather: 'https://api.open-meteo.com/v1/forecast?latitude=-33.8678&longitude=151.2073&current_weather=true&timezone=Australia%2FSydney',
-  word: 'https://random-word-api.herokuapp.com/word'
+  word: 'https://random-word-api.vercel.app/api?words=1'
 }
 
 const weatherCodes = {
