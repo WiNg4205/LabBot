@@ -9,7 +9,6 @@ const useData = () => useContext(DataContext)
 const DataProvider = ({ children }) => {
   const userId = localStorage.getItem('discord_user_id')
   const { data } = useSWR(`../api/data?user_id=${userId}`, fetcher)
-  if (!data) return null
 
   return (
     <DataContext.Provider value={data}>

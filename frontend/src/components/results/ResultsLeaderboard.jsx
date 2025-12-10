@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 const ResultsLeaderboard = ({ gameType }) => {
   const getAvatars = useAvatars() || []
   const data = useData()
-  const getWinrates = data.resultHistory
+  const getWinrates = data?.resultHistory
   const [winrates, setWinrates] = useState([])
   
   useEffect(() => {

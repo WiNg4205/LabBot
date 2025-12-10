@@ -14,8 +14,10 @@ const Results = () => {
   const [hide, setHide] = useState(false)
 
   const data = useData()
-  const getGames = data.games
-  getGames.sort((a, b) => new Date(b.date) - new Date(a.date)) 
+  const getGames = data?.games
+  if (getGames) {
+    getGames.sort((a, b) => new Date(b.date) - new Date(a.date)) 
+  }
 
   useEffect(() => {
     setSearchParams(`game=${searchParams.get("game") || "all"}`)
@@ -25,7 +27,7 @@ const Results = () => {
       return
     }
 
-    const filteredGames = getGames.filter(g => g.game === searchParams.get("game")) 
+    const filteredGames = getGames ? getGames.filter(g => g.game === searchParams.get("game")) : []
     setFilteredGames(filteredGames)
   }, [getGames, searchParams, setSearchParams])
 

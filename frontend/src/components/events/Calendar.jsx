@@ -18,7 +18,7 @@ const Calendar = ({ dates, selectedDate, setSelectedDate }) => {
       </button>
 
       <DayPicker
-        animate
+        animate 
         mode="single"
         month={startOfMonth(selectedDate)}
         selected={selectedDate}

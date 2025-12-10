@@ -7,7 +7,11 @@ const ProfilePage = () => {
   const getAvatars = useAvatars() || []
 
   const data = useData()
-  const getWinrates = data.resultHistory
+  if (!data || getAvatars.length === 0) {
+    return <div className="border-8 border-t-transparent border-white rounded-full size-12 animate-spin my-20" />
+  }
+
+  const getWinrates = data?.resultHistory
   getWinrates['total'].at(-1).sort((a, b) => b.winRate - a.winRate)
   const overallRank = getWinrates['total'].at(-1).findIndex(player => player.name === name)
   const overallPlayerData = getWinrates['total'].at(-1).find(player => player.name === name)
@@ -37,7 +41,7 @@ const ProfilePage = () => {
   return (
     <>
       {getAvatars.length > 0 && (
-        <div className="flex flex-col w-full p-6 xl:w-6xl ">
+        <div className="flex flex-col w-full p-6 xl:w-6xl">
           <div className="flex flex-col bg-zinc-800 items-center justify-center xl:w-6xl rounded-md py-4 border border-zinc-700">
             <img src={getAvatars.find(avatar => avatar.username === name)?.avatar} alt="avatar" className="rounded-full size-24 border-[#efefef] border-3 mb-4" />
             <span className="text-2xl text-slate-100 font-bold tracking-wide">{name}</span>

@@ -4,8 +4,8 @@ import { useState, useEffect } from "react"
 
 const ResultsStreak = ({ selected }) => {
   const data = useData()
-  const getStreaks = data.streaks
-  const streaks = getStreaks[selected]
+  const getStreaks = data?.streaks
+  const streaks = getStreaks ? getStreaks[selected] : null
   const [arrayStreaks, setArrayStreaks] = useState([])
   const getAvatars = useAvatars() || []
  
