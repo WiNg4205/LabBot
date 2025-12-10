@@ -46,7 +46,7 @@ export async function GET(request) {
   players.forEach(player => {
     results.push({ name: player.name, points: 0, numGames: 0 })
   })
-  const bowlingGames = games.filter(g => g.game === 'bowling')
+  const bowlingGames = games.filter(g => g.game === 'bowling').reverse()
   bowlingGames.forEach(game => {
     Object.entries(game.results).forEach((key) => {
       const player = results.find(p => p.name === key[0])
@@ -64,7 +64,7 @@ export async function GET(request) {
   players.forEach(player => {
     results.push({ name: player.name, points: 0, numGames: 0 })
   })
-  const poolGames = games.filter(g => g.game === 'pool')
+  const poolGames = games.filter(g => g.game === 'pool').reverse()
   poolGames.forEach(game => {
     Object.entries(game.results).forEach((key) => {
       const player = results.find(p => p.name === key[0])
@@ -82,7 +82,7 @@ export async function GET(request) {
   players.forEach(player => {
     results.push({ name: player.name, points: 0, numGames: 0 })
   })
-  const cardsGames = games.filter(g => g.game === 'cards')
+  const cardsGames = games.filter(g => g.game === 'cards').reverse()
   cardsGames.forEach(game => {
     Object.entries(game.results).forEach((key) => {
       const player = results.find(p => p.name === key[0])
