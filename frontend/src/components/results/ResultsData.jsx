@@ -46,7 +46,7 @@ const ResultsData = ({ games, numGames, setNumGames, hide, setHide }) => {
           </div>
         ))
       ) : (
-        games.map((game, index) => 
+        games?.map((game, index) => 
           index < numGames && (
             <div key={index} className="flex flex-col">
               <div className="flex bg-zinc-800 rounded-md border-l-6 border-l-zinc-500 min-h-24 max-h-24 mb-1">
