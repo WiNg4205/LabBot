@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react"
 import { DayPicker, getDefaultClassNames } from "react-day-picker"
+import { startOfMonth } from "date-fns"
 import "../events/Calendar.css"
 
 const CalendarAnimation = () => {
@@ -8,6 +9,7 @@ const CalendarAnimation = () => {
   const defaultClassNames = getDefaultClassNames()
   const [month, setMonth] = useState(() => {
     const d = new Date()
+    d.setDate(1)
     d.setMonth(d.getMonth() - 3)
     return d
   })
@@ -41,7 +43,9 @@ const CalendarAnimation = () => {
     <div ref={ref} className={`scale-35 ${visible ? "visible" : ""}`}>
       <DayPicker
         mode="single"
-        month={month}
+        month={startOfMonth(month)}
+        selected={month}
+        onSelect={(d) => d && setMonth(d)}
         animate
         classNames={{
           selected: "bg-fuchsia-500 text-zinc-200 rounded-full",

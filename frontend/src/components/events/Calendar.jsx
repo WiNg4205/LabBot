@@ -22,11 +22,12 @@ const Calendar = ({ dates, selectedDate, setSelectedDate }) => {
         mode="single"
         month={startOfMonth(selectedDate)}
         selected={selectedDate}
+        onSelect={(d) => d && setSelectedDate(d)}
         className="custom-animate"
         classNames={{
           selected: "bg-fuchsia-500 text-zinc-200 rounded-full",
           month_caption: "flex justify-center items-center h-12 font-extrabold text-xl md:text-3xl md:mb-6 text-fuchsia-400",
-          root: `${defaultClassNames.root} px-0 md:px-3 md:p-5 text-[18px] md:text-3xl user-select-none self-start text-zinc-300`,
+          root: `${defaultClassNames.root} px-0 md:p-5 text-[18px] md:text-3xl user-select-none self-start text-zinc-300`,
           chevron: `${defaultClassNames.chevron} fill-slate-400`,
           day: `${defaultClassNames.day} text-[18px] md:text-[20px]`,
           day_button: `${defaultClassNames.day_button} h-10 w-10 sm:h-13 sm:w-13 rounded-full border-2 border-transparent md:w-16 md:h-16`,
