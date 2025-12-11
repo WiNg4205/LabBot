@@ -33,7 +33,7 @@ const Events = () => {
 
 
   useEffect(() => {
-    if (!getOutings?.length) return
+    if (!getOutings?.length || !selectedDate) return
     
     const outing = getOutings.find(o =>
       new Date(o.date).toDateString() === selectedDate.toDateString()

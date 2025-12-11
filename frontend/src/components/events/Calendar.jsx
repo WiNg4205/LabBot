@@ -22,7 +22,7 @@ const Calendar = ({ dates, selectedDate, setSelectedDate }) => {
         mode="single"
         month={startOfMonth(selectedDate)}
         selected={selectedDate}
-        onSelect={(d) => d && setSelectedDate(d)}
+        onSelect={(d) => d && dates.includes(d) && setSelectedDate(d)}
         className="custom-animate"
         classNames={{
           selected: "bg-fuchsia-500 text-zinc-200 rounded-full",
