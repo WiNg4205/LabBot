@@ -14,7 +14,7 @@ import AdminAnimation from "./AdminAnimation"
 
 
 const Features = () => {
-  return <div className="max-w-[80%] mx-auto flex flex-col items-center mb-20">
+  return <div className="max-w-[90%] mx-auto flex flex-col items-center mb-20">
     <h2 className="text-4xl lg:text-5xl text-zinc-200 font-bold">Tech Stack</h2>
     <div className="flex justify-center gap-3 lg:gap-4 mt-10">
       {[NodeJSLogo, ViteLogo, VercelLogo, ReactLogo, TailwindCSSLogo, MongoDBLogo].map((logo, i) => (

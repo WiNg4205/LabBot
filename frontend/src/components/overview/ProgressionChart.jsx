@@ -15,13 +15,13 @@ const ProgressionChart = ({ winrate }) => {
   const colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"];
 
   return (
-    <div className="w-[400px] h-[300px] lg:w-[550px] lg:h-[420px]">
+    <div className="w-[320px] h-[270px] lg:w-[550px] lg:h-[420px]">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
           <XAxis dataKey={(_, index) => index} />
           <YAxis />
           <Tooltip content={<CustomTooltip />} />
-          <Legend verticalAlign="top" height={40} />
+          <Legend verticalAlign="bottom" height={40} />
           {playerNames.map((name, i) => (
             <Line
               key={name}
